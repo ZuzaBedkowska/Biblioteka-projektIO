@@ -1,4 +1,5 @@
 #include "Book.h"
+#include <iostream>
 
 using namespace std;
 
@@ -18,8 +19,12 @@ int Book::countItems() {
 }
 
 void Book::printBook() {
-	// TODO - implement Book::printBook
-	throw "Not yet implemented";
+	cout << "\"" << title << "\" ";
+	for (auto i : author)
+	{
+		cout << i << ", ";
+	}
+	cout << "\n";
 }
 
 void Book::createItem() {
