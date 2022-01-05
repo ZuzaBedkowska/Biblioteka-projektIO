@@ -6,7 +6,7 @@ class Item {
 private:
 	int id;
 
-	boolean isBorrowable;
+	bool isBorrowable;
 
 public:
 	Item();
