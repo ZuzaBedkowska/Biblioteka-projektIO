@@ -1,5 +1,15 @@
+#include <string>
+using namespace std;
+
 #ifndef USER_H
 #define USER_H
+
+struct Date
+	{
+	int day;
+	int month;
+	int year;
+	};
 
 class User {
 

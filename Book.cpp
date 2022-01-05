@@ -1,6 +1,8 @@
 #include "Book.h"
 
-boolean Book::isAnyItemFree() {
+using namespace std;
+
+bool Book::isAnyItemFree() {
 	// TODO - implement Book::isAnyItemFree
 	throw "Not yet implemented";
 }

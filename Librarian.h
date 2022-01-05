@@ -1,3 +1,9 @@
+#include <string>
+#include "Book.h"
+#include "User.h"
+
+using namespace std;
+
 #ifndef LIBRARIAN_H
 #define LIBRARIAN_H
 
@@ -38,7 +44,7 @@ public:
 
 	void editUser(int userID);
 
-	void printUsers(user users[]);
+	void printUsers(User users[]);
 };
 
 #endif

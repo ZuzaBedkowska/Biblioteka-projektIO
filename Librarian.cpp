@@ -70,7 +70,7 @@ void Librarian::editUser(int userID) {
 	throw "Not yet implemented";
 }
 
-void Librarian::printUsers(user users[]) {
+void Librarian::printUsers(User users[]) {
 	// TODO - implement Librarian::printUsers
 	throw "Not yet implemented";
 }
