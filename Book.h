@@ -1,3 +1,10 @@
+#include <string>
+#include <vector>
+#include "Item.h"
+
+
+using namespace std;
+
 #ifndef BOOK_H
 #define BOOK_H
 
@@ -8,10 +15,10 @@ private:
 	string title;
 	string description;
 	static int count;
-	std::vector<string> author;
+	vector<string> author;
 
 public:
-	boolean isAnyItemFree();
+	bool isAnyItemFree();
 
 	Item getFreeItem();
 
