@@ -1,15 +1,9 @@
 #include <string>
+#include "Date.h"
 using namespace std;
 
 #ifndef USER_H
 #define USER_H
-
-struct Date
-	{
-	int day;
-	int month;
-	int year;
-	};
 
 class User {
 
@@ -25,6 +19,8 @@ private:
 	static int usersCount;
 
 public:
+	User();
+
 	void addReservation(int bookId);
 
 	void removeReservation(int reservationId);
@@ -36,6 +32,27 @@ public:
 	void removeBorrowment();
 
 	void printBorrowments();
+
+	void setName(string& newName);
+
+	void setId(int newId);
+
+	void setPassword(string& newPassword);
+
+	void setFine(double newFine);
+
+	void setBirthDate(Date newBirthDate);
+
+	string getName();
+
+	int getId();
+
+	string getPassword();
+
+	double getFine();
+
+	Date getBirthDate();
+
 };
 
 #endif
