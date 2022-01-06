@@ -1,14 +1,38 @@
+#include "Date.h"
+
+using namespace std;
+
 #ifndef BORROWMENT_H
 #define BORROWMENT_H
+
 
 class Borrowment {
 
 private:
 	int id;
-	Date date;
-
-	static int durationDays;
+	Date dateOfBorrowment;
+	int durationDays;
 	int userID;
+
+public:
+	Borrowment();
+
+	void setId(int newId);
+
+	void setDate(Date newDate);
+
+	void setUserId(int newUSerId);
+
+	void setDurationDays(int newDurationDays);
+
+	int getId();
+
+	Date getDate();
+
+	int getUserId();
+
+	int getDurationDays();
+
 };
 
 #endif

@@ -140,6 +140,24 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Biblioteka-projektIO.cpp" />
+    <ClCompile Include="Book.cpp" />
+    <ClCompile Include="Borrowment.cpp" />
+    <ClCompile Include="Item.cpp" />
+    <ClCompile Include="Librarian.cpp" />
+    <ClCompile Include="Reservation.cpp" />
+    <ClCompile Include="User.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Book.h" />
+    <ClInclude Include="Borrowment.h" />
+    <ClInclude Include="Date.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="Librarian.h" />
+    <ClInclude Include="Reservation.h" />
+    <ClInclude Include="User.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CppProperties.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

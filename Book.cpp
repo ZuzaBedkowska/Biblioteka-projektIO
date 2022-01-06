@@ -19,15 +19,57 @@ int Book::countItems() {
 }
 
 void Book::printBook() {
-	cout << "\"" << title << "\" ";
-	for (auto i : author)
+	cout << "\"" << title << "\", ";
+	if (author.size() == 1)
 	{
-		cout << i << ", ";
+		cout << "Autor: " << author[0] << "\n";
 	}
-	cout << "\n";
+	else 
+	{
+		cout << "Autorzy: ";
+		for (int i = 0; i < author.size() - 1; ++i) //zeby nie wypisywac przecinka na koncu, element ostatni zostanie wypisany osobno
+		{
+			cout << i << ", ";
+		}
+		cout << author.back();
+		cout << "\n";
+	}
+	
 }
 
 void Book::createItem() {
 	// TODO - implement Book::createItem
 	throw "Not yet implemented";
+}
+
+void Book::setTitle(string & newTitle) {
+	title = newTitle;
+}
+
+void Book::setAuthor(string& newAuthor) {
+	author.push_back(newAuthor);
+}
+
+void Book::setDescription(string& newDescription) {
+	description.push_back(newDescription);
+}
+
+int Book::getId()
+{
+	return id;
+}
+
+string Book::getTitle()
+{
+	return title;
+}
+
+vector<string> Book::getAuthors()
+{
+	return author;
+}
+
+vector<string> Book::getDescription()
+{
+	return description;
 }

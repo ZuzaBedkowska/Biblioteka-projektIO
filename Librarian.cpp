@@ -1,5 +1,10 @@
 #include "Librarian.h"
 
+Librarian::Librarian()
+{
+	throw "Not yet implemented";
+}
+
 void Librarian::addBorrowment(int userId, int itemId) {
 	// TODO - implement Librarian::addBorrowment
 	throw "Not yet implemented";
@@ -73,4 +78,24 @@ void Librarian::editUser(int userID) {
 void Librarian::printUsers(User users[]) {
 	// TODO - implement Librarian::printUsers
 	throw "Not yet implemented";
+}
+
+void Librarian::setName(string& newName)
+{
+	name = newName;
+}
+
+void Librarian::setPassword(string& newPassoword)
+{
+	password = newPassoword;
+}
+
+string Librarian::getName()
+{
+	return name;
+}
+
+string Librarian::getPassword()
+{
+	return password;
 }

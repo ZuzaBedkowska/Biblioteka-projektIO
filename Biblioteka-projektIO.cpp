@@ -2,10 +2,27 @@
 //
 
 #include <iostream>
+#include <string>
+#include <vector>
+#include "Book.h"
+
+using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	vector <Book> bookDatabase;
+	Book przyklad;
+	string autor = "J.R.R. Tolkien";
+	przyklad.setAuthor(autor);
+	string tytul = "Wladca Pierscieni";
+	przyklad.setTitle(tytul);
+	string opis = "Gatunek: Fantasy";
+	przyklad.setDescription(opis);
+	bookDatabase.push_back(przyklad);
+	for (auto i : bookDatabase)
+	{
+		i.printBook();
+	}
 }
 
 // Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania

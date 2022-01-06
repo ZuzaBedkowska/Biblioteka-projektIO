@@ -16,6 +16,8 @@ private:
 	static int count;
 
 public:
+	Librarian();
+
 	void addBorrowment(int userId, int itemId);
 
 	void removeBorrowment(int borrowmentId);
@@ -45,6 +47,14 @@ public:
 	void editUser(int userID);
 
 	void printUsers(User users[]);
+
+	void setName(string& newName);
+
+	void setPassword(string& newPassoword);
+
+	string getName();
+
+	string getPassword();
 };
 
 #endif
