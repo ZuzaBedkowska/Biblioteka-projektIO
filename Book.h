@@ -13,7 +13,7 @@ class Book {
 private:
 	int id;
 	string title;
-	string description;
+	vector <string> description;
 	static int count;
 	vector<string> author;
 
@@ -27,6 +27,20 @@ public:
 	void printBook();
 
 	void createItem();
+	
+	void setTitle(string & newTitle);
+
+	void setAuthor(string& newAuthor);
+
+	void setDescription(string& newDescription);
+
+	int getId();
+
+	string getTitle();
+
+	vector <string> getAuthors();
+
+	vector <string> getDescription();
 };
 
 #endif
