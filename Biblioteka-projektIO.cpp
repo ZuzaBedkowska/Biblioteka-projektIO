@@ -1,28 +1,78 @@
 ﻿// Biblioteka-projektIO.cpp : Ten plik zawiera funkcję „main”. W nim rozpoczyna się i kończy wykonywanie programu.
 //
 
+
 #include <iostream>
 #include <string>
 #include <vector>
 #include "Book.h"
+#include "User.h"
+#include "Librarian.h"
 
 using namespace std;
 
+void menuUser();
+
+void userLogin(vector <User>& userDatabase);
+
+void start(vector <User>& userDatabase);
+
+void menuUser()
+{
+	cout << "Witaj " << "Wybierz jedna z dostepnych opcji wpisujac jej numer:\n";
+	cout << "\t1. Przegladaj ksiazki\n";
+	cout << "\t2. Wyszukaj ksiazke\n";
+}
+
+void userLogin(vector<User>& userDatabase)
+{
+	return;
+}
+
+void start(vector <User>& userDatabase)
+{
+	cout << "Wybierz jedna z dostepnych opcji wpisujac jej numer:\n";
+	cout << "\t1. Zaloguj jako pracownik\n";
+	cout << "\t2. Zaloguj jako uzytkownik\n";
+	cout << "\t3. Korzystaj bez zalogowania\n";
+	cout << "\t4. Zarejestruj\nTwoj wybor: ";
+	int choice = 0;
+	cin >> choice;
+	switch (choice)
+	{
+	case 1:
+		break;
+	case 2:
+	{
+		userLogin(userDatabase);
+		break;
+	}
+	case 3:
+	{
+		User newUser; //Uzytkownik niezalogowany ma nazwe niezalogowany
+		string name = "Niezalogowany";
+		newUser.setName(name);
+		break;
+	}
+	case 4:
+	{
+		User newUser; //nowy, pusty użytkownik narazie z konstruktora domyślnego
+		userDatabase.push_back(newUser);
+		break;
+	}
+	default:
+	{
+		cout << "Wybierz wlasciwa opcje!\n";
+		system("pause");
+	}
+	}
+}
+
 int main()
 {
-	vector <Book> bookDatabase;
-	Book przyklad;
-	string autor = "J.R.R. Tolkien";
-	przyklad.setAuthor(autor);
-	string tytul = "Wladca Pierscieni";
-	przyklad.setTitle(tytul);
-	string opis = "Gatunek: Fantasy";
-	przyklad.setDescription(opis);
-	bookDatabase.push_back(przyklad);
-	for (auto i : bookDatabase)
-	{
-		i.printBook();
-	}
+	vector <User> userDatabase;
+	vector <Librarian> librarianDatabase;
+	start(userDatabase);
 }
 
 // Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania
