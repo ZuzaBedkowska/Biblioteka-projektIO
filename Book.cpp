@@ -31,3 +31,35 @@ void Book::createItem() {
 	// TODO - implement Book::createItem
 	throw "Not yet implemented";
 }
+
+void Book::setTitle(string & newTitle) {
+	title = newTitle;
+}
+
+void Book::setAuthor(string& newAuthor) {
+	author.push_back(newAuthor);
+}
+
+void Book::setDescription(string& newDescription) {
+	description.push_back(newDescription);
+}
+
+int Book::getId()
+{
+	return id;
+}
+
+string Book::getTitle()
+{
+	return title;
+}
+
+vector<string> Book::getAuthors()
+{
+	return author;
+}
+
+vector<string> Book::getDescription()
+{
+	return description;
+}
