@@ -10,6 +10,11 @@ void Reservation::setId(int newId)
 	id = newId;
 }
 
+void Reservation::setDate(Date newDate)
+{
+	dateOfReservation = newDate;
+}
+
 void Reservation::setDurationDays(int newDurationDays)
 {
 	durationDays = newDurationDays;
