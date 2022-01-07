@@ -46,7 +46,8 @@ void User::printBorrowments() {
 
 void User::printUser()
 {
-	cout << "Uzytkownik nr " << id << "\n\tImie i nazwisko: " << name << "\n";
+	cout << "Uzytkownik nr " << id << "\n\tImie i nazwisko: " << name << "\n Data urodzenia: ";
+	birthDate.printDate();
 }
 
 void User::setName(string& newName)
