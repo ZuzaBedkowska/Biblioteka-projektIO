@@ -21,8 +21,6 @@ private:
 public:
 	User(string name, string password, Date birthDate);
 
-	User(string & newName, string & newPassword);
-
 	void addReservation(int bookId);
 
 	void removeReservation(int reservationId);

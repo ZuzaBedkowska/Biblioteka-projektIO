@@ -129,7 +129,7 @@ void registration(vector<User>& userDatabase)
 	
 	cout << "Haslo silne\nTworzenie konta";
 	loading();
-	User newUser(login, password);
+	User newUser(login, password, {1, 1, 1970});
 	cout << "Uzytkownik zostal utowrzony ";
 	userDatabase.push_back(newUser);
 	cout << " i dodany do bazy.\nDane uzytkownika:\n";
@@ -159,9 +159,9 @@ void start(vector <User>& userDatabase)
 		}
 		case 3:
 		{
-			User newUser; //Uzytkownik niezalogowany ma nazwe niezalogowany
-			string name = "Niezalogowany";
-			newUser.setName(name);
+			//User newUser; //Uzytkownik niezalogowany ma nazwe niezalogowany
+			//string name = "Niezalogowany";
+			//newUser.setName(name);
 			break;
 		}
 		case 4:
@@ -184,7 +184,7 @@ int main()
 
 	string name = "Zuza";
 	string password = "zuza";
-	User test(name, password);
+	User test(name, password, {1, 1, 1970});
 	userDatabase.push_back(test);
 	start(userDatabase);
 }
