@@ -40,7 +40,7 @@ void loading() //animacja ladowania
 		cout << "\b\b\b\b\b     \b\b\b\b\b" << flush; //wymaz wszystkie gwiazdki
 	}
 	cout << "\n";
-}
+} 
 
 void menuUser(User & registeredUser)
 {
