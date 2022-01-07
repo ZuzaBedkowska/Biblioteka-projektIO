@@ -11,21 +11,49 @@
 
 using namespace std;
 
-void menuUser();
+void menuUser(User & registeredUser);
 
 void userLogin(vector <User>& userDatabase);
 
 void start(vector <User>& userDatabase);
 
-void menuUser()
+void menuUser(User & registeredUser)
 {
-	cout << "Witaj " << "Wybierz jedna z dostepnych opcji wpisujac jej numer:\n";
+	cout << "Witaj " << registeredUser.getName() << "Wybierz jedna z dostepnych opcji wpisujac jej numer:\n";
 	cout << "\t1. Przegladaj ksiazki\n";
 	cout << "\t2. Wyszukaj ksiazke\n";
 }
 
 void userLogin(vector<User>& userDatabase)
 {
+	system("cls");
+	cout << "Logowanie\n\n";
+	string login;
+	string pass;
+	cout << "Login: ";
+	cin >> login;
+	for (auto i : userDatabase)
+	{
+		if (i.getName() == login)
+		{
+			cout << "Haslo: ";
+			cin >> pass;
+			while (pass != i.getPassword())
+			{
+				cout << "Haslo niepoprawne!\nSprobuj ponownie\n";
+				system("pause");
+				cout << "Logowanie\n\nLogin: " << login << "Haslo: ";
+				cin >> pass;
+			}
+			if (i.getPassword() == pass)
+			{
+				cout << "Logowanie poprawne!\n";
+				system("pause");
+				system("cls");
+				menuUser(i);
+			}
+		}
+	}
 	return;
 }
 
@@ -72,6 +100,12 @@ int main()
 {
 	vector <User> userDatabase;
 	vector <Librarian> librarianDatabase;
+	User test;
+	string name = "Zuza";
+	string password = "zuza";
+	test.setName(name);
+	test.setPassword(password);
+	userDatabase.push_back(test);
 	start(userDatabase);
 }
 
