@@ -16,8 +16,11 @@ private:
 	vector <string> description;
 	static int count;
 	vector<string> author;
+	vector<Item> items;
 
 public:
+	Book(string title, vector <string> description, vector <string> author);
+
 	bool isAnyItemFree();
 
 	Item getFreeItem();

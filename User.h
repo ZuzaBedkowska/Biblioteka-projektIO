@@ -19,7 +19,7 @@ private:
 	static int usersCount;
 
 public:
-	User();
+	User(string name, string password, Date birthDate);
 
 	void addReservation(int bookId);
 
@@ -52,6 +52,10 @@ public:
 	double getFine();
 
 	Date getBirthDate();
+
+	static int getUsersCount() {
+		return usersCount;
+	}
 
 };
 

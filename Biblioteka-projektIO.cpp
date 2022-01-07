@@ -49,15 +49,15 @@ void start(vector <User>& userDatabase)
 	}
 	case 3:
 	{
-		User newUser; //Uzytkownik niezalogowany ma nazwe niezalogowany
-		string name = "Niezalogowany";
-		newUser.setName(name);
+		//User newUser; //Uzytkownik niezalogowany ma nazwe niezalogowany
+		//string name = "Niezalogowany";
+		//newUser.setName(name);
 		break;
 	}
 	case 4:
 	{
-		User newUser; //nowy, pusty użytkownik narazie z konstruktora domyślnego
-		userDatabase.push_back(newUser);
+		//User newUser; //nowy, pusty użytkownik narazie z konstruktora domyślnego
+		//userDatabase.push_back(newUser);
 		break;
 	}
 	default:
@@ -72,7 +72,15 @@ int main()
 {
 	vector <User> userDatabase;
 	vector <Librarian> librarianDatabase;
-	start(userDatabase);
+	vector <Book> bookDatabase;
+	userDatabase.push_back(User("user", "pass", { 12, 12, 2000 }));
+	librarianDatabase.push_back(Librarian("librarian", "pass"));
+	bookDatabase.push_back(Book("Solaris", {"Powiesc o planecie Solaris"}, {"Stanislaw Lem"}));
+	bookDatabase[0].createItem();
+	bookDatabase[0].createItem();
+	bookDatabase[0].createItem();
+	cout << bookDatabase[0].countItems();
+	//start(userDatabase);
 }
 
 // Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania

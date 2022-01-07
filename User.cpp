@@ -1,8 +1,15 @@
 #include "User.h"
 
-User::User()
+int User::usersCount = 0;
+
+User::User(string name = "name", string password = "pass", Date birthDate = {1, 1, 1970})
 {
-	//usersCount++;
+	User::usersCount++;
+	this->name = name;
+	this->id = usersCount;
+	this->password = password;
+	this->fine = 0;
+	this->birthDate = birthDate;
 }
 
 void User::addReservation(int bookId) {

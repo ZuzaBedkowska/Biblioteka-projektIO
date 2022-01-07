@@ -1,8 +1,13 @@
 #include "Librarian.h"
 
-Librarian::Librarian()
+int Librarian::count = 0;
+
+Librarian::Librarian(string name = "name", string password = "pass")
 {
-	throw "Not yet implemented";
+	Librarian::count++;
+	this->name = name;
+	this->password = password;
+	this->id = count;
 }
 
 void Librarian::addBorrowment(int userId, int itemId) {
