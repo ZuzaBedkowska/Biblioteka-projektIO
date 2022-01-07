@@ -11,7 +11,7 @@
 
 using namespace std;
 
-void menuUser();
+void menuUser(User & registeredUser);
 
 void userLogin(vector <User>& userDatabase);
 
