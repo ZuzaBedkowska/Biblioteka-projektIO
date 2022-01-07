@@ -3,6 +3,16 @@
 
 using namespace std;
 
+int Book::count = 0;
+
+Book::Book(string title, vector <string> description, vector <string> author) {
+	Book::count++;
+	this->id = Book::count;
+	this->title = title;
+	this->description = description;
+	this->author = author;
+}
+
 bool Book::isAnyItemFree() {
 	// TODO - implement Book::isAnyItemFree
 	throw "Not yet implemented";
@@ -14,8 +24,7 @@ Item Book::getFreeItem() {
 }
 
 int Book::countItems() {
-	// TODO - implement Book::countItems
-	throw "Not yet implemented";
+	return this->items.size();
 }
 
 void Book::printBook() {
@@ -38,8 +47,7 @@ void Book::printBook() {
 }
 
 void Book::createItem() {
-	// TODO - implement Book::createItem
-	throw "Not yet implemented";
+	this->items.push_back(Item());
 }
 
 void Book::setTitle(string & newTitle) {

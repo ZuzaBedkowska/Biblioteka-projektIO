@@ -19,7 +19,7 @@ private:
 	static int usersCount;
 
 public:
-	User();
+	User(string name, string password, Date birthDate);
 
 	User(string & newName, string & newPassword);
 
@@ -56,6 +56,10 @@ public:
 	double getFine();
 
 	Date getBirthDate();
+
+	static int getUsersCount() {
+		return usersCount;
+	}
 
 };
 

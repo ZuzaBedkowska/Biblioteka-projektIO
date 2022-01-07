@@ -4,18 +4,14 @@ using namespace std;
 
 int User::usersCount = 0;
 
-User::User()
+User::User(string name = "name", string password = "pass", Date birthDate = {1, 1, 1970})
 {
-	usersCount++;
-}
-
-User::User(string& newName, string& newPassword)
-{
-	setName(newName);
-	setPassword(newPassword);
-	usersCount++;
-	id = usersCount;
-
+	User::usersCount++;
+	this->name = name;
+	this->id = usersCount;
+	this->password = password;
+	this->fine = 0;
+	this->birthDate = birthDate;
 }
 
 void User::addReservation(int bookId) {
