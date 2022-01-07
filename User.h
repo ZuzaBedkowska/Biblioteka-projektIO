@@ -21,6 +21,8 @@ private:
 public:
 	User(string name, string password, Date birthDate);
 
+	User(string & newName, string & newPassword);
+
 	void addReservation(int bookId);
 
 	void removeReservation(int reservationId);
@@ -32,6 +34,8 @@ public:
 	void removeBorrowment();
 
 	void printBorrowments();
+
+	void printUser();
 
 	void setName(string& newName);
 

@@ -5,32 +5,142 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <windows.h>
 #include "Book.h"
 #include "User.h"
 #include "Librarian.h"
 
 using namespace std;
 
-void menuUser();
+void loading();
+
+void menuUser(User & registeredUser);
 
 void userLogin(vector <User>& userDatabase);
 
+void registration(vector<User>& userDatabase);
+
 void start(vector <User>& userDatabase);
 
-void menuUser()
+void loading() //animacja ladowania
 {
-	cout << "Witaj " << "Wybierz jedna z dostepnych opcji wpisujac jej numer:\n";
+	for (int i = 0; i < 3; ++i) //powtorz 3 razy
+	{
+		Sleep(200); //zaczekaj 200 jednostek
+		cout << "*" << flush; //wyswietl jedna gwiazdke
+		Sleep(200); //zaczekaj
+		cout << "*" << flush; //wyswietl
+		Sleep(200);
+		cout << "*" << flush;
+		Sleep(200);
+		cout << "*" << flush;
+		Sleep(200);
+		cout << "*" << flush;
+		Sleep(200);
+		cout << "\b\b\b\b\b     \b\b\b\b\b" << flush; //wymaz wszystkie gwiazdki
+	}
+	cout << "\n";
+} 
+
+void menuUser(User & registeredUser)
+{
+	cout << "Witaj " << registeredUser.getName() << "Wybierz jedna z dostepnych opcji wpisujac jej numer:\n";
 	cout << "\t1. Przegladaj ksiazki\n";
 	cout << "\t2. Wyszukaj ksiazke\n";
 }
 
 void userLogin(vector<User>& userDatabase)
 {
+	system("cls");
+	cout << "Logowanie\n\n";
+	string login;
+	string pass;
+	cout << "Login: ";
+	cin >> login;
+	for (auto i : userDatabase)
+	{
+		if (i.getName() == login)
+		{
+			cout << "Haslo: ";
+			cin >> pass;
+			while (pass != i.getPassword())
+			{
+				cout << "Haslo niepoprawne!\nSprobuj ponownie\n";
+				system("pause");
+				cout << "Logowanie\n\nLogin: " << login << "Haslo: ";
+				cin >> pass;
+			}
+			if (i.getPassword() == pass)
+			{
+				cout << "Logowanie poprawne!\n";
+				system("pause");
+				system("cls");
+				menuUser(i);
+			}
+		}
+	}
 	return;
+}
+
+void registration(vector<User>& userDatabase)
+{
+	system("cls");
+	string login;
+	cout << "Rejestracja\n\nPodaj login: ";
+	cin >> login;
+	bool loginAvailable = true;
+	do
+	{
+		for (auto i : userDatabase)
+		{
+			if (i.getName() == login) //jezeli login zajety
+			{
+				loginAvailable = false; //login niedostepny
+				cout << "Login zajety! wybierz inny!\n";
+				system("pause");
+				system("cls");
+				cout << "Rejestracja\n\nPodaj login: "; //wyswietl wszystko od nowa;
+				cin >> login;
+				break;
+			}
+			loginAvailable = true; //jesli nie wybrejkowalismy sie z petli for wczesniej, to znaczy ze login ok
+		}
+	} while (!loginAvailable);
+	string password;
+	cout << "Login poprawny. \nPodaj haslo: ";
+	cin >> password;
+	bool goodPassword = false;
+	while (!goodPassword)
+	{
+		if (password.size() > 8)
+		{
+			goodPassword = true;
+			break;
+		}
+		else
+		{
+			cout << "Haslo za slabe! podaj inne\n";
+			system("pause");
+			system("cls");
+			cout << "Rejestracja\n\nPodaj login :" << login << "\nLogin poprawny.\nPodaj haslo: "; //wyswietl wszystko od nowa;"
+			cin >> password;
+		}
+	}
+	
+	cout << "Haslo silne\nTworzenie konta";
+	loading();
+	User newUser(login, password);
+	cout << "Uzytkownik zostal utowrzony ";
+	userDatabase.push_back(newUser);
+	cout << " i dodany do bazy.\nDane uzytkownika:\n";
+	newUser.printUser();
+	system("pause");
+	start(userDatabase);
 }
 
 void start(vector <User>& userDatabase)
 {
+	system("cls");
 	cout << "Wybierz jedna z dostepnych opcji wpisujac jej numer:\n";
 	cout << "\t1. Zaloguj jako pracownik\n";
 	cout << "\t2. Zaloguj jako uzytkownik\n";
@@ -40,31 +150,30 @@ void start(vector <User>& userDatabase)
 	cin >> choice;
 	switch (choice)
 	{
-	case 1:
-		break;
-	case 2:
-	{
-		userLogin(userDatabase);
-		break;
-	}
-	case 3:
-	{
-		//User newUser; //Uzytkownik niezalogowany ma nazwe niezalogowany
-		//string name = "Niezalogowany";
-		//newUser.setName(name);
-		break;
-	}
-	case 4:
-	{
-		//User newUser; //nowy, pusty użytkownik narazie z konstruktora domyślnego
-		//userDatabase.push_back(newUser);
-		break;
-	}
-	default:
-	{
-		cout << "Wybierz wlasciwa opcje!\n";
-		system("pause");
-	}
+		case 1:
+			break;
+		case 2:
+		{
+			userLogin(userDatabase);
+			break;
+		}
+		case 3:
+		{
+			User newUser; //Uzytkownik niezalogowany ma nazwe niezalogowany
+			string name = "Niezalogowany";
+			newUser.setName(name);
+			break;
+		}
+		case 4:
+		{
+			registration(userDatabase);
+			break;
+		}
+		default:
+		{
+			cout << "Wybierz wlasciwa opcje!\n";
+			system("pause");
+		}
 	}
 }
 
@@ -72,15 +181,12 @@ int main()
 {
 	vector <User> userDatabase;
 	vector <Librarian> librarianDatabase;
-	vector <Book> bookDatabase;
-	userDatabase.push_back(User("user", "pass", { 12, 12, 2000 }));
-	librarianDatabase.push_back(Librarian("librarian", "pass"));
-	bookDatabase.push_back(Book("Solaris", {"Powiesc o planecie Solaris"}, {"Stanislaw Lem"}));
-	bookDatabase[0].createItem();
-	bookDatabase[0].createItem();
-	bookDatabase[0].createItem();
-	cout << bookDatabase[0].countItems();
-	//start(userDatabase);
+
+	string name = "Zuza";
+	string password = "zuza";
+	User test(name, password);
+	userDatabase.push_back(test);
+	start(userDatabase);
 }
 
 // Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania

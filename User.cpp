@@ -1,4 +1,6 @@
 #include "User.h"
+#include <iostream>
+using namespace std;
 
 int User::usersCount = 0;
 
@@ -40,6 +42,11 @@ void User::removeBorrowment() {
 void User::printBorrowments() {
 	// TODO - implement User::printBorrowments
 	throw "Not yet implemented";
+}
+
+void User::printUser()
+{
+	cout << "Uzytkownik nr " << id << "\n\tImie i nazwisko: " << name << "\n";
 }
 
 void User::setName(string& newName)
