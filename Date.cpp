@@ -5,22 +5,26 @@ using namespace std;
 
 bool Date::isTrue()
 {
+	if (month > 12)
+	{
+		return false;
+	}
 	if (day > 31) //jezeli dni nie jest za duzo
-		{
+	{
 		return false;
-		}
+	}
 	if (month == 2 && day > 29) //jezeli jestesmy w lutym i ktos wpisal za duzo dni
-		{
+	{
 		return false;
-		}
+	}
 	if (month == 2 && day > 28 && year%4 != 0) //jezeli jestesmy w lutym w rok nieprzestepny
-		{
+	{
 		return false;
-		}
+	}
 	if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30) //jezeli ktorys z tych miesiecy i liczba dni za duza
-		{
+	{
 		return false;
-		}
+	}
 	return true;
 }
 
