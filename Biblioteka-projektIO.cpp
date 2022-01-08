@@ -13,9 +13,9 @@
 
 using namespace std;
 
-void start(vector <User>& userDatabase);
+void start(vector <User>& userDatabase, vector <Book>& bookDatabase);
 
-void start(vector <User>& userDatabase)
+void start(vector <User>& userDatabase, vector <Book> & bookDatabase)
 {
 	system("cls");
 	cout << "Wybierz jedna z dostepnych opcji wpisujac jej numer:\n";
@@ -31,7 +31,8 @@ void start(vector <User>& userDatabase)
 			break;
 		case 2:
 		{
-			userLogin(userDatabase);
+			User loggedUser = userLogin(userDatabase);
+			userMenu(loggedUser, bookDatabase);
 			break;
 		}
 		case 3:
@@ -44,12 +45,14 @@ void start(vector <User>& userDatabase)
 		case 4:
 		{
 			userRegistration(userDatabase);
+			start(userDatabase, bookDatabase);
 			break;
 		}
 		default:
 		{
 			cout << "Wybierz wlasciwa opcje!\n";
 			system("pause");
+			break;
 		}
 	}
 }
@@ -58,12 +61,34 @@ int main()
 {
 	vector <User> userDatabase;
 	vector <Librarian> librarianDatabase;
-
+	vector <Book> bookDatabase;
 	string name = "Zuza";
 	string password = "zuza";
 	User test(name, password, {1, 1, 1970});
+	vector <string> doKsiazki;
+	vector <string> autorzy;
+	doKsiazki.push_back("Gatunek: Fantasy");
+	autorzy.push_back("J.R.R. Tolkien");
+	name = "Wladca Perscieni, II Wieze";
+	bookDatabase.push_back(Book(name ,doKsiazki,autorzy));
+	name = "Wladca Perscieni, Druzyna Pierscienia";
+	bookDatabase.push_back(Book(name, doKsiazki, autorzy));
+	name = "Wladca Perscieni, Powrot Krola";
+	bookDatabase.push_back(Book(name, doKsiazki, autorzy));
+	autorzy.pop_back();
+	autorzy.push_back("Christopher Paolini");
+	name = "Eragon";
+	bookDatabase.push_back(Book(name, doKsiazki, autorzy));
+	name = "Najstarszy";
+	bookDatabase.push_back(Book(name, doKsiazki, autorzy));
+	name = "Brisingr";
+	bookDatabase.push_back(Book(name, doKsiazki, autorzy));
+	name = "Dziedzictwo I";
+	bookDatabase.push_back(Book(name, doKsiazki, autorzy));
+	name = "Dziedzictwo II";
+	bookDatabase.push_back(Book(name, doKsiazki, autorzy));
 	userDatabase.push_back(test);
-	start(userDatabase);
+	start(userDatabase, bookDatabase);
 }
 
 // Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania
