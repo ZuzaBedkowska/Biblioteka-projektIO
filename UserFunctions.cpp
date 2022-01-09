@@ -8,15 +8,24 @@ void bookReservation(User& registeredUser, vector <Book>& bookDatabase)
 	cin >> choice;
 	switch (choice)
 	{
-	case 'W':
-	{
-		cout << "Podaj numer ksiazki z listy: ";
-	}
-	case 'M':
-	{
-		userMenu(registeredUser, bookDatabase);
-	}
+		case 'W':
+		{
+			cout << "Podaj numer ksiazki z listy: ";
+			int bookNumber;
+			cin >> bookNumber;
+			while (bookNumber > bookDatabase.size() || bookNumber < 0)
+			{
+				cout << "Wpisano niewlasciwy numer!\nPodan numer jeszcze raz: ";
+				cin >> bookNumber;
+			}
 
+			break;
+		}
+		case 'M':
+		{
+			userMenu(registeredUser, bookDatabase);
+			return;
+		}
 	}
 }
 
@@ -129,6 +138,7 @@ void userMenu(User& registeredUser, vector <Book>& bookDatabase)
 	cout << "Witaj " << registeredUser.getName() << "!\nWybierz jedna z dostepnych opcji wpisujac jej numer:\n";
 	cout << "\t1. Przegladaj ksiazki\n";
 	cout << "\t2. Wyszukaj ksiazke\n";
+	//cout << "\t3. Wróæ do logowania\n"; jeœli ktoœ umie to zrobiæ bez przekazywania wszêdzie listy uzytkownikow to zapraszam
 	cout << "Twoj wybor: ";
 	int choice;
 	cin >> choice;
