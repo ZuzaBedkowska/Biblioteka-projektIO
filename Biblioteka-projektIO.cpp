@@ -54,6 +54,7 @@ void start(vector <User>& userDatabase, vector <Book> & bookDatabase)
 		default:
 		{
 			cout << "Wybierz wlasciwa opcje!\n";
+			start(userDatabase, bookDatabase);
 			system("pause");
 			break;
 		}
