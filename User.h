@@ -20,7 +20,11 @@ private:
 	bool isLogged; //informacja czy uzytkownik zalogowany
 
 public:
+	User();
+
 	User(string name, string password, Date birthDate);
+
+	~User();
 
 	void addReservation(int bookId);
 
