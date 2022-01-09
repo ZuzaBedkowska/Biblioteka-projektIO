@@ -17,6 +17,7 @@ private:
 	double fine;
 	Date birthDate;
 	static int usersCount;
+	bool isLogged; //informacja czy uzytkownik zalogowany
 
 public:
 	User(string name, string password, Date birthDate);
@@ -45,6 +46,8 @@ public:
 
 	void setBirthDate(Date newBirthDate);
 
+	void setIsLogged(bool newLogged);
+
 	string getName();
 
 	int getId();
@@ -59,6 +62,7 @@ public:
 		return usersCount;
 	}
 
+	bool getIsLogged();
 };
 
 #endif

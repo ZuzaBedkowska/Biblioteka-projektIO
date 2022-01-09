@@ -75,6 +75,11 @@ void User::setBirthDate(Date newBirthDate)
 	birthDate = newBirthDate;
 }
 
+void User::setIsLogged(bool newLogged)
+{
+	isLogged = newLogged;
+}
+
 string User::getName()
 {
 	return name;
@@ -98,4 +103,9 @@ double User::getFine()
 Date User::getBirthDate()
 {
 	return birthDate;
+}
+
+bool User::getIsLogged()
+{
+	return isLogged;
 }
