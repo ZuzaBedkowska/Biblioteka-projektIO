@@ -32,14 +32,17 @@ void start(vector <User>& userDatabase, vector <Book> & bookDatabase)
 		case 2:
 		{
 			User loggedUser = userLogin(userDatabase);
+			loggedUser.setIsLogged(true);
 			userMenu(loggedUser, bookDatabase);
 			break;
 		}
 		case 3:
 		{
-			//User newUser; //Uzytkownik niezalogowany ma nazwe niezalogowany
-			//string name = "Niezalogowany";
-			//newUser.setName(name);
+			User newUser; //Uzytkownik niezalogowany ma nazwe niezalogowany
+			string name = "Niezalogowany";
+			newUser.setIsLogged(false);
+			newUser.setName(name);
+			userMenu(newUser, bookDatabase);
 			break;
 		}
 		case 4:

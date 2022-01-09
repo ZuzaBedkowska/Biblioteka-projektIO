@@ -1,6 +1,25 @@
 #include "UserFunctions.h"
 using namespace std;
 
+void bookReservation(User& registeredUser, vector <Book>& bookDatabase)
+{
+	cout << "\nAby wypozyczyc ksiazke, wpisz W\nAby wrocic do menu, wpisz M\nTwoj wybor: ";
+	char choice;
+	cin >> choice;
+	switch (choice)
+	{
+	case 'W':
+	{
+		cout << "Podaj numer ksiazki z listy: ";
+	}
+	case 'M':
+	{
+		userMenu(registeredUser, bookDatabase);
+	}
+
+	}
+}
+
 void getLogin (string & login)
 	{
 	cout << "Login: ";
@@ -24,41 +43,41 @@ void printBookDatabase(User & registeredUser, vector <Book>& bookDatabase)
 		i.printBook();
 		number++;
 	}
-	cout << "\nAby wypozyczyc ksiazke, wpisz W\nAby wrocic do menu, wpisz M\nTwoj wybor: ";
-	char choice;
-	cin >> choice;
-	switch (choice)
+	if (registeredUser.getIsLogged())
 	{
-	case 'W':
-		{
-		cout << "Podaj numer ksiazki z listy: ";
-		}
-	case 'M':
-	{
-		userMenu(registeredUser, bookDatabase);
+		bookReservation(registeredUser, bookDatabase);
 	}
+	else
+	{
+		cout << "\nAby wypozyczyc ksiazke, musisz sie zalogowac!\n";
+		system("pause");
+		userMenu(registeredUser, bookDatabase);
 	}
 }
 
-void bookSearch(vector <Book>& bookDatabase)
+void bookSearch(User& registeredUser, vector <Book>& bookDatabase)
 {
-	cout << "Podaj wyszukiwana fraze: ";
+	system("cls");
+	cout << "Wyszukiwanie ksiazki\nPodaj wyszukiwana fraze: ";
 	string phrase;
 	cin >> phrase;
-	cout << "Tytuly zawierajace podana fraze:\n";
+	cout << "\nTytuly zawierajace podana fraze:\n";
 	vector <Book> foundTitles;
 	vector <Book> foundAuthors;
+	vector <Book> allFound;
 	for (auto & i : bookDatabase)
 	{
 		if (i.getTitle().find(phrase) < i.getTitle().size())
 		{
 			foundTitles.push_back(i);
+			allFound.push_back(i);
 		}
 		for (auto & j : i.getAuthors())
 		{
 			if (j.find(phrase) < j.size())
 			{
 				foundAuthors.push_back(i);
+				allFound.push_back(i);
 				break;
 			}
 		}
@@ -78,7 +97,7 @@ void bookSearch(vector <Book>& bookDatabase)
 			number++;
 		}
 	}
-	cout << "Nazwiska autorow zawierajace podana fraze:\n";
+	cout << "\nNazwiska autorow zawierajace podana fraze:\n";
 	if (foundAuthors.size() == 0)
 	{
 		cout << "Brak\n";
@@ -91,6 +110,16 @@ void bookSearch(vector <Book>& bookDatabase)
 			i.printBook();
 			number++;
 		}
+	}
+	if (registeredUser.getIsLogged())
+	{
+		bookReservation(registeredUser, allFound);
+	}
+	else
+	{
+		cout << "\nAby wypozyczyc ksiazke, musisz sie zalogowac!\n";
+		system("pause");
+		userMenu(registeredUser, bookDatabase);
 	}
 }
 
@@ -112,7 +141,7 @@ void userMenu(User& registeredUser, vector <Book>& bookDatabase)
 		}
 		case 2:
 		{
-			bookSearch(bookDatabase);
+			bookSearch(registeredUser, bookDatabase);
 			break;
 		}
 		default:

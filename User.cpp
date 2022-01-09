@@ -4,6 +4,11 @@ using namespace std;
 
 int User::usersCount = 0;
 
+User::User()
+{
+	usersCount++;
+}
+
 User::User(string name = "name", string password = "pass", Date birthDate = {1, 1, 1970})
 {
 	User::usersCount++;
@@ -12,6 +17,11 @@ User::User(string name = "name", string password = "pass", Date birthDate = {1, 
 	this->password = password;
 	this->fine = 0;
 	this->birthDate = birthDate;
+}
+
+User::~User()
+{
+	usersCount--;
 }
 
 void User::addReservation(int bookId) {
@@ -75,6 +85,11 @@ void User::setBirthDate(Date newBirthDate)
 	birthDate = newBirthDate;
 }
 
+void User::setIsLogged(bool newLogged)
+{
+	isLogged = newLogged;
+}
+
 string User::getName()
 {
 	return name;
@@ -98,4 +113,9 @@ double User::getFine()
 Date User::getBirthDate()
 {
 	return birthDate;
+}
+
+bool User::getIsLogged()
+{
+	return isLogged;
 }
