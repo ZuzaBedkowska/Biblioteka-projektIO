@@ -146,6 +146,7 @@
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Librarian.cpp" />
     <ClCompile Include="MainController.cpp" />
+    <ClCompile Include="LibrarianFunctions.cpp" />
     <ClCompile Include="Reservation.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="UserFunctions.cpp" />

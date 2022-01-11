@@ -1,7 +1,6 @@
 ﻿// Biblioteka-projektIO.cpp : Ten plik zawiera funkcję „main”. W nim rozpoczyna się i kończy wykonywanie programu.
 //
 
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -11,6 +10,7 @@
 #include "Librarian.h"
 #include "UserFunctions.h"
 #include "MainController.h"
+#include "LibrarianFunctions.h"
 
 using namespace std;
 
@@ -23,6 +23,8 @@ int main()
 	string name = "Zuza";
 	string password = "zuza";
 	User test(name, password, {1, 1, 1970});
+	Librarian test2(name, password);
+	librarianDatabase.push_back(test2);
 	vector <string> doKsiazki;
 	vector <string> autorzy;
 	doKsiazki.push_back("Gatunek: Fantasy");
