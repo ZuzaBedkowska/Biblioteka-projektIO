@@ -2,6 +2,11 @@
 
 int Librarian::count = 0;
 
+Librarian::Librarian()
+{
+	count++;
+}
+
 Librarian::Librarian(string name = "name", string password = "pass")
 {
 	Librarian::count++;
