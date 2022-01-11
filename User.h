@@ -17,7 +17,7 @@ private:
 	double fine;
 	Date birthDate;
 	static int usersCount;
-	bool isLogged; //informacja czy uzytkownik zalogowany
+	bool isLogged = false; //informacja czy uzytkownik zalogowany
 
 public:
 	User();

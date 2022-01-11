@@ -8,9 +8,7 @@
 #include "Book.h"
 #include "User.h"
 #include "Librarian.h"
-#include "UserFunctions.h"
 #include "MainController.h"
-#include "LibrarianFunctions.h"
 
 using namespace std;
 
