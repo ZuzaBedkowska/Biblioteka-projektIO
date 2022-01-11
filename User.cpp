@@ -1,4 +1,6 @@
 #include "User.h"
+#include "Book.h"
+
 #include <iostream>
 using namespace std;
 
@@ -24,19 +26,64 @@ User::~User()
 	usersCount--;
 }
 
-void User::addReservation(int bookId) {
-	// TODO - implement User::addReservation
-	throw "Not yet implemented";
+bool User::userTest()
+{
+	if (((int)userReservations.size() + (int)userBorrowments.size() - 1) > 5)
+	{
+		return false;
+	}
+	else if (fine > 0)
+	{
+		return false;
+	}
+	return true;
+}
+
+void User::addReservation(Book chosenBook) {
+		Reservation res = Reservation(chosenBook.getFreeItem());
+		chosenBook.getFreeItem().setIsBorrowable(false);
+		cout << "Pomyslnie zarejestrowano rezerwacje o id: " << res.getId() << "\n";
+		userReservations.push_back(res);
 }
 
 void User::removeReservation(int reservationId) {
-	// TODO - implement User::removeReservation
-	throw "Not yet implemented";
+	for (int i = 0; i < userReservations.size(); ++i)
+	{
+		if (userReservations[i].getId() == reservationId)
+		{
+			userReservations.erase(userReservations.begin() + i);
+			break;
+		}
+	}
 }
 
 void User::printBooks() {
-	// TODO - implement User::printBooks
-	throw "Not yet implemented";
+	cout << "Rezerwacje:\n";
+	if (userReservations.size() > 0)
+	{
+		for (auto i : userReservations)
+		{
+			cout << "\t-";
+			//i.getItem().printBook();
+			cout <<	"\n";
+		}
+	}
+	else
+	{
+		cout << "Brak\n";
+	}
+	cout << "Wypozyczenia:\n";
+	if (userBorrowments.size() > 0)
+	{
+		for (auto i : userBorrowments)
+		{
+			cout << "\t-\n"; //trzeba ogarn¹æ jak wypisywaæ zarezerwowane tytu³y ksi¹¿ek
+		}
+	}
+	else
+	{
+		cout << "Brak\n";
+	}
 }
 
 void User::addBorrowment(int bookid) {
@@ -56,8 +103,9 @@ void User::printBorrowments() {
 
 void User::printUser()
 {
-	cout << "Uzytkownik nr " << id << "\n\tImie i nazwisko: " << name << "\n Data urodzenia: ";
+	cout << "Uzytkownik nr " << id << "\n\tImie i nazwisko: " << name << "\n\tData urodzenia: ";
 	birthDate.printDate();
+	cout << "\tKara nalozona na uzytkownika: " << fine << "\n";
 }
 
 void User::setName(string& newName)

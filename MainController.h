@@ -15,11 +15,10 @@ private:
 	vector <User> userDatabase;
 	vector <Librarian> librarianDatabase;
 	vector <Book> bookDatabase;
-	vector <Reservation> reservationDatabase;
 	User loggedUser;
 	Librarian loggedLibrarian;
 public:
-	MainController(vector <User> userDatabase, vector <Librarian> librarianDatabase, vector <Book> bookDatabase, vector <Reservation> reservationDatabase);
+	MainController(vector <User> userDatabase, vector <Librarian> librarianDatabase, vector <Book> bookDatabase);
 	void start();
 	void bookReservation();
 	void getLogin(string& login);

@@ -1,14 +1,13 @@
 #include "MainController.h"
 #include <iostream>
-#include "LibrarianFunctions.h"
 
 using namespace std;
 
-MainController::MainController(vector <User> userDatabase, vector <Librarian> librarianDatabase, vector <Book> bookDatabase, vector <Reservation> reservationDatabase) {
+MainController::MainController(vector <User> userDatabase, vector <Librarian> librarianDatabase, vector <Book> bookDatabase) {
 	this->userDatabase = userDatabase;
 	this->librarianDatabase = librarianDatabase;
 	this->bookDatabase = bookDatabase;
-	this->reservationDatabase = reservationDatabase;
+	//this->reservationDatabase = reservationDatabase;
 }
 
 void MainController::start()
@@ -83,16 +82,21 @@ void MainController::bookReservation()
 		}
 
 		bookDatabase[bookNumber].createItem(); //robocze robienie wolnego itemu
-		if (bookDatabase[bookNumber].isAnyItemFree()) {
-			Reservation res = Reservation(loggedUser, bookDatabase[bookNumber].getFreeItem());
-			bookDatabase[bookNumber].getFreeItem().setIsBorrowable(false);
-			cout << "Pomyslnie zarejestrowano rezerwacje o id: " << res.getId();
+		if ((bookDatabase[bookNumber].isAnyItemFree()) && (loggedUser.userTest())) 
+		{
+			loggedUser.addReservation(bookDatabase[bookNumber]);
 		}
-		else {
+		else if (!loggedUser.userTest())
+		{
+			cout << "Wypozyczenie niemozliwe\nSprawdz czy nie przekroczono limitu wypozyczen (5 pozycji), lub zaplac nalozone kary i oddaj przetrzymane ksiazki.\n";
+		}
+		else 
+		{
 			cout << "Brak wolnego egzemplarza podanej ksiazki";
 			bookReservation();
 		}
-
+		system("pause");
+		userMenu();
 		break;
 	}
 	case 'M':
@@ -236,6 +240,10 @@ void MainController::userMenu()
 	}
 	case 3:
 	{
+		loggedUser.printUser();
+		loggedUser.printBooks();
+		system("pause");
+		userMenu();
 		break;
 	}
 	case 4:

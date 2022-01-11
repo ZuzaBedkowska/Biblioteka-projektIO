@@ -46,7 +46,7 @@ int main()
 	name = "Dziedzictwo II";
 	bookDatabase.push_back(Book(name, doKsiazki, autorzy));
 	userDatabase.push_back(test);
-	MainController mainController = MainController(userDatabase, librarianDatabase, bookDatabase, reservationDatabase);
+	MainController mainController = MainController(userDatabase, librarianDatabase, bookDatabase);
 	mainController.start();
 }
 

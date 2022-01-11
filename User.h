@@ -1,5 +1,9 @@
 #include <string>
+#include <vector>
 #include "Date.h"
+#include "Borrowment.h"
+#include "Reservation.h"
+#include "Book.h"
 using namespace std;
 
 #ifndef USER_H
@@ -8,9 +12,6 @@ using namespace std;
 class User {
 
 private:
-	/**
-	 * Imiê i nazwisko u¿ytkownika
-	 */
 	string name;
 	int id;
 	string password;
@@ -18,6 +19,8 @@ private:
 	Date birthDate;
 	static int usersCount;
 	bool isLogged = false; //informacja czy uzytkownik zalogowany
+	vector <Reservation> userReservations;
+	vector <Borrowment> userBorrowments;
 
 public:
 	User();
@@ -26,7 +29,9 @@ public:
 
 	~User();
 
-	void addReservation(int bookId);
+	bool userTest(); //sprawdzenie, czy user moze wypozyczyc/rezerwowac ksiazke ksiazke
+
+	void addReservation(Book chosenBook);
 
 	void removeReservation(int reservationId);
 
