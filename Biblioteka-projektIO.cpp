@@ -1,7 +1,6 @@
 ﻿// Biblioteka-projektIO.cpp : Ten plik zawiera funkcję „main”. W nim rozpoczyna się i kończy wykonywanie programu.
 //
 
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -10,12 +9,13 @@
 #include "User.h"
 #include "Librarian.h"
 #include "UserFunctions.h"
+#include "LibrarianFunctions.h"
 
 using namespace std;
 
-void start(vector <User>& userDatabase, vector <Book>& bookDatabase);
+void start(vector <User>& userDatabase, vector <Librarian>& librarianDatabase, vector <Book>& bookDatabase);
 
-void start(vector <User>& userDatabase, vector <Book> & bookDatabase)
+void start(vector <User>& userDatabase, vector <Librarian>& librarianDatabase, vector <Book> & bookDatabase)
 {
 	system("cls");
 	cout << "Wybierz jedna z dostepnych opcji wpisujac jej numer:\n";
@@ -28,7 +28,11 @@ void start(vector <User>& userDatabase, vector <Book> & bookDatabase)
 	switch (choice)
 	{
 		case 1:
+		{
+			Librarian loggedLibrarian = librarianLogin(librarianDatabase);
+			librarianMenu(loggedLibrarian, userDatabase, bookDatabase);
 			break;
+		}
 		case 2:
 		{
 			User loggedUser = userLogin(userDatabase);
@@ -48,13 +52,13 @@ void start(vector <User>& userDatabase, vector <Book> & bookDatabase)
 		case 4:
 		{
 			userRegistration(userDatabase);
-			start(userDatabase, bookDatabase);
+			start(userDatabase, librarianDatabase, bookDatabase);
 			break;
 		}
 		default:
 		{
 			cout << "Wybierz wlasciwa opcje!\n";
-			start(userDatabase, bookDatabase);
+			start(userDatabase, librarianDatabase, bookDatabase);
 			system("pause");
 			break;
 		}
@@ -69,6 +73,8 @@ int main()
 	string name = "Zuza";
 	string password = "zuza";
 	User test(name, password, {1, 1, 1970});
+	Librarian test2(name, password);
+	librarianDatabase.push_back(test2);
 	vector <string> doKsiazki;
 	vector <string> autorzy;
 	doKsiazki.push_back("Gatunek: Fantasy");
@@ -92,7 +98,7 @@ int main()
 	name = "Dziedzictwo II";
 	bookDatabase.push_back(Book(name, doKsiazki, autorzy));
 	userDatabase.push_back(test);
-	start(userDatabase, bookDatabase);
+	start(userDatabase, librarianDatabase, bookDatabase);
 }
 
 // Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania

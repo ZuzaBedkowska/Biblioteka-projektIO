@@ -16,6 +16,8 @@ private:
 	static int count;
 
 public:
+	Librarian();
+
 	Librarian(string name, string password);
 
 	void addBorrowment(int userId, int itemId);
