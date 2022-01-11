@@ -3,11 +3,11 @@
 
 using namespace std;
 
-MainController::MainController(vector <User> userDatabase, vector <Librarian> librarianDatabase, vector <Book> bookDatabase, vector <Reservation> reservationDatabase) {
+MainController::MainController(vector <User> userDatabase, vector <Librarian> librarianDatabase, vector <Book> bookDatabase) {
 	this->userDatabase = userDatabase;
 	this->librarianDatabase = librarianDatabase;
 	this->bookDatabase = bookDatabase;
-	this->reservationDatabase = reservationDatabase;
+	//this->reservationDatabase = reservationDatabase;
 }
 
 void MainController::start()
@@ -89,6 +89,8 @@ void MainController::bookReservation()
 			cout << "Brak wolnego egzemplarza podanej ksiazki";
 			bookReservation();
 		}
+		system("pause");
+		userMenu();
 		break;
 	}
 	case 'M':
@@ -232,6 +234,8 @@ void MainController::userMenu()
 	}
 	case 3:
 	{
+		loggedUser.printUser();
+		loggedUser.printBooks();
 		break;
 	}
 	case 4:
