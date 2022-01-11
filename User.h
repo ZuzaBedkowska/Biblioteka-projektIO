@@ -29,6 +29,8 @@ public:
 
 	~User();
 
+	bool userTest(); //sprawdzenie, czy user moze wypozyczyc/rezerwowac ksiazke ksiazke
+
 	void addReservation(Book chosenBook);
 
 	void removeReservation(int reservationId);

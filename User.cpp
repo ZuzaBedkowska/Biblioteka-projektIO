@@ -26,21 +26,62 @@ User::~User()
 	usersCount--;
 }
 
+bool User::userTest()
+{
+	if (userReservations.size() + userBorrowments.size() >5)
+	{
+		return false;
+	}
+	else if (fine > 0)
+	{
+		return false;
+	}
+
+}
+
 void User::addReservation(Book chosenBook) {
 		Reservation res = Reservation(chosenBook.getFreeItem());
 		chosenBook.getFreeItem().setIsBorrowable(false);
-		cout << "Pomyslnie zarejestrowano rezerwacje o id: " << res.getId();
+		cout << "Pomyslnie zarejestrowano rezerwacje o id: " << res.getId() << "\n";
 		userReservations.push_back(res);
 }
 
 void User::removeReservation(int reservationId) {
-	// TODO - implement User::removeReservation
-	throw "Not yet implemented";
+	for (int i = 0; i < userReservations.size(); ++i)
+	{
+		if (userReservations[i].getId() == reservationId)
+		{
+			userReservations.erase(userReservations.begin() + i);
+			break;
+		}
+	}
 }
 
 void User::printBooks() {
-	// TODO - implement User::printBooks
-	throw "Not yet implemented";
+	cout << "Rezerwacje:\n";
+	if (userReservations.size() > 0)
+	{
+		for (auto i : userReservations)
+		{
+			cout << "\t-\n"; //trzeba ogarn¹æ jak wypisywaæ zarezerwowane tytu³y ksi¹¿ek
+		}
+	}
+	else
+	{
+		cout << "Brak\n";
+	}
+	cout << "Wypozyczenia:\n";
+	if (userBorrowments.size() > 0)
+	{
+		for (auto i : userBorrowments)
+		{
+			cout << "\t-\n"; //trzeba ogarn¹æ jak wypisywaæ zarezerwowane tytu³y ksi¹¿ek
+		}
+	}
+	else
+	{
+		cout << "Brak\n";
+	}
 }
 
 void User::addBorrowment(int bookid) {
@@ -62,6 +103,7 @@ void User::printUser()
 {
 	cout << "Uzytkownik nr " << id << "\n\tImie i nazwisko: " << name << "\n Data urodzenia: ";
 	birthDate.printDate();
+	cout << "Kara nalozona na uzytkownika: " << fine << "\n";
 }
 
 void User::setName(string& newName)
