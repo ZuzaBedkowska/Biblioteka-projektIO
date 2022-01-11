@@ -27,6 +27,8 @@ public:
 	Date getDate();
 
 	int getDurationDays();
+
+	Item getItem();
 };
 
 #endif

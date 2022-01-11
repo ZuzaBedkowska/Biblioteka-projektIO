@@ -82,10 +82,16 @@ void MainController::bookReservation()
 		}
 
 		bookDatabase[bookNumber].createItem(); //robocze robienie wolnego itemu
-		if (bookDatabase[bookNumber].isAnyItemFree()) {
+		if ((bookDatabase[bookNumber].isAnyItemFree()) && (loggedUser.userTest())) 
+		{
 			loggedUser.addReservation(bookDatabase[bookNumber]);
 		}
-		else {
+		else if (!loggedUser.userTest())
+		{
+			cout << "Wypozyczenie niemozliwe\nSprawdz czy nie przekroczono limitu wypozyczen (5 pozycji), lub zaplac nalozone kary i oddaj przetrzymane ksiazki.\n";
+		}
+		else 
+		{
 			cout << "Brak wolnego egzemplarza podanej ksiazki";
 			bookReservation();
 		}
@@ -236,6 +242,8 @@ void MainController::userMenu()
 	{
 		loggedUser.printUser();
 		loggedUser.printBooks();
+		system("pause");
+		userMenu();
 		break;
 	}
 	case 4:

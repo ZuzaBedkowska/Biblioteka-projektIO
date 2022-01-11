@@ -28,7 +28,7 @@ User::~User()
 
 bool User::userTest()
 {
-	if (userReservations.size() + userBorrowments.size() >5)
+	if (((int)userReservations.size() + (int)userBorrowments.size() - 1) > 5)
 	{
 		return false;
 	}
@@ -36,7 +36,7 @@ bool User::userTest()
 	{
 		return false;
 	}
-
+	return true;
 }
 
 void User::addReservation(Book chosenBook) {
@@ -63,7 +63,9 @@ void User::printBooks() {
 	{
 		for (auto i : userReservations)
 		{
-			cout << "\t-\n"; //trzeba ogarn¹æ jak wypisywaæ zarezerwowane tytu³y ksi¹¿ek
+			cout << "\t-";
+			//i.getItem().printBook();
+			cout <<	"\n";
 		}
 	}
 	else
@@ -101,9 +103,9 @@ void User::printBorrowments() {
 
 void User::printUser()
 {
-	cout << "Uzytkownik nr " << id << "\n\tImie i nazwisko: " << name << "\n Data urodzenia: ";
+	cout << "Uzytkownik nr " << id << "\n\tImie i nazwisko: " << name << "\n\tData urodzenia: ";
 	birthDate.printDate();
-	cout << "Kara nalozona na uzytkownika: " << fine << "\n";
+	cout << "\tKara nalozona na uzytkownika: " << fine << "\n";
 }
 
 void User::setName(string& newName)

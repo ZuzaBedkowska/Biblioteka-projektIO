@@ -37,3 +37,8 @@ int Reservation::getDurationDays()
 {
 	return durationDays;
 }
+
+Item Reservation::getItem()
+{
+	return item;
+}
