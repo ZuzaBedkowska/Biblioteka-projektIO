@@ -9,67 +9,17 @@
 #include "User.h"
 #include "Librarian.h"
 #include "UserFunctions.h"
+#include "MainController.h"
 #include "LibrarianFunctions.h"
 
 using namespace std;
-
-void start(vector <User>& userDatabase, vector <Librarian>& librarianDatabase, vector <Book>& bookDatabase);
-
-void start(vector <User>& userDatabase, vector <Librarian>& librarianDatabase, vector <Book> & bookDatabase)
-{
-	system("cls");
-	cout << "Wybierz jedna z dostepnych opcji wpisujac jej numer:\n";
-	cout << "\t1. Zaloguj jako pracownik\n";
-	cout << "\t2. Zaloguj jako uzytkownik\n";
-	cout << "\t3. Korzystaj bez zalogowania\n";
-	cout << "\t4. Zarejestruj\nTwoj wybor: ";
-	int choice = 0;
-	cin >> choice;
-	switch (choice)
-	{
-		case 1:
-		{
-			Librarian loggedLibrarian = librarianLogin(librarianDatabase);
-			librarianMenu(loggedLibrarian, userDatabase, bookDatabase);
-			break;
-		}
-		case 2:
-		{
-			User loggedUser = userLogin(userDatabase);
-			loggedUser.setIsLogged(true);
-			userMenu(loggedUser, bookDatabase);
-			break;
-		}
-		case 3:
-		{
-			User newUser; //Uzytkownik niezalogowany ma nazwe niezalogowany
-			string name = "Niezalogowany";
-			newUser.setIsLogged(false);
-			newUser.setName(name);
-			userMenu(newUser, bookDatabase);
-			break;
-		}
-		case 4:
-		{
-			userRegistration(userDatabase);
-			start(userDatabase, librarianDatabase, bookDatabase);
-			break;
-		}
-		default:
-		{
-			cout << "Wybierz wlasciwa opcje!\n";
-			start(userDatabase, librarianDatabase, bookDatabase);
-			system("pause");
-			break;
-		}
-	}
-}
 
 int main()
 {
 	vector <User> userDatabase;
 	vector <Librarian> librarianDatabase;
 	vector <Book> bookDatabase;
+	vector <Reservation> reservationDatabase;
 	string name = "Zuza";
 	string password = "zuza";
 	User test(name, password, {1, 1, 1970});
@@ -98,7 +48,8 @@ int main()
 	name = "Dziedzictwo II";
 	bookDatabase.push_back(Book(name, doKsiazki, autorzy));
 	userDatabase.push_back(test);
-	start(userDatabase, librarianDatabase, bookDatabase);
+	MainController mainController = MainController(userDatabase, librarianDatabase, bookDatabase, reservationDatabase);
+	mainController.start();
 }
 
 // Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania
