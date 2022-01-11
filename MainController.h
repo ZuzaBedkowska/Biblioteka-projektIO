@@ -15,7 +15,6 @@ private:
 	vector <User> userDatabase;
 	vector <Librarian> librarianDatabase;
 	vector <Book> bookDatabase;
-	vector <Reservation> reservationDatabase;
 	User loggedUser;
 	Librarian loggedLibrarian;
 public:

@@ -1,6 +1,5 @@
 #include "MainController.h"
 #include <iostream>
-#include "LibrarianFunctions.h"
 
 using namespace std;
 
@@ -84,15 +83,12 @@ void MainController::bookReservation()
 
 		bookDatabase[bookNumber].createItem(); //robocze robienie wolnego itemu
 		if (bookDatabase[bookNumber].isAnyItemFree()) {
-			Reservation res = Reservation(loggedUser, bookDatabase[bookNumber].getFreeItem());
-			bookDatabase[bookNumber].getFreeItem().setIsBorrowable(false);
-			cout << "Pomyslnie zarejestrowano rezerwacje o id: " << res.getId();
+			loggedUser.addReservation(bookDatabase[bookNumber]);
 		}
 		else {
 			cout << "Brak wolnego egzemplarza podanej ksiazki";
 			bookReservation();
 		}
-
 		break;
 	}
 	case 'M':

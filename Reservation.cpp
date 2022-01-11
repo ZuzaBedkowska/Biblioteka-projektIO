@@ -1,11 +1,10 @@
 #include "Reservation.h"
 int Reservation::count = 0;
 
-Reservation::Reservation(User user, Item item)
+Reservation::Reservation(Item item)
 {
 	Reservation::count++;
 	this->id = Reservation::count;
-	this->user = user;
 	this->item = item;
 }
 

@@ -1,4 +1,6 @@
 #include "User.h"
+#include "Book.h"
+
 #include <iostream>
 using namespace std;
 
@@ -24,9 +26,11 @@ User::~User()
 	usersCount--;
 }
 
-void User::addReservation(int bookId) {
-	// TODO - implement User::addReservation
-	throw "Not yet implemented";
+void User::addReservation(Book chosenBook) {
+		Reservation res = Reservation(chosenBook.getFreeItem());
+		chosenBook.getFreeItem().setIsBorrowable(false);
+		cout << "Pomyslnie zarejestrowano rezerwacje o id: " << res.getId();
+		userReservations.push_back(res);
 }
 
 void User::removeReservation(int reservationId) {

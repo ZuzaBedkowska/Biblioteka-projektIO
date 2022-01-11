@@ -1,5 +1,4 @@
 #include "Date.h"
-#include "User.h"
 #include "Item.h"
 using namespace std;
 
@@ -12,11 +11,10 @@ private:
 	int id;
 	Date dateOfReservation;
 	int durationDays;
-	User user;
 	Item item;
 	static int count;
 public:
-	Reservation(User user, Item item);
+	Reservation(Item item);
 
 	void setId(int newId);
 
