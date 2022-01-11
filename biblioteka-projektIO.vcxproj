@@ -145,6 +145,7 @@
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Librarian.cpp" />
+    <ClCompile Include="MainController.cpp" />
     <ClCompile Include="Reservation.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="UserFunctions.cpp" />
@@ -155,6 +156,7 @@
     <ClInclude Include="Date.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Librarian.h" />
+    <ClInclude Include="MainController.h" />
     <ClInclude Include="Reservation.h" />
     <ClInclude Include="User.h" />
     <ClInclude Include="UserFunctions.h" />
