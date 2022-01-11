@@ -14,6 +14,7 @@ private:
 	string name;
 	string password;
 	static int count;
+	bool isLogged = false;
 
 public:
 	Librarian();
@@ -54,9 +55,13 @@ public:
 
 	void setPassword(string& newPassoword);
 
+	void setIsLogged(bool newLogged);
+
 	string getName();
 
 	string getPassword();
+
+	bool getIsLogged();
 };
 
 #endif

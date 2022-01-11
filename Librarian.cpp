@@ -100,6 +100,11 @@ void Librarian::setPassword(string& newPassoword)
 	password = newPassoword;
 }
 
+void Librarian::setIsLogged(bool newLogged)
+{
+	isLogged = newLogged;
+}
+
 string Librarian::getName()
 {
 	return name;
@@ -108,4 +113,9 @@ string Librarian::getName()
 string Librarian::getPassword()
 {
 	return password;
+}
+
+bool Librarian::getIsLogged()
+{
+	return isLogged;
 }

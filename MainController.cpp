@@ -1,5 +1,6 @@
 #include "MainController.h"
 #include <iostream>
+#include "LibrarianFunctions.h"
 
 using namespace std;
 
@@ -23,21 +24,27 @@ void MainController::start()
 	switch (choice)
 	{
 	case 1:
+	{
+		loggedLibrarian = librarianLogin();
+		loggedLibrarian.setIsLogged(true); //zalogowany librarian a nie user
+		loggedUser.setIsLogged(false);
+		librarianMenu();
 		break;
+	}
 	case 2:
 	{
 		loggedUser = userLogin();
-		loggedUser.setIsLogged(true);
+		loggedUser.setIsLogged(true); //zalogowany user a nie librarian
+		loggedLibrarian.setIsLogged(false);
 		userMenu();
 		break;
 	}
 	case 3:
 	{
-		User newUser; //Uzytkownik niezalogowany ma nazwe niezalogowany
 		string name = "Niezalogowany";
-		newUser.setIsLogged(false);
-		newUser.setName(name);
-		loggedUser = newUser;
+		loggedUser.setIsLogged(false); //ani librarian ani user niezalogowani
+		loggedLibrarian.setIsLogged(false);
+		loggedUser.setName(name);
 		userMenu();
 		break;
 	}
@@ -119,11 +126,16 @@ void MainController::printBookDatabase()
 		i.printBook();
 		number++;
 	}
-	if (loggedUser.getIsLogged())
+	if (loggedUser.getIsLogged()) //jezeli user zalogowany (librarian nie jest zalogowany)
 	{
 		bookReservation();
 	}
-	else
+	else if (loggedLibrarian.getIsLogged()) //jesli to librarian jest zalogowany a user nie
+	{
+		system("pause");
+		librarianMenu();
+	}
+	else if((!loggedLibrarian.getIsLogged()) && (!loggedUser.getIsLogged())) //jesli nikt nie jest zalogowany
 	{
 		cout << "\nAby wypozyczyc ksiazke, musisz sie zalogowac!\n";
 		system("pause");
@@ -205,7 +217,8 @@ void MainController::userMenu()
 	cout << "Witaj " << loggedUser.getName() << "!\nWybierz jedna z dostepnych opcji wpisujac jej numer:\n";
 	cout << "\t1. Przegladaj ksiazki\n";
 	cout << "\t2. Wyszukaj ksiazke\n";
-	//cout << "\t3. Wróæ do logowania\n"; jeœli ktoœ umie to zrobiæ bez przekazywania wszêdzie listy uzytkownikow to zapraszam
+	cout << "\t3. Sprawdz stan konta\n";
+	cout << "\t4. Wroc do logowania\n";
 	cout << "Twoj wybor: ";
 	int choice;
 	cin >> choice;
@@ -219,6 +232,15 @@ void MainController::userMenu()
 	case 2:
 	{
 		bookSearch();
+		break;
+	}
+	case 3:
+	{
+		break;
+	}
+	case 4:
+	{
+		start();
 		break;
 	}
 	default:
@@ -350,4 +372,87 @@ void MainController::userRegistration()
 	cout << " i dodany do bazy.\nDane uzytkownika:\n";
 	newUser.printUser();
 	system("pause");
+}
+
+Librarian MainController:: librarianLogin()
+{
+	system("cls");
+	string login;
+	string pass;
+	cout << "Logowanie\n\n";
+	getLogin(login); //podawanie loginu
+	bool loginFound = false; //jezeli login znaleziono
+	while (!loginFound) //dopoki loginu nie znaleziono
+	{
+		for (auto i : librarianDatabase) //wyszukanie loginu w bazie
+		{
+			if (i.getName() == login) //jezeli login znaleziony
+			{
+				loginFound = true;
+				cout << "Login poprawny! \nHaslo: ";
+				cin >> pass;
+				while (pass != i.getPassword())
+				{
+					cout << "Haslo niepoprawne!\nSprobuj ponownie\n";
+					system("pause");
+					system("cls");
+					cout << "Logowanie\n\n";
+					getPassword(login, pass);
+				}
+				if (i.getPassword() == pass)
+				{
+					cout << "Logowanie poprawne!\n";
+					system("pause");
+					system("cls");
+					return i;
+				}
+			}
+			else
+			{
+				cout << "Login niepoprawny! Sprobuj ponownie\n";
+				system("pause");
+				system("cls");
+				cout << "Logowanie\n\n";
+				getLogin(login);
+			}
+		}
+	}
+}
+
+void MainController:: librarianMenu()
+{
+	system("cls");
+	cout << "Witaj " << loggedLibrarian.getName() << "!\nWybierz jedna z dostepnych opcji wpisujac jej numer:\n";
+	cout << "\t1. Przegladaj ksiazki\n";
+	cout << "\t2. Wyszukaj ksiazke\n";
+	cout << "\t3. Wyloguj\n";
+	cout << "Twoj wybor: ";
+	int choice;
+	cin >> choice;
+	switch (choice)
+	{
+	case 1:
+	{
+		printBookDatabase();
+		break;
+	}
+	case 2:
+	{
+		bookSearch();
+		break;
+	}
+	case 3:
+	{
+		loggedLibrarian.setIsLogged(false);
+		start();
+		break;
+	}
+	default:
+	{
+		cout << "Wybierz wlasciwa opcje!\n";
+		system("pause");
+		librarianMenu();
+		return;
+	}
+	}
 }

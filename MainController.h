@@ -17,6 +17,7 @@ private:
 	vector <Book> bookDatabase;
 	vector <Reservation> reservationDatabase;
 	User loggedUser;
+	Librarian loggedLibrarian;
 public:
 	MainController(vector <User> userDatabase, vector <Librarian> librarianDatabase, vector <Book> bookDatabase, vector <Reservation> reservationDatabase);
 	void start();
@@ -28,6 +29,8 @@ public:
 	void userMenu();
 	User userLogin();
 	void userRegistration();
+	Librarian librarianLogin();
+	void librarianMenu();
 };
 
 #endif
