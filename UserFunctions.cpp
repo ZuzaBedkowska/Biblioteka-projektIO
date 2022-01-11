@@ -1,4 +1,5 @@
 #include "UserFunctions.h"
+#include "Reservation.h"
 using namespace std;
 
 void bookReservation(User& registeredUser, vector <Book>& bookDatabase)
@@ -17,6 +18,17 @@ void bookReservation(User& registeredUser, vector <Book>& bookDatabase)
 			{
 				cout << "Wpisano niewlasciwy numer!\nPodan numer jeszcze raz: ";
 				cin >> bookNumber;
+			}
+
+			bookDatabase[bookNumber].createItem(); //robocze robienie wolnego itemu
+			if (bookDatabase[bookNumber].isAnyItemFree()) {
+				Reservation res = Reservation(registeredUser, bookDatabase[bookNumber].getFreeItem());
+				bookDatabase[bookNumber].getFreeItem().setIsBorrowable(false);
+				cout << "Pomyslnie zarejestrowano rezerwacje o id: " << res.getId();
+			}
+			else {
+				cout << "Brak wolnego egzemplarza podanej ksiazki";
+				bookReservation(registeredUser, bookDatabase);
 			}
 
 			break;

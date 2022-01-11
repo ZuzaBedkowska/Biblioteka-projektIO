@@ -1,8 +1,12 @@
 #include "Reservation.h"
+int Reservation::count = 0;
 
-Reservation::Reservation()
+Reservation::Reservation(User user, Item item)
 {
-	throw "Not yet implemented";
+	Reservation::count++;
+	this->id = Reservation::count;
+	this->user = user;
+	this->item = item;
 }
 
 void Reservation::setId(int newId)

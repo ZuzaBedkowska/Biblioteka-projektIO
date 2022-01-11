@@ -14,13 +14,16 @@ Book::Book(string title, vector <string> description, vector <string> author) {
 }
 
 bool Book::isAnyItemFree() {
-	// TODO - implement Book::isAnyItemFree
-	throw "Not yet implemented";
+	for (auto i : items) {
+		if (i.getIsBorrowable()) return true;
+	}
+	return false;
 }
 
 Item Book::getFreeItem() {
-	// TODO - implement Book::getFreeItem
-	throw "Not yet implemented";
+	for (auto i : items) {
+		if (i.getIsBorrowable()) return i;
+	}
 }
 
 int Book::countItems() {
