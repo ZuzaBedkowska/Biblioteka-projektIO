@@ -47,7 +47,6 @@ TEST(UserTest, DoesUserTestWork) //test jednostkowy do userTest
 	b_test.setDescription(author);
 	b_test.setTitle(author);
 	u_test.setFine(0.0);
-	EXPECT_EQ(u_test.getReservationCount(), 0);
 	EXPECT_TRUE(u_test.userTest()); //0 wypozyczonych ksiazek
 	b_test.createItem();
 	u_test.addReservation(b_test);
