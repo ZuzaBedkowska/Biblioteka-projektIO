@@ -23,6 +23,8 @@ User::User(string name = "name", string password = "pass", Date birthDate = {1, 
 
 User::~User()
 {
+	userBorrowments.erase(userBorrowments.begin(), userBorrowments.end());
+	userReservations.erase(userReservations.begin(), userReservations.end());
 	usersCount--;
 }
 
@@ -167,3 +169,10 @@ bool User::getIsLogged()
 {
 	return isLogged;
 }
+
+int User::getReservationCount()
+{
+	return userReservations.size();
+}
+
+

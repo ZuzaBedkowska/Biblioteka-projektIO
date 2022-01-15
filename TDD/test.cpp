@@ -22,6 +22,13 @@ Librarian l_test("admin", "ad");
 Date d_test(-1, -1, -1);
 Book b_test;
 
+
+TEST(UserTest, DoesUserSetFineWork)
+{
+	EXPECT_EQ(u_test.getFine(), 0.0);
+	u_test.setFine(10.0);
+	EXPECT_EQ(u_test.getFine(), 10.0);
+}
 TEST(UserTest,IsNameOk)
 {
 	ASSERT_EQ("a", u_test.getName());
@@ -32,12 +39,14 @@ TEST(UserTest, IsPasswordOk)
 	ASSERT_EQ("b", u_test.getPassword());
 }
 
-TEST(checkUserTest, UserTest) //test jednostkowy do userTest
+TEST(UserTest, isUserTestWorking) //test jednostkowy do userTest
 {
 	string author = "";
 	b_test.setAuthor(author);
 	b_test.setDescription(author);
 	b_test.setTitle(author);
+	u_test.setFine(0.0);
+	EXPECT_EQ(u_test.getReservationCount(), 0);
 	EXPECT_TRUE(u_test.userTest()); //0 wypozyczonych ksiazek
 	//u_test.addReservation(b_test);
 	//EXPECT_TRUE(u_test.userTest()); //1 wypozyczona ksiazka
