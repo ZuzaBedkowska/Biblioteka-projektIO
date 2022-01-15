@@ -85,5 +85,6 @@ TEST(LibrarianTest, DoesLibrarianAddBorrowmentWork)
 	b_test.createItem();
 	l_test.addBorrowment(u_test, b_test);
 	vector <Borrowment> borrowments_test;
+	borrowments_test = u_test.getUserBorrowments();
 	EXPECT_EQ(borrowments_test.size(), 1);
 }
