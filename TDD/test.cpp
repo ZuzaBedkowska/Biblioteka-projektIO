@@ -9,6 +9,7 @@
 #include "../Reservation.cpp"
 #include "../User.h"
 #include "../Librarian.h"
+#include "../Librarian.cpp"
 #include "../UserFunctions.h"
 #include "../User.cpp"
 #include "../Item.h"
@@ -17,6 +18,7 @@
 
 
 User u_test("a", "b", { 1,1,1900 });
+Librarian l_test("admin", "ad");
 
 TEST(UserTest,IsNameOk)
 {
@@ -27,3 +29,11 @@ TEST(UserTest, IsPasswordOk)
 {
 	ASSERT_EQ("b", u_test.getPassword());
 }
+
+TEST(LibrarianTest, DoesUserNameEditWork)		//1 - name, 2 - id, 3 - password, 4 - birth date
+{
+	u_test.setId(5);
+	l_test.editUser(5,1);
+	ASSERT_EQ(u_test.getName(), "zmieniona wartosc");
+}
+

@@ -47,7 +47,7 @@ public:
 
 	void editBook(int bookId);
 
-	void editUser(int userID);
+	void editUser(int userID, int choice);
 
 	void printUsers(User users[]);
 
