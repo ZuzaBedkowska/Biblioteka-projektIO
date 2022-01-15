@@ -6,7 +6,7 @@
 #include "../User.h"
 #include "../Item.h"
 
-
+/*
 TEST(checkUserTest, UserTest) //test jednostkowy do userTest
 {
 	User u_test("a", "b", { 1,1,1900 });
@@ -22,5 +22,6 @@ TEST(checkUserTest, UserTest) //test jednostkowy do userTest
 	u_test.addReservation(b_test);
 	EXPECT_EQ(u_test.userTest(), true);
 	u_test.addReservation(b_test);
-	EXPECT_EQ(u_test.userTest(), false);*/
+	EXPECT_EQ(u_test.userTest(), false);
 }
+*/

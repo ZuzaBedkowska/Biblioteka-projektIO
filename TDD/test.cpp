@@ -20,6 +20,7 @@
 User u_test("a", "b", { 1,1,1900 });
 Librarian l_test("admin", "ad");
 Date d_test(-1, -1, -1);
+Book b_test;
 
 TEST(UserTest,IsNameOk)
 {
@@ -29,6 +30,25 @@ TEST(UserTest,IsNameOk)
 TEST(UserTest, IsPasswordOk)
 {
 	ASSERT_EQ("b", u_test.getPassword());
+}
+
+TEST(checkUserTest, UserTest) //test jednostkowy do userTest
+{
+	string author = "";
+	b_test.setAuthor(author);
+	b_test.setDescription(author);
+	b_test.setTitle(author);
+	EXPECT_TRUE(u_test.userTest()); //0 wypozyczonych ksiazek
+	//u_test.addReservation(b_test);
+	//EXPECT_TRUE(u_test.userTest()); //1 wypozyczona ksiazka
+	//u_test.addReservation(b_test);
+	//EXPECT_TRUE(u_test.userTest()); //2
+	//u_test.addReservation(b_test);
+	//EXPECT_TRUE(u_test.userTest()); //3
+	//u_test.addReservation(b_test);
+	//EXPECT_TRUE(u_test.userTest()); //4
+	//u_test.addReservation(b_test);
+	//EXPECT_EQ(u_test.userTest(), false); // 5, juz wiecej nie mozna
 }
 
 TEST(LibrarianTest, DoesUserNameEditWork)
