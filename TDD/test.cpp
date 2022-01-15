@@ -33,8 +33,8 @@ TEST(UserTest, IsPasswordOk)
 
 TEST(LibrarianTest, DoesUserNameEditWork)		//1 - name, 2 - id, 3 - password, 4 - birth date
 {
-	string a = "aaa";
+	string a = "aaaaa";
 	l_test.editUser(u_test,a,-1,-1,d_test);
-	ASSERT_EQ(u_test.getName(), "aaa");
+	ASSERT_EQ(u_test.getName(), "aaaaa");
 }
 
