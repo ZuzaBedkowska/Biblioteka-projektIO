@@ -47,7 +47,7 @@ public:
 
 	void editBook(int bookId);
 
-	void editUser(User user, string new_name, int new_id, int new_password, Date new_date);
+	void editUser(User& user, string new_name, int new_id, string new_password, Date new_date);
 
 	void printUsers(User users[]);
 

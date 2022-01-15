@@ -38,11 +38,6 @@ int Reservation::getDurationDays()
 	return durationDays;
 }
 
-int Reservation::getCount()
-{
-	return count;
-}
-
 Item Reservation::getItem()
 {
 	return item;
