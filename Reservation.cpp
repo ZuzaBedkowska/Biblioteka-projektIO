@@ -18,6 +18,11 @@ Reservation::Reservation(Item item)
 	this->item = item;
 }
 
+Reservation::~Reservation()
+{
+	Reservation::count--;
+}
+
 void Reservation::setId(int newId)
 {
 	id = newId;
