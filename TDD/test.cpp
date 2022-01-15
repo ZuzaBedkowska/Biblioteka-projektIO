@@ -98,8 +98,26 @@ TEST(LibrarianTest, DoesLibrarianAddBorrowmentWork)
 TEST(LibrarianTest, DoesLibrarianRemoveReservationWork) 
 {
 	vector <Reservation> r_test = u_test.getUserReservations();
+	for (auto i : r_test)
+	{
+		cout << i.getId() << "\n";
+	}
+	cout << "\n";
 	int s_test = r_test.size();
-	l_test.removeReservation(u_test, r_test[0].getId());
+	int ID_test = r_test[0].getId();
+	l_test.removeReservation(u_test, ID_test);
 	r_test = u_test.getUserReservations();
+	for (auto i : r_test)
+	{
+		cout << i.getId() << "\n";
+	}
 	EXPECT_EQ(r_test.size(), s_test-1);
+	bool found = false;
+	for (auto i : r_test)
+	{
+		if (i.getId() == ID_test)
+			found = true;
+	}
+	EXPECT_FALSE(found);
+
 }

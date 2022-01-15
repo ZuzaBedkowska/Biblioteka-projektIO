@@ -36,6 +36,11 @@ public:
 	int getDurationDays();
 
 	Item getItem();
+
+	int getCount()
+	{
+		return count;
+	}
 };
 
 #endif

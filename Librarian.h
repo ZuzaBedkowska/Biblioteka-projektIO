@@ -26,7 +26,7 @@ public:
 
 	void removeBorrowment(int borrowmentId);
 
-	void removeReservation(int reservationId);
+	void removeReservation(User & user, int reservationId);
 
 	double getUserFine(int userId);
 

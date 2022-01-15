@@ -43,7 +43,7 @@ bool User::userTest()
 
 void User::addReservation(Book & chosenBook) {
 		Reservation res = Reservation(chosenBook.getFreeItem());
-		res.setId(res.getId() + 2022000);
+		res.setId(res.getCount() + 2022000);
 		chosenBook.getFreeItem().setIsBorrowable(false);
 		cout << "Pomyslnie zarejestrowano rezerwacje o id: " << res.getId() << "\n";
 		userReservations.push_back(res);
@@ -97,7 +97,7 @@ void User::addBorrowment(Book book) {
 	userBorrowments.push_back(bor);
 }
 
-void User::removeBorrowment() {
+void User::removeBorrowment(Book & book) {
 	// TODO - implement User::removeBorrowment
 	throw "Not yet implemented";
 }

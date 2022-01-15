@@ -39,7 +39,7 @@ public:
 
 	void addBorrowment(Book book);
 
-	void removeBorrowment();
+	void removeBorrowment(Book & book);
 
 	void printBorrowments();
 

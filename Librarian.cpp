@@ -26,9 +26,8 @@ void Librarian::removeBorrowment(int borrowmentId) {
 	throw "Not yet implemented";
 }
 
-void Librarian::removeReservation(int reservationId) {
-	// TODO - implement Librarian::removeReservation
-	throw "Not yet implemented";
+void Librarian::removeReservation(User & user, int reservationId) {
+	user.removeReservation(reservationId);
 }
 
 double Librarian::getUserFine(int userId) {

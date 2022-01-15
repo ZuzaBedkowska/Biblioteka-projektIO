@@ -8,6 +8,7 @@ Reservation::Reservation()
 	dateOfReservation.day = 0;
 	dateOfReservation.month = 0;
 	dateOfReservation.year = 0;
+	Reservation::count++;
 }
 
 Reservation::Reservation(Item item)
@@ -18,10 +19,7 @@ Reservation::Reservation(Item item)
 	this->item = item;
 }
 
-Reservation::~Reservation()
-{
-	Reservation::count--;
-}
+Reservation::~Reservation(){} //aby ID byly unikalne, nie zmniejszamy count
 
 void Reservation::setId(int newId)
 {
@@ -57,3 +55,4 @@ Item Reservation::getItem()
 {
 	return item;
 }
+
