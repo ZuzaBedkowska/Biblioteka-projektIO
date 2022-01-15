@@ -82,7 +82,11 @@ void Librarian::editBook(int bookId) {
 
 void Librarian::editUser(User& user, string new_name, int new_id, int new_password, Date new_date) 
 {
-	user.setName(new_name);
+	if (new_name.size() >= 3)
+	{
+		user.setName(new_name);
+	}
+	user.setId(new_id);
 }
 
 void Librarian::printUsers(User users[]) {
