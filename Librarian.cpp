@@ -4,6 +4,7 @@ int Librarian::count = 0;
 
 Librarian::Librarian()
 {
+	id = 0;
 	count++;
 }
 
