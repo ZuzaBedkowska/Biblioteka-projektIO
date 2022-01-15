@@ -112,3 +112,21 @@ TEST(LibrarianTest, DoesLibrarianRemoveReservationWork)
 	EXPECT_FALSE(found);
 
 }
+
+TEST(LibrarianTest, DoesLibrarianRemoveBorrowmentWork)
+{
+	vector <Borrowment> r_test = u_test.getUserBorrowments();
+	int s_test = r_test.size();
+	int ID_test = r_test[0].getId();
+	l_test.removeBorrowment(u_test, ID_test);
+	r_test = u_test.getUserBorrowments();
+	EXPECT_EQ(r_test.size(), s_test - 1);
+	bool found = false;
+	for (auto i : r_test)
+	{
+		if (i.getId() == ID_test)
+			found = true;
+	}
+	EXPECT_FALSE(found);
+
+}
