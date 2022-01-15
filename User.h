@@ -72,6 +72,8 @@ public:
 	}
 
 	bool getIsLogged();
+
+	int getReservationCount();
 };
 
 #endif
