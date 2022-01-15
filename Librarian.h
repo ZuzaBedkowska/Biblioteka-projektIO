@@ -1,5 +1,6 @@
 #include <string>
 #include "Book.h"
+#include "Item.h"
 #include "User.h"
 
 using namespace std;
@@ -21,7 +22,7 @@ public:
 
 	Librarian(string name, string password);
 
-	void addBorrowment(int userId, int itemId);
+	void addBorrowment(User& user, Book & book);
 
 	void removeBorrowment(int borrowmentId);
 

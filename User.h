@@ -37,7 +37,7 @@ public:
 
 	void printBooks();
 
-	void addBorrowment(int bookid);
+	void addBorrowment(Book book);
 
 	void removeBorrowment();
 
@@ -73,7 +73,9 @@ public:
 
 	bool getIsLogged();
 
-	int getReservationCount();
+	vector <Reservation> getUserReservations();
+
+	vector <Borrowment> getUserBorrowments();
 };
 
 #endif
