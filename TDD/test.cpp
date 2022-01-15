@@ -31,10 +31,17 @@ TEST(UserTest, IsPasswordOk)
 	ASSERT_EQ("b", u_test.getPassword());
 }
 
-TEST(LibrarianTest, DoesUserNameEditWork)		//1 - name, 2 - id, 3 - password, 4 - birth date
+TEST(LibrarianTest, DoesUserNameEditWork)
 {
-	string a = "aaaaa";
-	l_test.editUser(u_test,a,-1,-1,d_test);
+	string TestoweImie = "aaaaa";
+	l_test.editUser(u_test,TestoweImie,-1,-1,d_test);
 	ASSERT_EQ(u_test.getName(), "aaaaa");
+}
+
+TEST(LibrarianTest, DoesUserIDEditWork)
+{
+	int TestoweID = 999;
+	l_test.editUser(u_test, "a", TestoweID, -1, d_test);
+	ASSERT_EQ(u_test.getId(), 999);
 }
 
