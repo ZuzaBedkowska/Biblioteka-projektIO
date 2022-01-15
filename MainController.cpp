@@ -476,7 +476,7 @@ void MainController:: librarianMenu()
 				cout << "Wybrane imie jest zbyt krotkie. Prosze sprobowac ponownie.\n";
 				break;
 			}
-			loggedLibrarian.editUser(userDatabase[switch_case_user_ID], new_word, -1, -1, new_date);
+			loggedLibrarian.editUser(userDatabase[switch_case_user_ID], new_word, -1, "o", new_date);
 			break;
 		}
 		case 2:
@@ -488,7 +488,7 @@ void MainController:: librarianMenu()
 				cout << "Wybrane ID jest mniejsze od 0. Prosze sprobowac ponownie.\n";
 				break;
 			}
-			loggedLibrarian.editUser(userDatabase[switch_case_user_ID], "o", editing_ID, -1, new_date);
+			loggedLibrarian.editUser(userDatabase[switch_case_user_ID], "o", editing_ID, "o", new_date);
 			break;
 		}
 		}

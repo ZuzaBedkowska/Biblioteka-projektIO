@@ -34,13 +34,20 @@ TEST(UserTest, IsPasswordOk)
 TEST(LibrarianTest, DoesUserNameEditWork)
 {
 	string TestoweImie = "aaaaa";
-	l_test.editUser(u_test,TestoweImie,-1,-1,d_test);
+	l_test.editUser(u_test,TestoweImie,-1,"o", d_test);
 	ASSERT_EQ(u_test.getName(), "aaaaa");
 }
 
 TEST(LibrarianTest, DoesUserIDEditWork)
 {
 	int TestoweID = 999;
-	l_test.editUser(u_test, "a", TestoweID, -1, d_test);
+	l_test.editUser(u_test, "a", TestoweID, "o", d_test);
 	ASSERT_EQ(u_test.getId(), 999);
+}
+
+TEST(LibrarianTest, DoesUserPasswordEditWork)
+{
+	string TestoweHaslo = "123456789";
+	l_test.editUser(u_test, "a", -1, TestoweHaslo, d_test);
+	ASSERT_EQ(u_test.getPassword(), TestoweHaslo);
 }
