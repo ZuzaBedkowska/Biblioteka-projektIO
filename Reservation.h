@@ -21,6 +21,8 @@ public:
 
 	Reservation(Item item);
 
+	~Reservation();
+
 	void setId(int newId);
 
 	void setDate(Date newDate);

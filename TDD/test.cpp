@@ -23,6 +23,13 @@ Date d_test(1, 1, 2022);
 Book b_test;
 User u_test2("a", "b", { 1, 1, 1900 });
 
+
+TEST(UserTest, DoesUserSetFineWork)
+{
+	EXPECT_EQ(u_test.getFine(), 0.0);
+	u_test.setFine(10.0);
+	EXPECT_EQ(u_test.getFine(), 10.0);
+}
 TEST(UserTest,IsNameOk)
 {
 	ASSERT_EQ("a", u_test.getName());
@@ -39,6 +46,8 @@ TEST(UserTest, DoesUserTestWork) //test jednostkowy do userTest
 	b_test.setAuthor(author);
 	b_test.setDescription(author);
 	b_test.setTitle(author);
+	u_test.setFine(0.0);
+	EXPECT_EQ(u_test.getReservationCount(), 0);
 	EXPECT_TRUE(u_test.userTest()); //0 wypozyczonych ksiazek
 	b_test.createItem();
 	u_test.addReservation(b_test);

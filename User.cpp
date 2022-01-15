@@ -23,6 +23,8 @@ User::User(string name = "name", string password = "pass", Date birthDate = {1, 
 
 User::~User()
 {
+	userBorrowments.erase(userBorrowments.begin(), userBorrowments.end());
+	userReservations.erase(userReservations.begin(), userReservations.end());
 	usersCount--;
 }
 
@@ -78,7 +80,7 @@ void User::printBooks() {
 	{
 		for (auto i : userBorrowments)
 		{
-			cout << "\t-\n"; //trzeba ogarn¹æ jak wypisywaæ zarezerwowane tytu³y ksi¹¿ek
+			cout << "\t-\n"; //trzeba ogarnÂ¹Ã¦ jak wypisywaÃ¦ zarezerwowane tytuÂ³y ksiÂ¹Â¿ek
 		}
 	}
 	else
