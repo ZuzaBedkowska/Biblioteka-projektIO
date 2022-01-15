@@ -21,14 +21,12 @@ void Librarian::addBorrowment(User & user,	Book & book)
 	user.addBorrowment(book);
 }
 
-void Librarian::removeBorrowment(int borrowmentId) {
-	// TODO - implement Librarian::removeBorrowment
-	throw "Not yet implemented";
+void Librarian::removeBorrowment(User & user, int borrowmentId) {
+	user.removeBorrowment(borrowmentId);
 }
 
-void Librarian::removeReservation(int reservationId) {
-	// TODO - implement Librarian::removeReservation
-	throw "Not yet implemented";
+void Librarian::removeReservation(User & user, int reservationId) {
+	user.removeReservation(reservationId);
 }
 
 double Librarian::getUserFine(int userId) {

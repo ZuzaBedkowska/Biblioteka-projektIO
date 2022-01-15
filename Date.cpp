@@ -114,8 +114,7 @@ void Date::printDate()
 
 void Date::getCurrentDate()
 {
-	struct tm now;
-	struct tm newDate; //tutaj zostanie zapisana aktualna data
+	struct tm now; //tutaj zostanie zapisana aktualna data
 	time_t currentTime = time(0);
 	localtime_s(&now, &currentTime);
 	year = now.tm_year + 1900;
