@@ -74,6 +74,8 @@ public:
 	bool getIsLogged();
 
 	vector <Reservation> getUserReservations();
+
+	vector <Borrowment> getUserBorrowments();
 };
 
 #endif
