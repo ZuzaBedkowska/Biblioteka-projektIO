@@ -27,3 +27,11 @@ TEST(checkDate, DateisTrue) //test jednostkowy do Date is True
 	testDate.year = 2001;
 	EXPECT_EQ(testDate.isTrue(), false);
 }
+
+TEST(currentDate, getCurrentDate)
+{
+	testDate.day = 15;
+	testDate.month = 1;
+	testDate.year = 2022;
+	EXPECT_EQ(testDate.getCurrentDate(), testDate);
+}
