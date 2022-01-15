@@ -3,8 +3,9 @@
 #include "../Date.h"
 
 Date testDate;
+Date actualDate;
 
-/*TEST(checkDate, DateisTrue) //test jednostkowy do Date is True
+TEST(DateTests, DoesDateIsTrueWork) //test jednostkowy do Date is True
 {
 	testDate.day = 29;
 	testDate.month = 2;
@@ -27,11 +28,13 @@ Date testDate;
 	testDate.year = 2001;
 	EXPECT_EQ(testDate.isTrue(), false);
 }
-TEST(currentDate, getCurrentDate)
+TEST(DateTests, DoesGetCurrentDateWork)
 {
 	testDate.day = 15;
 	testDate.month = 1;
 	testDate.year = 2022;
-	EXPECT_EQ(testDate.getCurrentDate(), testDate);
+	actualDate.getCurrentDate();
+	EXPECT_EQ(actualDate.day, testDate.day);
+	EXPECT_EQ(actualDate.month, testDate.month);
+	EXPECT_EQ(actualDate.year, testDate.year);
 }
-*/
