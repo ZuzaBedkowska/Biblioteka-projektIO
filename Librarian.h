@@ -22,7 +22,7 @@ public:
 
 	Librarian(string name, string password);
 
-	void addBorrowment(User& user, Item & item);
+	void addBorrowment(User& user, Book & book);
 
 	void removeBorrowment(int borrowmentId);
 
