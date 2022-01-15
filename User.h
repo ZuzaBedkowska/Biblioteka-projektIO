@@ -72,6 +72,8 @@ public:
 	}
 
 	bool getIsLogged();
+
+	vector <Reservation> getUserReservations();
 };
 
 #endif

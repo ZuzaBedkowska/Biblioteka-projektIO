@@ -168,3 +168,8 @@ bool User::getIsLogged()
 {
 	return isLogged;
 }
+
+vector<Reservation> User::getUserReservations()
+{
+	return userReservations;
+}
