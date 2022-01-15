@@ -27,7 +27,6 @@ Date testDate;
 	testDate.year = 2001;
 	EXPECT_EQ(testDate.isTrue(), false);
 }
-
 TEST(currentDate, getCurrentDate)
 {
 	testDate.day = 15;
