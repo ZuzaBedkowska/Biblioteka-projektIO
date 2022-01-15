@@ -21,9 +21,8 @@ void Librarian::addBorrowment(User & user,	Book & book)
 	user.addBorrowment(book);
 }
 
-void Librarian::removeBorrowment(int borrowmentId) {
-	// TODO - implement Librarian::removeBorrowment
-	throw "Not yet implemented";
+void Librarian::removeBorrowment(User & user, int borrowmentId) {
+	user.removeBorrowment(borrowmentId);
 }
 
 void Librarian::removeReservation(User & user, int reservationId) {

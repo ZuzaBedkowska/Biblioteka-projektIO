@@ -37,9 +37,9 @@ public:
 
 	void printBooks();
 
-	void addBorrowment(Book book);
+	void addBorrowment(Book& book);
 
-	void removeBorrowment(Book & book);
+	void removeBorrowment(int borrowmentId);
 
 	void printBorrowments();
 

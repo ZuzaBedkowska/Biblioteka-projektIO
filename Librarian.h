@@ -24,7 +24,7 @@ public:
 
 	void addBorrowment(User& user, Book & book);
 
-	void removeBorrowment(int borrowmentId);
+	void removeBorrowment(User & user, int borrowmentId);
 
 	void removeReservation(User & user, int reservationId);
 
