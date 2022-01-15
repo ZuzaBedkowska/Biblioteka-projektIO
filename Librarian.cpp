@@ -16,7 +16,7 @@ Librarian::Librarian(string name = "name", string password = "pass")
 	this->id = count;
 }
 
-void Librarian::addBorrowment(int userId, int itemId) {
+void Librarian::addBorrowment(User & user, Item & item) {
 	// TODO - implement Librarian::addBorrowment
 	throw "Not yet implemented";
 }
