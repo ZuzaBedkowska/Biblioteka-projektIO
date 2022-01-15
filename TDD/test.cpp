@@ -33,7 +33,8 @@ TEST(UserTest, IsPasswordOk)
 
 TEST(LibrarianTest, DoesUserNameEditWork)		//1 - name, 2 - id, 3 - password, 4 - birth date
 {
-	l_test.editUser(u_test,"zmieniona wartosc",-1,-1,d_test);
-	ASSERT_EQ(u_test.getName(), "zmieniona wartosc");
+	string a = "aaa";
+	l_test.editUser(u_test,a,-1,-1,d_test);
+	ASSERT_EQ(u_test.getName(), "aaa");
 }
 

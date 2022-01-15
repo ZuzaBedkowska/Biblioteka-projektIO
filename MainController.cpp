@@ -458,8 +458,8 @@ void MainController:: librarianMenu()
 	}
 	case 4:
 	{
-		int switch_case_user_ID = 0, editing_user = 0;
-		string new_word;
+		int switch_case_user_ID = 0, editing_user = 0, editing_ID = 0;
+		string new_word="o";
 		Date new_date;
 		cout << "Wybrano opcje edycji uzytkownika. Podaj ID uzytkownika,\nktorego dane chcesz zmienic.\n";
 		cin >> switch_case_user_ID;
@@ -472,6 +472,7 @@ void MainController:: librarianMenu()
 			cout << "Podaj nowe imie.\n";
 			cin >> new_word;
 			loggedLibrarian.editUser(userDatabase[switch_case_user_ID], new_word, -1, -1, new_date);
+			break;
 		}
 		}
 		break;

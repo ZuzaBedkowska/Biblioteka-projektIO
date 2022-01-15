@@ -4,7 +4,7 @@
 
 Date testDate;
 
-TEST(checkDate, DateisTrue) //test jednostkowy do Date is True
+/*TEST(checkDate, DateisTrue) //test jednostkowy do Date is True
 {
 	testDate.day = 29;
 	testDate.month = 2;
@@ -35,3 +35,4 @@ TEST(currentDate, getCurrentDate)
 	testDate.year = 2022;
 	EXPECT_EQ(testDate.getCurrentDate(), testDate);
 }
+*/
