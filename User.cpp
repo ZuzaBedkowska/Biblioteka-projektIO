@@ -28,7 +28,7 @@ User::~User()
 
 bool User::userTest()
 {
-	if (((int)userReservations.size() + (int)userBorrowments.size() - 1) > 5)
+	if (((int)userReservations.size() + (int)userBorrowments.size()) >= 5)
 	{
 		return false;
 	}

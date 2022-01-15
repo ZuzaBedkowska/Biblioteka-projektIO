@@ -32,23 +32,28 @@ TEST(UserTest, IsPasswordOk)
 	ASSERT_EQ("b", u_test.getPassword());
 }
 
-TEST(checkUserTest, UserTest) //test jednostkowy do userTest
+TEST(UserTest, DoesUserTestWork) //test jednostkowy do userTest
 {
 	string author = "";
 	b_test.setAuthor(author);
 	b_test.setDescription(author);
 	b_test.setTitle(author);
 	EXPECT_TRUE(u_test.userTest()); //0 wypozyczonych ksiazek
-	//u_test.addReservation(b_test);
-	//EXPECT_TRUE(u_test.userTest()); //1 wypozyczona ksiazka
-	//u_test.addReservation(b_test);
-	//EXPECT_TRUE(u_test.userTest()); //2
-	//u_test.addReservation(b_test);
-	//EXPECT_TRUE(u_test.userTest()); //3
-	//u_test.addReservation(b_test);
-	//EXPECT_TRUE(u_test.userTest()); //4
-	//u_test.addReservation(b_test);
-	//EXPECT_EQ(u_test.userTest(), false); // 5, juz wiecej nie mozna
+	b_test.createItem();
+	u_test.addReservation(b_test);
+	EXPECT_TRUE(u_test.userTest()); //1 wypozyczona ksiazka
+	b_test.createItem();
+	u_test.addReservation(b_test);
+	EXPECT_TRUE(u_test.userTest()); //2
+	b_test.createItem();
+	u_test.addReservation(b_test);
+	EXPECT_TRUE(u_test.userTest()); //3
+	b_test.createItem();
+	u_test.addReservation(b_test);
+	EXPECT_TRUE(u_test.userTest()); //4
+	b_test.createItem();
+	u_test.addReservation(b_test);
+	EXPECT_FALSE(u_test.userTest()); //5 i wiecej ksiazek juz nie mozna
 }
 
 TEST(LibrarianTest, DoesUserNameEditWork)
