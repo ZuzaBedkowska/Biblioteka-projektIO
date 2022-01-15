@@ -4,6 +4,20 @@
 
 using namespace std;
 
+Date::Date()
+{
+	day = -1;
+	month = -1;
+	year = -1;
+}
+
+Date::Date(int dayn, int monthn, int yearn)
+{
+	day = dayn;
+	month = monthn;
+	year = yearn;
+}
+
 bool Date::isTrue()
 {
 	if (month > 12)
