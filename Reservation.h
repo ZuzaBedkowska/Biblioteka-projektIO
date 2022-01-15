@@ -35,6 +35,8 @@ public:
 
 	int getDurationDays();
 
+	int getCount();
+
 	Item getItem();
 };
 
