@@ -87,9 +87,12 @@ void User::printBooks() {
 	}
 }
 
-void User::addBorrowment(int bookid) {
-	// TODO - implement User::addBorrowment
-	throw "Not yet implemented";
+void User::addBorrowment(Book book) {
+	Borrowment bor = Borrowment(book.getFreeItem());
+	bor.setId(bor.getId() + 4044000);
+	book.getFreeItem().setIsBorrowable(false);
+	cout << "Pomyslnie zarejestrowano rezerwacje o id: " << bor.getId() << "\n";
+	userBorrowments.push_back(bor);
 }
 
 void User::removeBorrowment() {

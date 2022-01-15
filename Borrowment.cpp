@@ -1,8 +1,20 @@
 #include "Borrowment.h"
 
+int Borrowment::count = 0;
+
 Borrowment::Borrowment()
 {
-	throw "Not yet implemented";
+	count++;
+	durationDays = 30;
+
+}
+
+Borrowment::Borrowment(Item item)
+{
+	Borrowment::count++;
+	durationDays = 30; //30 na oddanie
+	this->id = Borrowment::count;
+	this->item = item;
 }
 
 void Borrowment::setId(int newId)
@@ -13,11 +25,6 @@ void Borrowment::setId(int newId)
 void Borrowment::setDate(Date newDate)
 {
 	dateOfBorrowment = newDate;
-}
-
-void Borrowment::setUserId(int newUSerId)
-{
-	userID = newUSerId;
 }
 
 void Borrowment::setDurationDays(int newDurationDays)
@@ -33,11 +40,6 @@ int Borrowment::getId()
 Date Borrowment::getDate()
 {
 	return dateOfBorrowment;
-}
-
-int Borrowment::getUserId()
-{
-	return userID;
 }
 
 int Borrowment::getDurationDays()
