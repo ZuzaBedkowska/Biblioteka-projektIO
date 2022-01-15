@@ -121,8 +121,4 @@ void Date::getCurrentDate()
 	year = now.tm_year + 1900;
 	month = now.tm_mon + 1;
 	day = now.tm_mday;
-	localtime_s(&newDate, &currentTime);
-	year = newDate.tm_year + 1900;
-	month = newDate.tm_mon + 1;
-	day = newDate.tm_mday;
 }

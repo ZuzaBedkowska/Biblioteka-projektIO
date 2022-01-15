@@ -5,7 +5,7 @@
 Date testDate;
 Date actualDate;
 
-TEST(checkDate, DateisTrue) //test jednostkowy do Date is True
+TEST(DateTests, DoesDateIsTrueWork) //test jednostkowy do Date is True
 {
 	testDate.day = 29;
 	testDate.month = 2;
@@ -28,7 +28,7 @@ TEST(checkDate, DateisTrue) //test jednostkowy do Date is True
 	testDate.year = 2001;
 	EXPECT_EQ(testDate.isTrue(), false);
 }
-TEST(currentDate, getCurrentDate)
+TEST(DateTests, DoesGetCurrentDateWork)
 {
 	testDate.day = 15;
 	testDate.month = 1;
