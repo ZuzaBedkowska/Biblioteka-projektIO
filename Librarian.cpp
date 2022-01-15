@@ -86,7 +86,13 @@ void Librarian::editUser(User& user, string new_name, int new_id, string new_pas
 	{
 		user.setName(new_name);
 	}
-	user.setId(new_id);
+
+	if (new_id>0) user.setId(new_id);
+
+	if (new_password.size() >= 8)
+	{
+		user.setPassword(new_password);
+	}
 }
 
 void Librarian::printUsers(User users[]) {

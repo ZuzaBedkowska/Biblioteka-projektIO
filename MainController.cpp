@@ -459,7 +459,7 @@ void MainController:: librarianMenu()
 	case 4:
 	{
 		int switch_case_user_ID = 0, editing_user = 0, editing_ID = 0;
-		string new_word="o";
+		string new_word="o",new_password;
 		Date new_date;
 		cout << "Wybrano opcje edycji uzytkownika. Podaj ID uzytkownika,\nktorego dane chcesz zmienic.\n";
 		cin >> switch_case_user_ID;
@@ -489,6 +489,18 @@ void MainController:: librarianMenu()
 				break;
 			}
 			loggedLibrarian.editUser(userDatabase[switch_case_user_ID], "o", editing_ID, "o", new_date);
+			break;
+		}
+		case 3:
+		{
+			cout << "Podaj nowe haslo.\n";
+			cin >> new_password;
+			if (new_password.size() < 8)
+			{
+				cout << "Wybrane haslo jest krotsze niz 8 znakow. Prosze sprobowac ponownie.\n";
+				break;
+			}
+			loggedLibrarian.editUser(userDatabase[switch_case_user_ID], "o", -1, new_password, new_date);
 			break;
 		}
 		}
