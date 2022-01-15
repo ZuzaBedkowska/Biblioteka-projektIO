@@ -12,10 +12,10 @@ using namespace std;
 class User {
 
 private:
-	string name;
-	int id;
-	string password;
-	double fine;
+	string name = "";
+	int id = -1;
+	string password = "";
+	double fine = 0.0;
 	Date birthDate;
 	static int usersCount;
 	bool isLogged = false; //informacja czy uzytkownik zalogowany
@@ -31,7 +31,7 @@ public:
 
 	bool userTest(); //sprawdzenie, czy user moze wypozyczyc/rezerwowac ksiazke ksiazke
 
-	void addReservation(Book chosenBook);
+	void addReservation(Book & chosenBook);
 
 	void removeReservation(int reservationId);
 

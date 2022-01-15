@@ -39,7 +39,7 @@ bool User::userTest()
 	return true;
 }
 
-void User::addReservation(Book chosenBook) {
+void User::addReservation(Book & chosenBook) {
 		Reservation res = Reservation(chosenBook.getFreeItem());
 		chosenBook.getFreeItem().setIsBorrowable(false);
 		cout << "Pomyslnie zarejestrowano rezerwacje o id: " << res.getId() << "\n";

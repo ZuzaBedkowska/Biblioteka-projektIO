@@ -19,6 +19,8 @@ private:
 	vector<Item> items;
 
 public:
+	Book();
+
 	Book(string title, vector <string> description, vector <string> author);
 
 	bool isAnyItemFree();
