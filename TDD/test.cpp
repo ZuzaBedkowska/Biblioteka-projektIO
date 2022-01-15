@@ -44,4 +44,3 @@ TEST(LibrarianTest, DoesUserIDEditWork)
 	l_test.editUser(u_test, "a", TestoweID, -1, d_test);
 	ASSERT_EQ(u_test.getId(), 999);
 }
-

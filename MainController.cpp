@@ -483,6 +483,11 @@ void MainController:: librarianMenu()
 		{
 			cout << "Podaj nowe ID.\n";
 			cin >> editing_ID;
+			if (editing_ID < 0)
+			{
+				cout << "Wybrane ID jest mniejsze od 0. Prosze sprobowac ponownie.\n";
+				break;
+			}
 			loggedLibrarian.editUser(userDatabase[switch_case_user_ID], "o", editing_ID, -1, new_date);
 			break;
 		}
