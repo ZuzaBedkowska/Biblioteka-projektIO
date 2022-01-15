@@ -99,7 +99,7 @@ TEST(LibrarianTest, DoesLibrarianRemoveReservationWork)
 {
 	vector <Reservation> r_test = u_test.getUserReservations();
 	int s_test = r_test.size();
-	l_test.removeReservation(u_test);
+	l_test.removeReservation(u_test, r_test[0].getId());
 	r_test = u_test.getUserReservations();
 	EXPECT_EQ(r_test.size(), s_test-1);
 }
