@@ -5,6 +5,14 @@ using namespace std;
 
 int Book::count = 0;
 
+Book::Book()
+{
+	title = "";
+	count++;
+	id = count;
+
+}
+
 Book::Book(string title, vector <string> description, vector <string> author) {
 	Book::count++;
 	this->id = Book::count;
