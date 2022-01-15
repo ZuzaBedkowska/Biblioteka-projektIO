@@ -13,6 +13,13 @@ private:
 	int durationDays;
 	Item item;
 	static int count;
+	Reservation()
+	{
+		id = -1;
+		dateOfReservation.day = 0;
+		dateOfReservation.month = 0;
+		dateOfReservation.year = 0;
+	}
 public:
 	Reservation(Item item);
 
@@ -27,6 +34,8 @@ public:
 	Date getDate();
 
 	int getDurationDays();
+
+	int getCount();
 
 	Item getItem();
 };

@@ -80,9 +80,9 @@ void Librarian::editBook(int bookId) {
 	throw "Not yet implemented";
 }
 
-void Librarian::editUser(int userID) {
-	// TODO - implement Librarian::editUser
-	throw "Not yet implemented";
+void Librarian::editUser(User user, string new_name, int new_id, int new_password, Date new_date) 
+{
+	
 }
 
 void Librarian::printUsers(User users[]) {

@@ -1,7 +1,22 @@
 #include <iostream>
+#include <ctime>
 #include "Date.h"
 
 using namespace std;
+
+Date::Date()
+{
+	day = -1;
+	month = -1;
+	year = -1;
+}
+
+Date::Date(int dayn, int monthn, int yearn)
+{
+	day = dayn;
+	month = monthn;
+	year = yearn;
+}
 
 bool Date::isTrue()
 {
@@ -96,3 +111,14 @@ void Date::printDate()
 	}
 	cout << year << "\n";
 }
+
+void Date::getCurrentDate()
+{
+	struct tm newDate; //tutaj zostanie zapisana aktualna data
+	time_t currentTime = time(0);
+	localtime_s(&newDate, &currentTime);
+	year = newDate.tm_year + 1900;
+	month = newDate.tm_mon + 1;
+	day = newDate.tm_mday;
+}
+
