@@ -11,6 +11,7 @@ struct Date
 	Date(int dayn, int monthn, int yearn);
 	bool isTrue();
 	void printDate();
+	void getCurrentDate();
 };
 
 #endif

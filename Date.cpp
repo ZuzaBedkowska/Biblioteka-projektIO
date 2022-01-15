@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Date.h"
+#include <ctime>
 
 using namespace std;
 
@@ -109,4 +110,19 @@ void Date::printDate()
 	}
 	}
 	cout << year << "\n";
+}
+
+void Date::getCurrentDate()
+{
+	struct tm now;
+	struct tm newDate; //tutaj zostanie zapisana aktualna data
+	time_t currentTime = time(0);
+	localtime_s(&now, &currentTime);
+	year = now.tm_year + 1900;
+	month = now.tm_mon + 1;
+	day = now.tm_mday;
+	localtime_s(&newDate, &currentTime);
+	year = newDate.tm_year + 1900;
+	month = newDate.tm_mon + 1;
+	day = newDate.tm_mday;
 }
