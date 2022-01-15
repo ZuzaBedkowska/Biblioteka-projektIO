@@ -375,7 +375,7 @@ void MainController::userRegistration()
 		cin >> birthDate.year;
 	}
 	User newUser(login, password, birthDate);
-	cout << "Uzytkownik zostal utowrzony ";
+	cout << "Uzytkownik zostal utworzony ";
 	userDatabase.push_back(newUser);
 	cout << " i dodany do bazy.\nDane uzytkownika:\n";
 	newUser.printUser();
@@ -434,6 +434,7 @@ void MainController:: librarianMenu()
 	cout << "\t1. Przegladaj ksiazki\n";
 	cout << "\t2. Wyszukaj ksiazke\n";
 	cout << "\t3. Wyloguj\n";
+	cout << "\t4. Edytuj uzytkownika\n";
 	cout << "Twoj wybor: ";
 	int choice;
 	cin >> choice;
@@ -453,6 +454,26 @@ void MainController:: librarianMenu()
 	{
 		loggedLibrarian.setIsLogged(false);
 		start();
+		break;
+	}
+	case 4:
+	{
+		int switch_case_user_ID = 0, editing_user = 0;
+		string new_word;
+		Date new_date;
+		cout << "Wybrano opcje edycji uzytkownika. Podaj ID uzytkownika,\nktorego dane chcesz zmienic.\n";
+		cin >> switch_case_user_ID;
+		cout << "Wybierz, ktore dane chcesz zmienic. 1 - imie, 2 - ID, 3 - haslo, 4 - data urodzenia.\n";
+		cin >> editing_user;
+		switch (editing_user)
+		{
+		case 1:
+		{
+			cout << "Podaj nowe imie.\n";
+			cin >> new_word;
+			loggedLibrarian.editUser(userDatabase[switch_case_user_ID], new_word, -1, -1, new_date);
+		}
+		}
 		break;
 	}
 	default:
