@@ -19,8 +19,9 @@
 
 User u_test("a", "b", { 1,1,1900 });
 Librarian l_test("admin", "ad");
-Date d_test(-1, -1, -1);
+Date d_test(1, 1, 2022);
 Book b_test;
+User u_test2("a", "b", { 1, 1, 1900 });
 
 TEST(UserTest,IsNameOk)
 {
@@ -75,4 +76,14 @@ TEST(LibrarianTest, DoesUserPasswordEditWork)
 	string TestoweHaslo = "123456789";
 	l_test.editUser(u_test, "a", -1, TestoweHaslo, d_test);
 	ASSERT_EQ(u_test.getPassword(), TestoweHaslo);
+}
+
+TEST(LibrarianTest, DoesLibrarianAddBorrowmentWork)
+{
+	string title = "Slownik Ortograficzny";
+	b_test.setTitle(title);
+	b_test.createItem();
+	l_test.addBorrowment(u_test, b_test);
+	vector <Borrowment> borrowments_test;
+	EXPECT_EQ(borrowments_test.size(), 1);
 }
