@@ -80,7 +80,7 @@ void Librarian::editBook(int bookId) {
 	throw "Not yet implemented";
 }
 
-void Librarian::editUser(int userID) {
+void Librarian::editUser(int userID, int choice) {
 	// TODO - implement Librarian::editUser
 	throw "Not yet implemented";
 }
