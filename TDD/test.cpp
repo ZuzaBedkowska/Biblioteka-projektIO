@@ -252,3 +252,42 @@ TEST(LibrarianTest, DoesLibrarianRemoveItemWork)
 	EXPECT_EQ(id_test.size(), s_test-1);
 }
 
+TEST(LibrarianTest, DoesLibrarianAddBookWork)
+{
+	Book def;
+	int id = def.getId();
+	int s_test = bd_test.size();
+	l_test.addBook(bd_test, def);
+	bool found = false;
+	for (auto i : bd_test)
+	{
+		if (i.getId() == id)
+		{
+			found = true;
+			break;
+		}
+	}
+	EXPECT_TRUE(found);
+	EXPECT_EQ(bd_test.size(), s_test + 1);
+	EXPECT_EQ(bd_test.back().getId(), id);
+}
+
+TEST(LibrarianTest, DoesLibrarianAddUserkWork)
+{
+	User def("name", "pass", {1,1,1970});
+	int id = def.getId();
+	int s_test = ud_test.size();
+	l_test.addUser(ud_test, def);
+	bool found = false;
+	for (auto i : ud_test)
+	{
+		if (i.getId() == id)
+		{
+			found = true;
+			break;
+		}
+	}
+	EXPECT_TRUE(found);
+	EXPECT_EQ(ud_test.size(), s_test + 1);
+	EXPECT_EQ(ud_test.back().getId(), id);
+}

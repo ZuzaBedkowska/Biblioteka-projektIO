@@ -32,7 +32,7 @@ public:
 
 	void addUserFine(int userId, double fine);
 
-	void addBook(Book book);
+	void addBook(vector <Book>& books, Book book);
 
 	void removeBook(vector <Book> & books, int bookId);
 
@@ -40,7 +40,7 @@ public:
 
 	void removeItem(vector <Book> & books, int bookId, int itemId);
 
-	void addUser(User user);
+	void addUser(vector <User>& users, User user);
 
 	void removeUser(vector <User> & user, int userId);
 

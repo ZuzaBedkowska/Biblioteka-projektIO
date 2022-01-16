@@ -40,9 +40,8 @@ void Librarian::addUserFine(int userId, double fine) {
 	throw "Not yet implemented";
 }
 
-void Librarian::addBook(Book book) {
-	// TODO - implement Librarian::addBook
-	throw "Not yet implemented";
+void Librarian::addBook(vector <Book> & books, Book book) {
+	books.push_back(book);
 }
 
 void Librarian::removeBook(vector <Book> & books, int bookId) {
@@ -81,9 +80,8 @@ void Librarian::removeItem(vector <Book>& books, int bookId, int itemId) {
 	}
 }
 
-void Librarian::addUser(User user) {
-	// TODO - implement Librarian::addUser
-	throw "Not yet implemented";
+void Librarian::addUser(vector <User> & users, User user) {
+	users.push_back(user);
 }
 
 void Librarian::removeUser(vector <User> & users, int userId) {
