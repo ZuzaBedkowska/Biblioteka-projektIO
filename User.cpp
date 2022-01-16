@@ -23,12 +23,14 @@ User::User(string name = "name", string password = "pass", Date birthDate = {1, 
 
 User::~User()
 {
+	userBorrowments.erase(userBorrowments.begin(), userBorrowments.end());
+	userReservations.erase(userReservations.begin(), userReservations.end());
 	usersCount--;
 }
 
 bool User::userTest()
 {
-	if (((int)userReservations.size() + (int)userBorrowments.size() - 1) > 5)
+	if (((int)userReservations.size() + (int)userBorrowments.size()) >= 5)
 	{
 		return false;
 	}
@@ -39,8 +41,9 @@ bool User::userTest()
 	return true;
 }
 
-void User::addReservation(Book chosenBook) {
+void User::addReservation(Book & chosenBook) {
 		Reservation res = Reservation(chosenBook.getFreeItem());
+		res.setId(res.getCount() + 2022000);
 		chosenBook.getFreeItem().setIsBorrowable(false);
 		cout << "Pomyslnie zarejestrowano rezerwacje o id: " << res.getId() << "\n";
 		userReservations.push_back(res);
@@ -77,7 +80,7 @@ void User::printBooks() {
 	{
 		for (auto i : userBorrowments)
 		{
-			cout << "\t-\n"; //trzeba ogarn¹æ jak wypisywaæ zarezerwowane tytu³y ksi¹¿ek
+			cout << "\t-\n"; //trzeba ogarnÂ¹Ã¦ jak wypisywaÃ¦ zarezerwowane tytuÂ³y ksiÂ¹Â¿ek
 		}
 	}
 	else
@@ -86,14 +89,23 @@ void User::printBooks() {
 	}
 }
 
-void User::addBorrowment(int bookid) {
-	// TODO - implement User::addBorrowment
-	throw "Not yet implemented";
+void User::addBorrowment(Book & book) {
+	Borrowment bor = Borrowment(book.getFreeItem());
+	bor.setId(bor.getId() + 4044000);
+	book.getFreeItem().setIsBorrowable(false);
+	cout << "Pomyslnie zarejestrowano rezerwacje o id: " << bor.getId() << "\n";
+	userBorrowments.push_back(bor);
 }
 
-void User::removeBorrowment() {
-	// TODO - implement User::removeBorrowment
-	throw "Not yet implemented";
+void User::removeBorrowment(int borrowmentId) {
+	for (int i = 0; i < userBorrowments.size(); ++i)
+	{
+		if (userBorrowments[i].getId() == borrowmentId)
+		{
+			userBorrowments.erase(userBorrowments.begin() + i);
+			break;
+		}
+	}
 }
 
 void User::printBorrowments() {
@@ -166,4 +178,14 @@ Date User::getBirthDate()
 bool User::getIsLogged()
 {
 	return isLogged;
+}
+
+vector<Reservation> User::getUserReservations()
+{
+	return userReservations;
+}
+
+vector<Borrowment> User::getUserBorrowments()
+{
+	return userBorrowments;
 }

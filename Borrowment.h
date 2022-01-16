@@ -1,4 +1,5 @@
 #include "Date.h"
+#include "Item.h"
 
 using namespace std;
 
@@ -12,10 +13,13 @@ private:
 	int id;
 	Date dateOfBorrowment;
 	int durationDays;
-	int userID;
+	Item item;
+	static int count;
 
 public:
 	Borrowment();
+
+	Borrowment(Item item);
 
 	void setId(int newId);
 
