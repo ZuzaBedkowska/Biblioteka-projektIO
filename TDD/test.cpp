@@ -179,3 +179,26 @@ TEST(LibrarianTest, DoesLibrarianBookEditWork)
 	EXPECT_EQ(bd_test[0].getAuthors(), autors);
 	EXPECT_EQ(bd_test[0].getDescription(), descriptions);
 }
+
+TEST(LibrarianTest, DoesLibrarianBookRemoveWork)
+{
+	for (int i = 0; i < 10; ++i)
+	{
+		bd_test.push_back(Book()); //sztuczna baza ksiazek
+	}
+	int id = bd_test[1].getId();
+	int s_test = bd_test.size();
+	l_test.removeBook(bd_test, id);
+	bool found = false;
+	for (auto i : bd_test)
+	{
+		if (i.getId() == id)
+		{
+			found = true;
+			break;
+		}
+	}
+	EXPECT_FALSE(found);
+	EXPECT_EQ(bd_test.size(), s_test - 1);
+}
+
