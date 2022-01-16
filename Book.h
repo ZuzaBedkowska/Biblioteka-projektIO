@@ -52,7 +52,6 @@ public:
 
 	vector <string> getDescription();
 
-
 	void removeDescription();
 
 	vector <Item>* getAllItems();
