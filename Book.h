@@ -47,6 +47,8 @@ public:
 	vector <string> getAuthors();
 
 	vector <string> getDescription();
+
+	vector <Item>* getAllItems();
 };
 
 #endif

@@ -1,4 +1,5 @@
 #include "Librarian.h"
+#include <iostream>
 
 int Librarian::count = 0;
 
@@ -60,9 +61,24 @@ void Librarian::addItem(Item item) {
 	throw "Not yet implemented";
 }
 
-void Librarian::removeItem(int itemId) {
-	// TODO - implement Librarian::removeItem
-	throw "Not yet implemented";
+void Librarian::removeItem(vector <Book>& books, int bookId, int itemId) {
+	for (auto &i : books)
+	{
+		if (i.getId() == bookId)
+		{	
+			int licz = 0;
+			for (auto &j : (*i.getAllItems()))
+			{
+				if (j.getId() == itemId)
+				{
+					cout << "found\n";
+					(* i.getAllItems()).erase((* i.getAllItems()).begin() + licz);
+					break;
+				}
+				licz++;
+			}
+		}
+	}
 }
 
 void Librarian::addUser(User user) {

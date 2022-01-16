@@ -232,12 +232,25 @@ TEST(LibrarianTest, DoesLibrarianRemoveItemWork)
 	{
 		bd_test[0].createItem(); //sztuczna baza itemów ksi¹¿ek
 	}
-	id_test = bd_test[0].getAllItems();
+	id_test =( * bd_test[0].getAllItems());
+	for (auto i : id_test)
+	{
+		cout << i.getId() << " ";
+	}
+	cout << "\n";
 	int idB = bd_test[0].getId(); //id 2 ksiazki
+	cout << idB << "\n";
 	int idI = id_test[1].getId(); //id 2 itemu
+	cout << idI << "\n";
 	int s_test = id_test.size();
+	cout << s_test << "\n";
 	l_test.removeItem(bd_test, idB, idI);
-	id_test = bd_test[1].getAllItems();
+	id_test = (* bd_test[0].getAllItems());
+	cout << "Po\n";
+	for (auto i : id_test)
+	{
+		cout << i.getId() << " ";
+	}
 	bool found = false;
 	for (auto i : id_test)
 	{
