@@ -238,7 +238,6 @@ TEST(LibrarianTest, DoesLibrarianRemoveItemWork)
 	int s_test = id_test.size();
 	l_test.removeItem(bd_test, idB, idI);
 	id_test = bd_test[1].getAllItems();
-	s_test = id_test.size();
 	bool found = false;
 	for (auto i : id_test)
 	{
@@ -249,5 +248,5 @@ TEST(LibrarianTest, DoesLibrarianRemoveItemWork)
 		}
 	}
 	EXPECT_FALSE(found);
-	EXPECT_EQ(id_test.size(), s_test - 1);
+	EXPECT_EQ(id_test.size(), s_test-1);
 }
