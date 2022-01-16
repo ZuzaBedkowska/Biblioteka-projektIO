@@ -74,7 +74,7 @@ void Librarian::printBooks() {
 	throw "Not yet implemented";
 }
 
-void Librarian::editBook(int bookId) {
+void Librarian::editBook(Book& book, string new_name, int new_id, vector <string> new_author, vector <string> new_description) {
 	// TODO - implement Librarian::editBook
 	throw "Not yet implemented";
 }

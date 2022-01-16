@@ -41,6 +41,8 @@ public:
 
 	int getId();
 
+	void setId();
+
 	string getTitle();
 
 	vector <string> getAuthors();

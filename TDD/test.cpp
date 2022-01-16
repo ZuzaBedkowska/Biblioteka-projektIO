@@ -20,6 +20,7 @@
 User u_test("a", "b", { 1,1,1900 });
 Librarian l_test("admin", "ad");
 Book b_test;
+Date d_test(-1, -1, -1);
 User u_test2("a", "b", { 1, 1, 1900 });
 
 
@@ -158,4 +159,24 @@ TEST(LibrarianTest, DoesLibrarianRemoveBorrowmentWork)
 	}
 	EXPECT_FALSE(found);
 
+}
+
+TEST(LibrarianTest, DoesLibrarianBookEditWork)
+{
+	vector <Book> bd_test;
+	for (int i = 0; i < 10; ++i)
+	{
+		bd_test.push_back(Book());				 //sztuczna baza ksiazek
+	}
+	string newName = "newName";
+	string autor = "NewAutor";
+	string description = "NewDescription";
+	vector <string> autors(1, autor);
+	vector <string> descriptions(1, description);
+	int newId = 10;
+	l_test.editBook(bd_test[0], newName, newId, autors, descriptions);
+	EXPECT_EQ(bd_test[0].getTitle(), "newName");
+	EXPECT_EQ(bd_test[0].getId(), 10);
+	EXPECT_EQ(bd_test[0].getAuthors(), autors);
+	EXPECT_EQ(bd_test[0].getDescription(), descriptions);
 }

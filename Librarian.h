@@ -46,7 +46,7 @@ public:
 
 	void printBooks();
 
-	void editBook(int bookId);
+	void editBook(Book& book, string new_name, int new_id, vector <string> new_author, vector <string> new_description);
 
 	void editUser(User& user, string new_name, int new_id, string new_password, Date new_date);
 
