@@ -23,6 +23,7 @@ Book b_test;
 Date d_test(-1, -1, -1);
 User u_test2("a", "b", { 1, 1, 1900 });
 vector <Book> bd_test;
+vector <User> ud_test;
 
 
 TEST(UserTest, DoesUserSetFineWork)
@@ -202,3 +203,25 @@ TEST(LibrarianTest, DoesLibrarianBookRemoveWork)
 	EXPECT_EQ(bd_test.size(), s_test - 1);
 }
 
+TEST(LibrarianTest, DoesLibrarianUserRemoveWork)
+{
+	for (int i = 0; i < 10; ++i)
+	{
+		User def("name", "pass", {1, 1, 1970});
+		ud_test.push_back(def); //sztuczna baza uzytkownikow
+	}
+	int id = ud_test[1].getId();
+	int s_test = ud_test.size();
+	l_test.removeUser(ud_test, id);
+	bool found = false;
+	for (auto i : ud_test)
+	{
+		if (i.getId() == id)
+		{
+			found = true;
+			break;
+		}
+	}
+	EXPECT_FALSE(found);
+	EXPECT_EQ(ud_test.size(), s_test - 1);
+}
