@@ -44,7 +44,7 @@ public:
 
 	void removeUser(vector <User> & user, int userId);
 
-	void printBooks();
+	void printBooks(vector <Book> & books);
 
 	void editBook(int bookId);
 

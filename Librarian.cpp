@@ -97,9 +97,15 @@ void Librarian::removeUser(vector <User> & users, int userId) {
 	}
 }
 
-void Librarian::printBooks() {
-	// TODO - implement Librarian::printBooks
-	throw "Not yet implemented";
+void Librarian::printBooks(vector <Book> & books) {
+	cout << "Baza Ksiazek:\n";
+	int number = 1;
+	for (auto i : books)
+	{
+		cout << number << ". ";
+		i.printBook();
+		number++;
+	}
 }
 
 void Librarian::editBook(int bookId) {
