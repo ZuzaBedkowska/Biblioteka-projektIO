@@ -1,7 +1,6 @@
 #include "User.h"
 #include "Book.h"
 #include <iostream>
-
 using namespace std;
 
 //User - done
