@@ -93,6 +93,19 @@ void Librarian::editUser(User& user, string new_name, int new_id, string new_pas
 	{
 		user.setPassword(new_password);
 	}
+
+	if (new_date.year >= 1900 && new_date.year < 2022)
+	{
+		if (new_date.month == 2)
+		{
+			if (new_date.day > 0 && new_date.day < 30) user.setBirthDate(new_date);
+		}
+		if ((new_date.month == 1 || new_date.month > 2) && new_date.month < 13)
+		{
+			if (new_date.day > 0 && new_date.day < 32) user.setBirthDate(new_date);
+		}
+	}
+
 }
 
 void Librarian::printUsers(User users[]) {

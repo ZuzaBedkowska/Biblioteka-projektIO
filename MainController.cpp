@@ -460,7 +460,7 @@ void MainController:: librarianMenu()
 	{
 		int switch_case_user_ID = 0, editing_user = 0, editing_ID = 0;
 		string new_word="o",new_password;
-		Date new_date;
+		Date data(-1,-1,-1);
 		cout << "Wybrano opcje edycji uzytkownika. Podaj ID uzytkownika,\nktorego dane chcesz zmienic.\n";
 		cin >> switch_case_user_ID;
 		cout << "Wybierz, ktore dane chcesz zmienic. 1 - imie, 2 - ID, 3 - haslo, 4 - data urodzenia.\n";
@@ -476,7 +476,7 @@ void MainController:: librarianMenu()
 				cout << "Wybrane imie jest zbyt krotkie. Prosze sprobowac ponownie.\n";
 				break;
 			}
-			loggedLibrarian.editUser(userDatabase[switch_case_user_ID], new_word, -1, "o", new_date);
+			loggedLibrarian.editUser(userDatabase[switch_case_user_ID], new_word, -1, "o", data);
 			break;
 		}
 		case 2:
@@ -488,7 +488,7 @@ void MainController:: librarianMenu()
 				cout << "Wybrane ID jest mniejsze od 0. Prosze sprobowac ponownie.\n";
 				break;
 			}
-			loggedLibrarian.editUser(userDatabase[switch_case_user_ID], "o", editing_ID, "o", new_date);
+			loggedLibrarian.editUser(userDatabase[switch_case_user_ID], "o", editing_ID, "o", data);
 			break;
 		}
 		case 3:
@@ -500,8 +500,33 @@ void MainController:: librarianMenu()
 				cout << "Wybrane haslo jest krotsze niz 8 znakow. Prosze sprobowac ponownie.\n";
 				break;
 			}
-			loggedLibrarian.editUser(userDatabase[switch_case_user_ID], "o", -1, new_password, new_date);
+			loggedLibrarian.editUser(userDatabase[switch_case_user_ID], "o", -1, new_password, data);
 			break;
+		}
+		case 4:
+		{
+			cout << "Wprowadz nowa date urodzenia w kolejnosci dzien (enter), miesiac (enter), rok (enter).\n";
+			int nday, nmonth, nyear;
+			cin >> nday;
+			if (nday < 0 || nday>31)
+			{
+				cout << "Dzien nie miesci sie w zakresie. Prosze sprobowac ponownie.\n";
+				break;
+			}
+			cin >> nmonth;
+			if (nmonth < 0 || nmonth>12)
+			{
+				cout << "Miesiac nie miesci sie w zakresie. Prosze sprobowac ponownie.\n";
+				break;
+			}
+			cin >> nyear;
+			if (nyear < 1900 || nyear>2022)
+			{
+				cout << "Rok nie miesci sie w zakresie. Prosze sprobowac ponownie.\n";
+				break;
+			}
+			Date new_date(nday,nmonth,nyear);
+			loggedLibrarian.editUser(userDatabase[switch_case_user_ID], "o", -1, "o", new_date);
 		}
 		}
 		break;
