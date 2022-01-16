@@ -19,7 +19,7 @@
 
 User u_test("a", "b", { 1,1,1900 });
 Librarian l_test("admin", "ad");
-Date d_test(-1, -1, -1);
+Date d_test(-1,-1,-1);
 
 TEST(UserTest,IsNameOk)
 {
@@ -51,3 +51,37 @@ TEST(LibrarianTest, DoesUserPasswordEditWork)
 	l_test.editUser(u_test, "a", -1, TestoweHaslo, d_test);
 	ASSERT_EQ(u_test.getPassword(), TestoweHaslo);
 }
+
+TEST(LibrarianTest, DoesUserBirthDateDayEditWork)
+{
+	Date TestowaData(10, 2, 2010);
+	l_test.editUser(u_test, "a", -1, "o", TestowaData);
+	ASSERT_EQ(u_test.getBirthDate().day, TestowaData.day);
+}
+
+TEST(LibrarianTest, DoesUserBirthDateMonthEditWork)
+{
+	Date TestowaData(10, 2, 2010);
+	l_test.editUser(u_test, "a", -1, "o", TestowaData);
+	ASSERT_EQ(u_test.getBirthDate().month, TestowaData.month);
+}
+
+TEST(LibrarianTest, DoesUserBirthDateYearEditWork)
+{
+	Date TestowaData(10, 2, 2010);
+	l_test.editUser(u_test, "a", -1, "o", TestowaData);
+	ASSERT_EQ(u_test.getBirthDate().year, TestowaData.year);
+}
+
+TEST(LibrarianTest, DoesUserBirthDateEditWork)
+{
+	Date TestowaData(10, 2, 2010);
+	l_test.editUser(u_test, "a", -1, "o", TestowaData);
+	ASSERT_EQ(u_test.getBirthDate().day, TestowaData.day);
+	ASSERT_EQ(u_test.getBirthDate().month, TestowaData.month);
+	ASSERT_EQ(u_test.getBirthDate().year, TestowaData.year);
+}
+
+
+
+
