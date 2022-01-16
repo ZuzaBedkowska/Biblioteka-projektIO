@@ -94,3 +94,9 @@ vector<string> Book::getDescription()
 {
 	return description;
 }
+
+vector<Item>* Book::getAllItems()
+{
+	return &items;
+}
+

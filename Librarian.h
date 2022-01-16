@@ -38,7 +38,7 @@ public:
 
 	void addItem(Item item);
 
-	void removeItem(int itemId);
+	void removeItem(vector <Book> & books, int bookId, int itemId);
 
 	void addUser(User user);
 

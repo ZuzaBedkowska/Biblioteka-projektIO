@@ -24,7 +24,7 @@ Date d_test(-1, -1, -1);
 User u_test2("a", "b", { 1, 1, 1900 });
 vector <Book> bd_test;
 vector <User> ud_test;
-
+vector <Item> id_test;
 
 TEST(UserTest, DoesUserSetFineWork)
 {
@@ -224,4 +224,42 @@ TEST(LibrarianTest, DoesLibrarianUserRemoveWork)
 	}
 	EXPECT_FALSE(found);
 	EXPECT_EQ(ud_test.size(), s_test - 1);
+}
+
+TEST(LibrarianTest, DoesLibrarianRemoveItemWork) 
+{
+	for (int i = 0; i < 10; ++i)
+	{
+		bd_test[0].createItem(); //sztuczna baza itemów ksi¹¿ek
+	}
+	id_test =( * bd_test[0].getAllItems());
+	for (auto i : id_test)
+	{
+		cout << i.getId() << " ";
+	}
+	cout << "\n";
+	int idB = bd_test[0].getId(); //id 2 ksiazki
+	cout << idB << "\n";
+	int idI = id_test[1].getId(); //id 2 itemu
+	cout << idI << "\n";
+	int s_test = id_test.size();
+	cout << s_test << "\n";
+	l_test.removeItem(bd_test, idB, idI);
+	id_test = (* bd_test[0].getAllItems());
+	cout << "Po\n";
+	for (auto i : id_test)
+	{
+		cout << i.getId() << " ";
+	}
+	bool found = false;
+	for (auto i : id_test)
+	{
+		if (i.getId() == idI)
+		{
+			found = true;
+			break;
+		}
+	}
+	EXPECT_FALSE(found);
+	EXPECT_EQ(id_test.size(), s_test-1);
 }
