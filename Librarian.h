@@ -34,23 +34,23 @@ public:
 
 	void addBook(Book book);
 
-	void removeBook(int bookId);
+	void removeBook(vector <Book> & books, int bookId);
 
 	void addItem(Item item);
 
-	void removeItem(int itemId);
+	void removeItem(vector <Book> & books, int bookId, int itemId);
 
 	void addUser(User user);
 
-	void removeUser(int userId);
+	void removeUser(vector <User> & user, int userId);
 
-	void printBooks();
+	void printBooks(vector <Book> & books);
 
 	void editBook(Book& book, string new_name, int new_id, vector <string> new_author, vector <string> new_description);
 
 	void editUser(User& user, string new_name, int new_id, string new_password, Date new_date);
 
-	void printUsers(User users[]);
+	void printUsers(vector <User> & users);
 
 	void setName(string& newName);
 

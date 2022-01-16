@@ -22,7 +22,9 @@ Librarian l_test("admin", "ad");
 Book b_test;
 Date d_test(-1, -1, -1);
 User u_test2("a", "b", { 1, 1, 1900 });
-
+vector <Book> bd_test;
+vector <User> ud_test;
+vector <Item> id_test;
 
 TEST(UserTest, DoesUserSetFineWork)
 {
@@ -158,8 +160,72 @@ TEST(LibrarianTest, DoesLibrarianRemoveBorrowmentWork)
 			found = true;
 	}
 	EXPECT_FALSE(found);
-
 }
+
+TEST(LibrarianTest, DoesLibrarianBookEditWork)
+{
+	for (int i = 0; i < 10; ++i)
+	{
+		bd_test.push_back(Book()); //sztuczna baza ksiazek
+	}
+	string newName = "newName";
+	string autor = "NewAutor";
+	string description = "NewDescription";
+	vector <string> autors(1, autor);
+	vector <string> descriptions(1, description);
+	int newId = 10;
+	//l_test.editBook(bd_test[0], newName, newId, autors, descriptions);
+	EXPECT_EQ(bd_test[0].getTitle(), "newName");
+	EXPECT_EQ(bd_test[0].getId(), 10);
+	EXPECT_EQ(bd_test[0].getAuthors(), autors);
+	EXPECT_EQ(bd_test[0].getDescription(), descriptions);
+}
+
+TEST(LibrarianTest, DoesLibrarianBookRemoveWork)
+{
+	for (int i = 0; i < 10; ++i)
+	{
+		bd_test.push_back(Book()); //sztuczna baza ksiazek
+	}
+	int id = bd_test[1].getId();
+	int s_test = bd_test.size();
+	l_test.removeBook(bd_test, id);
+	bool found = false;
+	for (auto i : bd_test)
+	{
+		if (i.getId() == id)
+		{
+			found = true;
+			break;
+		}
+	}
+	EXPECT_FALSE(found);
+	EXPECT_EQ(bd_test.size(), s_test - 1);
+}
+
+TEST(LibrarianTest, DoesLibrarianUserRemoveWork)
+{
+	for (int i = 0; i < 10; ++i)
+	{
+		User def("name", "pass", {1, 1, 1970});
+		ud_test.push_back(def); //sztuczna baza uzytkownikow
+	}
+	int id = ud_test[1].getId();
+	int s_test = ud_test.size();
+	l_test.removeUser(ud_test, id);
+	bool found = false;
+	for (auto i : ud_test)
+	{
+		if (i.getId() == id)
+		{
+			found = true;
+			break;
+		}
+	}
+	EXPECT_FALSE(found);
+	EXPECT_EQ(ud_test.size(), s_test - 1);
+}
+
 
 TEST(LibrarianTest, DoesLibrarianBookEditWork)
 {
@@ -180,3 +246,29 @@ TEST(LibrarianTest, DoesLibrarianBookEditWork)
 	EXPECT_EQ(bd_test[0].getAuthors(), autors);
 	EXPECT_EQ(bd_test[0].getDescription(), descriptions);
 }
+
+TEST(LibrarianTest, DoesLibrarianRemoveItemWork) 
+{
+	for (int i = 0; i < 10; ++i)
+	{
+		bd_test[0].createItem(); //sztuczna baza itemów ksi¹¿ek
+	}
+	id_test =( * bd_test[0].getAllItems());
+	int idB = bd_test[0].getId(); //id 2 ksiazki
+	int idI = id_test[1].getId(); //id 2 itemu
+	int s_test = id_test.size();
+	l_test.removeItem(bd_test, idB, idI);
+	id_test = (* bd_test[0].getAllItems());
+	bool found = false;
+	for (auto i : id_test)
+	{
+		if (i.getId() == idI)
+		{
+			found = true;
+			break;
+		}
+	}
+	EXPECT_FALSE(found);
+	EXPECT_EQ(id_test.size(), s_test-1);
+}
+

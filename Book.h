@@ -2,6 +2,7 @@
 #include <vector>
 #include "Item.h"
 
+//book - done
 
 using namespace std;
 
@@ -51,7 +52,11 @@ public:
 
 	vector <string> getDescription();
 
+
 	void removeDescription();
+
+	vector <Item>* getAllItems();
+
 };
 
 #endif

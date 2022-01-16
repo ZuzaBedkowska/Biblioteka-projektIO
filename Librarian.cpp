@@ -1,4 +1,5 @@
 #include "Librarian.h"
+#include <iostream>
 
 int Librarian::count = 0;
 
@@ -44,9 +45,15 @@ void Librarian::addBook(Book book) {
 	throw "Not yet implemented";
 }
 
-void Librarian::removeBook(int bookId) {
-	// TODO - implement Librarian::removeBook
-	throw "Not yet implemented";
+void Librarian::removeBook(vector <Book> & books, int bookId) {
+	for (int i = 0; i < books.size(); ++i)
+	{
+		if (books[i].getId() == bookId)
+		{
+			books.erase(books.begin() + i);
+			break;
+		}
+	}
 }
 
 void Librarian::addItem(Item item) {
@@ -54,9 +61,24 @@ void Librarian::addItem(Item item) {
 	throw "Not yet implemented";
 }
 
-void Librarian::removeItem(int itemId) {
-	// TODO - implement Librarian::removeItem
-	throw "Not yet implemented";
+void Librarian::removeItem(vector <Book>& books, int bookId, int itemId) {
+	for (auto &i : books)
+	{
+		if (i.getId() == bookId)
+		{	
+			int licz = 0;
+			for (auto &j : (*i.getAllItems()))
+			{
+				if (j.getId() == itemId)
+				{
+					cout << "found\n";
+					(* i.getAllItems()).erase((* i.getAllItems()).begin() + licz);
+					break;
+				}
+				licz++;
+			}
+		}
+	}
 }
 
 void Librarian::addUser(User user) {
@@ -64,14 +86,26 @@ void Librarian::addUser(User user) {
 	throw "Not yet implemented";
 }
 
-void Librarian::removeUser(int userId) {
-	// TODO - implement Librarian::removeUser
-	throw "Not yet implemented";
+void Librarian::removeUser(vector <User> & users, int userId) {
+	for (int i = 0; i < users.size(); ++i)
+	{
+		if (users[i].getId() == userId)
+		{
+			users.erase(users.begin() + i);
+			break;
+		}
+	}
 }
 
-void Librarian::printBooks() {
-	// TODO - implement Librarian::printBooks
-	throw "Not yet implemented";
+void Librarian::printBooks(vector <Book> & books) {
+	cout << "Baza Ksiazek:\n";
+	int number = 1;
+	for (auto i : books)
+	{
+		cout << number << ". ";
+		i.printBook();
+		number++;
+	}
 }
 
 void Librarian::editBook(Book& book, string new_name, int new_id, vector <string> new_authors, vector <string> new_description) 
@@ -118,9 +152,15 @@ void Librarian::editUser(User& user, string new_name, int new_id, string new_pas
 
 }
 
-void Librarian::printUsers(User users[]) {
-	// TODO - implement Librarian::printUsers
-	throw "Not yet implemented";
+void Librarian::printUsers(vector <User> & users) {
+	cout << "Lista uzytkownikow:\n\n";
+	int nr = 1;
+	for (auto i : users)
+	{
+		cout << nr << ". ";
+		i.printUser();
+		nr++;
+	}
 }
 
 void Librarian::setName(string& newName)

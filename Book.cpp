@@ -3,6 +3,8 @@
 
 using namespace std;
 
+//book - done
+
 int Book::count = 0;
 
 Book::Book()
@@ -112,4 +114,9 @@ void Book::removeDescription()
 	{
 		description.pop_back();
 	}
+}
+
+vector<Item>* Book::getAllItems()
+{
+	return &items;
 }
