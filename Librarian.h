@@ -42,7 +42,7 @@ public:
 
 	void addUser(User user);
 
-	void removeUser(int userId);
+	void removeUser(vector <User> & user, int userId);
 
 	void printBooks();
 

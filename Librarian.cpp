@@ -70,9 +70,15 @@ void Librarian::addUser(User user) {
 	throw "Not yet implemented";
 }
 
-void Librarian::removeUser(int userId) {
-	// TODO - implement Librarian::removeUser
-	throw "Not yet implemented";
+void Librarian::removeUser(vector <User> & users, int userId) {
+	for (int i = 0; i < users.size(); ++i)
+	{
+		if (users[i].getId() == userId)
+		{
+			users.erase(users.begin() + i);
+			break;
+		}
+	}
 }
 
 void Librarian::printBooks() {
