@@ -226,11 +226,32 @@ TEST(LibrarianTest, DoesLibrarianUserRemoveWork)
 	EXPECT_EQ(ud_test.size(), s_test - 1);
 }
 
+
+TEST(LibrarianTest, DoesLibrarianBookEditWork)
+{
+	vector <Book> bd_test;
+	for (int i = 0; i < 10; ++i)
+	{
+		bd_test.push_back(Book());				 //sztuczna baza ksiazek
+	}
+	string newName = "newName";
+	string autor = "NewAutor";
+	string description = "NewDescription";
+	vector <string> autors(1, autor);
+	vector <string> descriptions(1, description);
+	int newId = 10;
+	l_test.editBook(bd_test[0], newName, newId, autors, descriptions);
+	EXPECT_EQ(bd_test[0].getTitle(), "newName");
+	EXPECT_EQ(bd_test[0].getId(), 10);
+	EXPECT_EQ(bd_test[0].getAuthors(), autors);
+	EXPECT_EQ(bd_test[0].getDescription(), descriptions);
+}
+
 TEST(LibrarianTest, DoesLibrarianRemoveItemWork) 
 {
 	for (int i = 0; i < 10; ++i)
 	{
-		bd_test[0].createItem(); //sztuczna baza itemów ksi¹¿ek
+		bd_test[0].createItem(); //sztuczna baza itemÃ³w ksiÂ¹Â¿ek
 	}
 	id_test =( * bd_test[0].getAllItems());
 	int idB = bd_test[0].getId(); //id 2 ksiazki
@@ -250,3 +271,4 @@ TEST(LibrarianTest, DoesLibrarianRemoveItemWork)
 	EXPECT_FALSE(found);
 	EXPECT_EQ(id_test.size(), s_test-1);
 }
+
