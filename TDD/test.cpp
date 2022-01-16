@@ -20,6 +20,7 @@
 User u_test("a", "b", { 1,1,1900 });
 Librarian l_test("admin", "ad");
 Book b_test;
+Date d_test(-1, -1, -1);
 User u_test2("a", "b", { 1, 1, 1900 });
 vector <Book> bd_test;
 
