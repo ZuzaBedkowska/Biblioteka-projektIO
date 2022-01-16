@@ -173,7 +173,7 @@ TEST(LibrarianTest, DoesLibrarianBookEditWork)
 	vector <string> autors(1, autor);
 	vector <string> descriptions(1, description);
 	int newId = 10;
-	l_test.editBook(bd_test[0], newName, newId, autors, descriptions);
+	//l_test.editBook(bd_test[0], newName, newId, autors, descriptions);
 	EXPECT_EQ(bd_test[0].getTitle(), "newName");
 	EXPECT_EQ(bd_test[0].getId(), 10);
 	EXPECT_EQ(bd_test[0].getAuthors(), autors);
