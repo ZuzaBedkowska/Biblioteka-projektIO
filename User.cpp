@@ -1,8 +1,10 @@
 #include "User.h"
 #include "Book.h"
-
 #include <iostream>
+
 using namespace std;
+
+//User - done
 
 int User::usersCount = 0;
 
@@ -109,8 +111,18 @@ void User::removeBorrowment(int borrowmentId) {
 }
 
 void User::printBorrowments() {
-	// TODO - implement User::printBorrowments
-	throw "Not yet implemented";
+	cout << "Wypozyczenia:\n";
+	if (userBorrowments.size() > 0)
+	{
+		for (auto i : userBorrowments)
+		{
+			cout << "\t-\n"; //trzeba ogarn¹æ jak wypisywaæ zarezerwowane tytu³y ksi¹¿ek
+		}
+	}
+	else
+	{
+		cout << "Brak\n";
+	}
 }
 
 void User::printUser()
