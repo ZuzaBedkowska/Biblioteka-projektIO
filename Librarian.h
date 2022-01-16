@@ -34,7 +34,7 @@ public:
 
 	void addBook(Book book);
 
-	void removeBook(int bookId);
+	void removeBook(vector <Book> & books, int bookId);
 
 	void addItem(Item item);
 
@@ -42,7 +42,7 @@ public:
 
 	void addUser(User user);
 
-	void removeUser(int userId);
+	void removeUser(vector <User> & user, int userId);
 
 	void printBooks();
 

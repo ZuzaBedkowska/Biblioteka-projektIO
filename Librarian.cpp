@@ -44,9 +44,15 @@ void Librarian::addBook(Book book) {
 	throw "Not yet implemented";
 }
 
-void Librarian::removeBook(int bookId) {
-	// TODO - implement Librarian::removeBook
-	throw "Not yet implemented";
+void Librarian::removeBook(vector <Book> & books, int bookId) {
+	for (int i = 0; i < books.size(); ++i)
+	{
+		if (books[i].getId() == bookId)
+		{
+			books.erase(books.begin() + i);
+			break;
+		}
+	}
 }
 
 void Librarian::addItem(Item item) {
@@ -64,9 +70,15 @@ void Librarian::addUser(User user) {
 	throw "Not yet implemented";
 }
 
-void Librarian::removeUser(int userId) {
-	// TODO - implement Librarian::removeUser
-	throw "Not yet implemented";
+void Librarian::removeUser(vector <User> & users, int userId) {
+	for (int i = 0; i < users.size(); ++i)
+	{
+		if (users[i].getId() == userId)
+		{
+			users.erase(users.begin() + i);
+			break;
+		}
+	}
 }
 
 void Librarian::printBooks() {

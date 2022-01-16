@@ -26,7 +26,6 @@ User::~User()
 {
 	userBorrowments.erase(userBorrowments.begin(), userBorrowments.end());
 	userReservations.erase(userReservations.begin(), userReservations.end());
-	usersCount--;
 }
 
 bool User::userTest()
