@@ -277,7 +277,7 @@ TEST(LibrarianTest, DoesLibrarianAddUserkWork)
 	User def("name", "pass", {1,1,1970});
 	int id = def.getId();
 	int s_test = ud_test.size();
-	l_test.addBook(bd_test, def);
+	l_test.addUser(ud_test, def);
 	bool found = false;
 	for (auto i : ud_test)
 	{
