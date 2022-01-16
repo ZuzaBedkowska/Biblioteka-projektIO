@@ -41,13 +41,17 @@ public:
 
 	int getId();
 
-	void setId();
+	void setId(int new_id);
 
 	string getTitle();
 
 	vector <string> getAuthors();
 
+	void removeAuthors();
+
 	vector <string> getDescription();
+
+	void removeDescription();
 };
 
 #endif

@@ -78,6 +78,11 @@ int Book::getId()
 	return id;
 }
 
+void Book::setId(int new_id)
+{
+	id = new_id;
+}
+
 string Book::getTitle()
 {
 	return title;
@@ -88,7 +93,23 @@ vector<string> Book::getAuthors()
 	return author;
 }
 
+void Book::removeAuthors()
+{
+	for (int i = 0; i < getAuthors().size(); i++)
+	{
+		author.pop_back();
+	}
+}
+
 vector<string> Book::getDescription()
 {
 	return description;
+}
+
+void Book::removeDescription()
+{
+	for (int i = 0; i < getDescription().size(); i++)
+	{
+		description.pop_back();
+	}
 }

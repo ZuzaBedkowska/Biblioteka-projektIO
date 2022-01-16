@@ -74,9 +74,20 @@ void Librarian::printBooks() {
 	throw "Not yet implemented";
 }
 
-void Librarian::editBook(Book& book, string new_name, int new_id, vector <string> new_author, vector <string> new_description) {
-	// TODO - implement Librarian::editBook
-	throw "Not yet implemented";
+void Librarian::editBook(Book& book, string new_name, int new_id, vector <string> new_authors, vector <string> new_description) 
+{
+	book.removeAuthors();
+	for (int i = 0; i < new_authors.size(); i++)
+	{
+		book.setAuthor(new_authors[i]);
+	}
+	book.removeDescription();
+	for (int i = 0; i < new_description.size(); i++)
+	{
+		book.setDescription(new_description[i]);
+	}
+	book.setTitle(new_name);
+	book.setId(new_id);
 }
 
 void Librarian::editUser(User& user, string new_name, int new_id, string new_password, Date new_date) 
