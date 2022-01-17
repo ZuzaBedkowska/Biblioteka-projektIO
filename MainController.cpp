@@ -378,10 +378,12 @@ void MainController::librarianMenu() {
     cout << "Witaj " << loggedLibrarian.getName() << "!\nWybierz jedna z dostepnych opcji wpisujac jej numer:\n";
     cout << "\t1. Przegladaj ksiazki\n";
     cout << "\t2. Wyszukaj ksiazke\n";
-    cout << "\t3. Wyloguj\n";
+    cout << "\t3. Przegladaj uzytkownikow\n";
     cout << "\t4. Edytuj uzytkownika\n";
     cout << "\t5. Edytuj ksiazke\n";
-    cout << "\t6. Dodaj ksiazke\n";
+    cout << "\t6. Dodaj uzytkownika\n";
+    cout << "\t7. Dodaj ksiazke\n";
+    cout << "\t8. Wyloguj\n";
     cout << "Twoj wybor: ";
     int choice;
     cin >> choice;
@@ -395,8 +397,9 @@ void MainController::librarianMenu() {
         break;
     }
     case 3: {
-        loggedLibrarian.setIsLogged(false);
-        start();
+        loggedLibrarian.printUsers(userDatabase);
+        system("pause");
+        librarianMenu();
         break;
     }
     case 4: {
@@ -464,14 +467,28 @@ void MainController::librarianMenu() {
         librarianMenu();
         break;
     }
-
     case 5: {
+        int bookIndex = -1;
         int switch_case_book_ID = 0, editing_book = 0, new_int = 0;
         string new_word = "";
         vector < string > new_vector;
         new_vector.clear();
         cout << "Wybrano opcje edycji ksiazki. Podaj ID ksiazki,\nktorej dane chcesz zmienic.\n";
         cin >> switch_case_book_ID;
+        for (int i = 0; i < bookDatabase.size(); ++i)
+        {
+            if (bookDatabase[i].getId() == switch_case_book_ID)
+                bookIndex = i;
+        }
+        if (bookIndex == -1)
+        {
+            cout << "Podana ksiazka nie istnieje w bazie!\n";
+            system("pause");
+            librarianMenu();
+            break;
+        }
+        cout << "Wybrana ksiazka to:\n";
+        bookDatabase[bookIndex].printBook();
         cout << "Wybierz, ktore dane chcesz zmienic. 1 - tytul, 2 - ID, 3 - autorzy, 4 - opis.\n";
         cin >> editing_book;
         switch (editing_book) {
@@ -483,7 +500,7 @@ void MainController::librarianMenu() {
                 cout << "Wybrany tytul jest zbyt krotki. Prosze sprobowac ponownie.\n";
                 break;
             }
-            loggedLibrarian.editBook(bookDatabase[switch_case_book_ID], new_word, switch_case_book_ID, bookDatabase[switch_case_book_ID].getAuthors(), bookDatabase[switch_case_book_ID].getDescription());
+            loggedLibrarian.editBook(bookDatabase[bookIndex], new_word, switch_case_book_ID, bookDatabase[bookIndex].getAuthors(), bookDatabase[bookIndex].getDescription());
             break;
         }
         case 2: {
@@ -493,7 +510,7 @@ void MainController::librarianMenu() {
                 cout << "Wybrane ID jest mniejsze od 0. Prosze sprobowac ponownie.\n";
                 break;
             }
-            loggedLibrarian.editBook(bookDatabase[switch_case_book_ID], bookDatabase[switch_case_book_ID].getTitle(), new_int, bookDatabase[switch_case_book_ID].getAuthors(), bookDatabase[switch_case_book_ID].getDescription());
+            loggedLibrarian.editBook(bookDatabase[bookIndex], bookDatabase[bookIndex].getTitle(), new_int, bookDatabase[bookIndex].getAuthors(), bookDatabase[bookIndex].getDescription());
             break;
         }
         case 3: {
@@ -504,9 +521,8 @@ void MainController::librarianMenu() {
                 cout << "Podaj autora nr " << i + 1 << "\n";
                 getline(cin, new_word);
                 new_vector.push_back(new_word);
-                cout << new_vector[0];
             }
-            loggedLibrarian.editBook(bookDatabase[switch_case_book_ID], bookDatabase[switch_case_book_ID].getTitle(), switch_case_book_ID, new_vector, bookDatabase[switch_case_book_ID].getDescription());
+            loggedLibrarian.editBook(bookDatabase[bookIndex], bookDatabase[bookIndex].getTitle(), switch_case_book_ID, new_vector, bookDatabase[bookIndex].getDescription());
             break;
         }
         case 4: {
@@ -518,7 +534,7 @@ void MainController::librarianMenu() {
                 getline(cin, new_word);
                 new_vector.push_back(new_word);
             }
-            loggedLibrarian.editBook(bookDatabase[switch_case_book_ID], bookDatabase[switch_case_book_ID].getTitle(), switch_case_book_ID, bookDatabase[switch_case_book_ID].getAuthors(), new_vector);
+            loggedLibrarian.editBook(bookDatabase[bookIndex], bookDatabase[bookIndex].getTitle(), switch_case_book_ID, bookDatabase[bookIndex].getAuthors(), new_vector);
             break;
         }
         }
@@ -526,11 +542,16 @@ void MainController::librarianMenu() {
         break;
     }
     case 6: {
+        system("pause");
+        librarianMenu();
+        break;
+    }
+    case 7: {
         int tempInt;
         string title, tempString;
         vector<string> description, author;
 
-        cout << "Podaj tytul \n";
+        cout << "Podaj tytul:  ";
         cin.ignore();
         getline(cin, title);
 
@@ -557,7 +578,11 @@ void MainController::librarianMenu() {
         librarianMenu();
         break;
     }
-
+    case 8: {
+        loggedLibrarian.setIsLogged(false);
+        start();
+        break;
+    }
   default: {
       cout << "Wybierz wlasciwa opcje!\n";
       system("pause");

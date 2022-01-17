@@ -112,6 +112,8 @@ void Librarian::editBook(Book& book, string new_name, int new_id, vector <string
 	book.setDescription(new_description);
 	book.setTitle(new_name);
 	book.setId(new_id);
+	cout << "Pomyslnie edytowano ksiazke!\n";
+	system("pause");
 }
 
 void Librarian::editUser(User& user, string new_name, int new_id, string new_password, Date new_date) 
