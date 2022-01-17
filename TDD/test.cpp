@@ -45,8 +45,9 @@ TEST(UserTest, IsPasswordOk)
 TEST(UserTest, DoesUserTestWork) //test jednostkowy do userTest
 {
 	string author = "";
-	b_test.setAuthor(author);
-	b_test.setDescription(author);
+	vector <string> authors(1, author);
+	b_test.setAuthor(authors);
+	b_test.setDescription(authors);
 	b_test.setTitle(author);
 	u_test.setFine(0.0);
 	EXPECT_TRUE(u_test.userTest()); //0 wypozyczonych ksiazek
