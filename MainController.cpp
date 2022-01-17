@@ -381,6 +381,7 @@ void MainController::librarianMenu() {
     cout << "\t3. Wyloguj\n";
     cout << "\t4. Edytuj uzytkownika\n";
     cout << "\t5. Edytuj ksiazke\n";
+    cout << "\t6. Dodaj ksiazke\n";
     cout << "Twoj wybor: ";
     int choice;
     cin >> choice;
@@ -476,6 +477,7 @@ void MainController::librarianMenu() {
         switch (editing_book) {
         case 1: {
             cout << "Podaj nowy tytul.\n";
+            cin.ignore();
             getline(cin, new_word);
             if (new_word.size() < 3) {
                 cout << "Wybrany tytul jest zbyt krotki. Prosze sprobowac ponownie.\n";
@@ -520,6 +522,38 @@ void MainController::librarianMenu() {
             break;
         }
         }
+        librarianMenu();
+        break;
+    }
+    case 6: {
+        int tempInt;
+        string title, tempString;
+        vector<string> description, author;
+
+        cout << "Podaj tytul \n";
+        cin.ignore();
+        getline(cin, title);
+
+        cout << "Podaj ilosc autorow \n";
+        cin >> tempInt;
+        cin.ignore();
+        for (int i = 0; i < tempInt; i++) {
+            cout << "Podaj autora nr " << i + 1 << "\n";
+            getline(cin, tempString);
+            author.push_back(tempString);
+        }
+
+        cout << "Podaj ilosc opisow \n";
+        cin >> tempInt;
+        cin.ignore();
+        for (int i = 0; i < tempInt; i++) {
+            cout << "Podaj opis nr " << i + 1 << "\n";
+            getline(cin, tempString);
+            description.push_back(tempString);
+        }
+
+        loggedLibrarian.addBook(bookDatabase, Book(title, description, author));
+
         librarianMenu();
         break;
     }
