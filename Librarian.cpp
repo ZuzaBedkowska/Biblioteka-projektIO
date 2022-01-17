@@ -108,16 +108,8 @@ void Librarian::printBooks(vector <Book> & books) {
 
 void Librarian::editBook(Book& book, string new_name, int new_id, vector <string> new_authors, vector <string> new_description) 
 {
-	book.removeAuthors();
-	for (int i = 0; i < new_authors.size(); i++)
-	{
-		book.setAuthor(new_authors[i]);
-	}
-	book.removeDescription();
-	for (int i = 0; i < new_description.size(); i++)
-	{
-		book.setDescription(new_description[i]);
-	}
+	book.setAuthor(new_authors);
+	book.setDescription(new_description);
 	book.setTitle(new_name);
 	book.setId(new_id);
 }

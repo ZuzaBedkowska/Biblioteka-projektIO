@@ -36,9 +36,9 @@ public:
 	
 	void setTitle(string & newTitle);
 
-	void setAuthor(string& newAuthor);
+	void setAuthor(vector<string> newAuthor);
 
-	void setDescription(string& newDescription);
+	void setDescription(vector<string> newDescription);
 
 	int getId();
 

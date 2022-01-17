@@ -51,7 +51,7 @@ void Book::printBook() {
 		cout << "Autorzy: ";
 		for (int i = 0; i < author.size() - 1; ++i) //zeby nie wypisywac przecinka na koncu, element ostatni zostanie wypisany osobno
 		{
-			cout << i << ", ";
+			cout << author[i] << ", ";
 		}
 		cout << author.back();
 		cout << "\n";
@@ -67,12 +67,12 @@ void Book::setTitle(string & newTitle) {
 	title = newTitle;
 }
 
-void Book::setAuthor(string& newAuthor) {
-	author.push_back(newAuthor);
+void Book::setAuthor(vector<string> newAuthor) {
+	author = newAuthor;
 }
 
-void Book::setDescription(string& newDescription) {
-	description.push_back(newDescription);
+void Book::setDescription(vector<string> newDescription) {
+	description = newDescription;
 }
 
 int Book::getId()
