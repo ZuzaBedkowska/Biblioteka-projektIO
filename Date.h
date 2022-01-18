@@ -1,3 +1,5 @@
+#include <ctime>
+
 #ifndef DATE_H
 #define DATE_H
 
@@ -12,6 +14,8 @@ struct Date
 	bool isTrue();
 	void printDate();
 	void getCurrentDate();
+	int countLeapYears();
+	int countDifference(Date dt2);
 };
 
 #endif

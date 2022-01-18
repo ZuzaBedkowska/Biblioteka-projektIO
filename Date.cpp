@@ -1,6 +1,6 @@
 #include <iostream>
+
 #include "Date.h"
-#include <ctime>
 
 using namespace std;
 
@@ -121,3 +121,26 @@ void Date::getCurrentDate()
 	month = now.tm_mon + 1;
 	day = now.tm_mday;
 }
+
+int Date::countLeapYears() //do liczenia ró¿nicy miêdzy datami
+{
+	int years = year;
+	if (month <= 2)
+		years--;
+	return years / 4;
+}
+
+int Date::countDifference(Date dt2) //funkcja do liczenia dni miêdzy datami
+{
+	const int monthDays[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	long int n1 = year * 365 + day;
+	for (int i = 0; i < month - 1; i++)
+		n1 += monthDays[i];
+	n1 += this->countLeapYears();
+	long int n2 = dt2.year * 365 + dt2.day;
+	for (int i = 0; i < dt2.month - 1; i++)
+		n2 += monthDays[i];
+	n2 += dt2.countLeapYears();
+	return abs(n2 - n1);
+}
+
