@@ -61,7 +61,7 @@ void MainController::bookReservation() {
     cout << "\nAby wypozyczyc ksiazke, wpisz W\nAby wrocic do menu, wpisz M\nTwoj wybor: ";
     char choice;
     cin >> choice;
-    switch (choice) {
+    switch (toupper(choice)) {
     case 'W': {
         cout << "Podaj numer ksiazki z listy: ";
         int bookNumber;
@@ -87,6 +87,10 @@ void MainController::bookReservation() {
         break;
     }
     case 'M': {
+        userMenu();
+        return;
+    }
+    default:{
         userMenu();
         return;
     }
@@ -400,7 +404,7 @@ void MainController::librarianMenu() {
         break;
     }
     case 4: {
-        system("pause");
+        addUser();
         librarianMenu();
         break;
     }
@@ -464,7 +468,7 @@ void MainController::editBook() {
         int bookNumber;
         cin >> bookNumber;
         while (bookNumber > bookDatabase.size() || bookNumber < 0) {
-            cout << "Wpisano niewlasciwy numer!\nPodan numer jeszcze raz: ";
+            cout << "Wpisano niewlasciwy numer!\nPodaj numer jeszcze raz: ";
             cin >> bookNumber;
         }
 
@@ -593,16 +597,18 @@ void MainController::editUser() {
         int switch_case_user_ID = 0, editing_user = 0, editing_ID = 0;
         string new_word = "o", new_password;
         Date data(-1, -1, -1);
-        cout << "Wybierz uzytkownika,\nktorego dane chcesz zmienic.\n";
-        cin >> switch_case_user_ID;
-
+        while (switch_case_user_ID < 1 || switch_case_user_ID > userDatabase.size()) {
+            cout << "Wybierz uzytkownika,\nktorego dane chcesz zmienic.\n";
+            cin >> switch_case_user_ID;
+            if ((switch_case_user_ID < 1 || switch_case_user_ID > userDatabase.size()))
+                cout << "Brak uzytkownika o tym numerze na liœcie. Prosze sprobowac ponownie\n";
+        }
         switch_case_user_ID--;
-
         cout << "Wybierz, ktore dane chcesz zmienic. 1 - imie, 2 - ID, 3 - haslo, 4 - data urodzenia.\n";
         cin >> editing_user;
         switch (editing_user) {
         case 1: {
-            cout << "Podaj nowe imie.\n";
+            cout << "Podaj nowe imie: ";
             cin >> new_word;
             if (new_word.size() < 3) {
                 cout << "Wybrane imie jest zbyt krotkie. Prosze sprobowac ponownie.\n";
@@ -630,7 +636,7 @@ void MainController::editUser() {
             break;
         }
         case 2: {
-            cout << "Podaj nowe ID.\n";
+            cout << "Podaj nowe ID: ";
             cin >> editing_ID;
             if (editing_ID < 0) {
                 cout << "Wybrane ID jest mniejsze od 0. Prosze sprobowac ponownie.\n";
@@ -655,7 +661,7 @@ void MainController::editUser() {
             break;
         }
         case 3: {
-            cout << "Podaj nowe haslo.\n";
+            cout << "Podaj nowe haslo: ";
             cin >> new_password;
             if (new_password.size() < 8) {
                 cout << "Wybrane haslo jest krotsze niz 8 znakow. Prosze sprobowac ponownie.\n";
@@ -665,18 +671,21 @@ void MainController::editUser() {
             break;
         }
         case 4: {
-            cout << "Wprowadz nowa date urodzenia w kolejnosci dzien (enter), miesiac (enter), rok (enter).\n";
+            cout << "Wprowadz nowa date urodzenia wpisujac numer dnia, miesiaca i roku.\n";
             int nday, nmonth, nyear;
+            cout << "Dzien: ";
             cin >> nday;
             if (nday < 0 || nday > 31) {
                 cout << "Dzien nie miesci sie w zakresie. Prosze sprobowac ponownie.\n";
                 break;
             }
+            cout << "Miesiac: ";
             cin >> nmonth;
             if (nmonth < 0 || nmonth > 12) {
                 cout << "Miesiac nie miesci sie w zakresie. Prosze sprobowac ponownie.\n";
                 break;
             }
+            cout << "Rok: ";
             cin >> nyear;
             if (nyear < 1900 || nyear > 2022) {
                 cout << "Rok nie miesci sie w zakresie. Prosze sprobowac ponownie.\n";
@@ -715,4 +724,74 @@ void MainController::editUser() {
         break;
     }
     }
+}
+
+void MainController::addUser(){
+    system("cls");
+    cout << "Dodawanie uzytkownika\n";
+    int switch_case_user_ID = 0, editing_user = 0, editing_ID = 0;
+    string new_word = "o", new_password;
+    Date data(-1, -1, -1);
+    cout << "Podaj imie: ";
+    cin >> new_word;
+    if (new_word.size() < 3) {
+        cout << "Wybrane imie jest zbyt krotkie. Prosze sprobowac ponownie.\n";
+        system("pause");
+        librarianMenu();
+        return;
+    }
+    bool found = false;
+    for (auto i : userDatabase){
+        if (i.getName() == new_word){
+            found = true;
+        }
+    }
+    if (found){
+        cout << "Wybrane imie znajduje sie juz w bazie. Prosze sprobowac ponownie.\n";
+        system("pause");
+        librarianMenu();
+        return;
+    }
+    cout << "Podaj haslo: ";
+    cin >> new_password;
+    if (new_password.size() < 8) {
+        cout << "Wybrane haslo jest krotsze niz 8 znakow. Prosze sprobowac ponownie.\n";
+        system("pause");
+        librarianMenu();
+        return;
+    }
+    cout << "Wprowadz date urodzenia wpisujac numer dnia, miesiaca i roku\n";
+    int nday, nmonth, nyear;
+    cout << "Dzien: ";
+    cin >> nday;
+    if (nday < 0 || nday > 31) {
+        cout << "Dzien nie miesci sie w zakresie. Prosze sprobowac ponownie.\n";
+        system("pause");
+        librarianMenu();
+        return;
+    }
+    cout << "Miesiac: ";
+    cin >> nmonth;
+    if (nmonth < 0 || nmonth > 12) {
+        cout << "Miesiac nie miesci sie w zakresie. Prosze sprobowac ponownie.\n";
+        librarianMenu();
+        system("pause");
+        return;
+    }
+    cout << "Rok: ";
+    cin >> nyear;
+    if (nyear < 1900 || nyear > 2022) {
+        cout << "Rok nie miesci sie w zakresie. Prosze sprobowac ponownie.\n";
+        librarianMenu();
+        system("pause");
+        return;
+    }
+    Date new_date(nday, nmonth, nyear);
+    User newUser(new_word, new_password, new_date);
+    loggedLibrarian.addUser(userDatabase, newUser);
+    cout << "Pomyslnie dodano uzytkownika\n";
+    newUser.printUser();
+    system("pause");
+    librarianMenu();
+    return;
 }

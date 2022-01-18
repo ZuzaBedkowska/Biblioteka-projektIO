@@ -32,6 +32,7 @@ public:
 	void librarianMenu();
 	void editBook();
 	void editUser();
+	void addUser();
 };
 
 #endif
