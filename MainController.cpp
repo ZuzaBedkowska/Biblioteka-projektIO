@@ -485,6 +485,22 @@ void MainController::editBook() {
             getline(cin, new_word);
             if (new_word.size() < 3) {
                 cout << "Wybrany tytul jest zbyt krotki. Prosze sprobowac ponownie.\n";
+                system("pause");
+                break;
+            }
+            bool found = false;
+            for (auto i : bookDatabase)
+            {
+
+                if (i.getTitle() == new_word)
+                {
+                    found = true;
+                }
+            }
+            if (found)
+            {
+                cout << "Wybrana pozycja znajduje sie juz w bazie. Prosze sprobowac ponownie.\n";
+                system("pause");
                 break;
             }
             loggedLibrarian.editBook(bookDatabase[bookNumber], new_word, bookDatabase[bookNumber].getId(), bookDatabase[bookNumber].getAuthors(), bookDatabase[bookNumber].getDescription());
@@ -495,6 +511,22 @@ void MainController::editBook() {
             cin >> new_int;
             if (new_int < 0) {
                 cout << "Wybrane ID jest mniejsze od 0. Prosze sprobowac ponownie.\n";
+                system("pause");
+                break;
+            }
+            bool found = false;
+            for (auto i : bookDatabase)
+            {
+
+                if (i.getId() == new_int)
+                {
+                    found = true;
+                }
+            }
+            if (found)
+            {
+                cout << "Ksiazka o wybranym ID znajduje sie juz w bazie. Prosze sprobowac ponownie.\n";
+                system("pause");
                 break;
             }
             loggedLibrarian.editBook(bookDatabase[bookNumber], bookDatabase[bookNumber].getTitle(), new_int, bookDatabase[bookNumber].getAuthors(), bookDatabase[bookNumber].getDescription());
@@ -574,6 +606,22 @@ void MainController::editUser() {
             cin >> new_word;
             if (new_word.size() < 3) {
                 cout << "Wybrane imie jest zbyt krotkie. Prosze sprobowac ponownie.\n";
+                system("pause");
+                break;
+            }
+            bool found = false;
+            for (auto i : userDatabase)
+            {
+                
+                if (i.getName() == new_word)
+                {
+                    found = true;
+                }
+            }
+            if (found)
+            {
+                cout << "Wybrane imie znajduje sie juz w bazie. Prosze sprobowac ponownie.\n";
+                system("pause");
                 break;
             }
             loggedLibrarian.editUser(userDatabase[switch_case_user_ID], new_word, -1, "o", data);
@@ -586,6 +634,21 @@ void MainController::editUser() {
             cin >> editing_ID;
             if (editing_ID < 0) {
                 cout << "Wybrane ID jest mniejsze od 0. Prosze sprobowac ponownie.\n";
+                break;
+            }
+            bool found = false;
+            for (auto i : userDatabase)
+            {
+
+                if (i.getId() == editing_ID)
+                {
+                    found = true;
+                }
+            }
+            if (found)
+            {
+                cout << "Uzytkownik o podanym ID znajduje sie juz w bazie. Prosze sprobowac ponownie.\n";
+                system("pause");
                 break;
             }
             loggedLibrarian.editUser(userDatabase[switch_case_user_ID], "o", editing_ID, "o", data);
