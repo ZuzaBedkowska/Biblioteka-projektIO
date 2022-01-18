@@ -301,7 +301,33 @@ TEST(LibrarianTest, DoesLibrarianAddUserFineWork)
 	date_test.day = 16;
 	date_test.month = 12;
 	date_test.year = 2021;
-	u_test.getUserBorrowments().back().setDate(date_test);
+	u_test.getUserBorrowments()[0].setDate(date_test);
+	for (auto i : u_test.getUserBorrowments())
+	{
+		i.getDate().printDate();
+	}
 	l_test.addUserFine(u_test, 0); //za przetrzymanie funkcja wyliczy, za uszkodzenia podajemy sami
 	EXPECT_DOUBLE_EQ(u_test.getFine(), 0.5);
+}
+
+TEST(BorrowmentTest, DoesBorrowmentWork)
+{
+	EXPECT_EQ(u_test.getUserBorrowments().size(), 1);
+	u_test.addBorrowment(b_test);
+	EXPECT_EQ(u_test.getUserBorrowments().size(), 2);
+}
+
+TEST(BorrowmentTest, DoesBorrowmentSetDateWork)
+{
+	EXPECT_EQ(u_test.getUserBorrowments().size(), 2);
+	u_test.addBorrowment(b_test);
+	EXPECT_EQ(u_test.getUserBorrowments().size(), 3);
+	Date date_test;
+	date_test.day = 16;
+	date_test.month = 12;
+	date_test.year = 2021;
+	u_test.getUserBorrowments()[2].setDate(date_test);
+	EXPECT_EQ(u_test.getUserBorrowments()[2].getDate().day, date_test.day);
+	EXPECT_EQ(u_test.getUserBorrowments()[2].getDate().month, date_test.month);
+	EXPECT_EQ(u_test.getUserBorrowments()[2].getDate().year, date_test.year);
 }
