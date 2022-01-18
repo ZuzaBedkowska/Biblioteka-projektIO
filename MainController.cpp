@@ -378,10 +378,9 @@ void MainController::librarianMenu() {
     cout << "\t1. Przegladaj ksiazki\n";
     cout << "\t2. Wyszukaj ksiazke\n";
     cout << "\t3. Przegladaj uzytkownikow\n";
-    cout << "\t4. Edytuj uzytkownika\n";
-    cout << "\t5. Dodaj uzytkownika\n";
-    cout << "\t6. Dodaj ksiazke\n";
-    cout << "\t7. Wyloguj\n";
+    cout << "\t4. Dodaj uzytkownika\n";
+    cout << "\t5. Dodaj ksiazke\n";
+    cout << "\t6. Wyloguj\n";
     cout << "Twoj wybor: ";
     int choice;
     cin >> choice;
@@ -396,81 +395,16 @@ void MainController::librarianMenu() {
     }
     case 3: {
         loggedLibrarian.printUsers(userDatabase);
-        system("pause");
+        editUser();
         librarianMenu();
         break;
     }
     case 4: {
-        int switch_case_user_ID = 0, editing_user = 0, editing_ID = 0;
-        string new_word = "o", new_password;
-        Date data(-1, -1, -1);
-        cout << "Wybrano opcje edycji uzytkownika. Podaj ID uzytkownika,\nktorego dane chcesz zmienic.\n";
-        cin >> switch_case_user_ID;
-        cout << "Wybierz, ktore dane chcesz zmienic. 1 - imie, 2 - ID, 3 - haslo, 4 - data urodzenia.\n";
-        cin >> editing_user;
-        switch (editing_user) {
-        case 1: {
-            cout << "Podaj nowe imie.\n";
-            cin >> new_word;
-            if (new_word.size() < 3) {
-                cout << "Wybrane imie jest zbyt krotkie. Prosze sprobowac ponownie.\n";
-                break;
-            }
-            loggedLibrarian.editUser(userDatabase[switch_case_user_ID], new_word, -1, "o", data);
-            break;
-        }
-        case 2: {
-            cout << "Podaj nowe ID.\n";
-            cin >> editing_ID;
-            if (editing_ID < 0) {
-                cout << "Wybrane ID jest mniejsze od 0. Prosze sprobowac ponownie.\n";
-                break;
-            }
-            loggedLibrarian.editUser(userDatabase[switch_case_user_ID], "o", editing_ID, "o", data);
-            break;
-        }
-        case 3: {
-            cout << "Podaj nowe haslo.\n";
-            cin >> new_password;
-            if (new_password.size() < 8) {
-                cout << "Wybrane haslo jest krotsze niz 8 znakow. Prosze sprobowac ponownie.\n";
-                break;
-            }
-            loggedLibrarian.editUser(userDatabase[switch_case_user_ID], "o", -1, new_password, data);
-            break;
-        }
-        case 4: {
-            cout << "Wprowadz nowa date urodzenia w kolejnosci dzien (enter), miesiac (enter), rok (enter).\n";
-            int nday, nmonth, nyear;
-            cin >> nday;
-            if (nday < 0 || nday > 31) {
-                cout << "Dzien nie miesci sie w zakresie. Prosze sprobowac ponownie.\n";
-                break;
-            }
-            cin >> nmonth;
-            if (nmonth < 0 || nmonth > 12) {
-                cout << "Miesiac nie miesci sie w zakresie. Prosze sprobowac ponownie.\n";
-                break;
-            }
-            cin >> nyear;
-            if (nyear < 1900 || nyear > 2022) {
-                cout << "Rok nie miesci sie w zakresie. Prosze sprobowac ponownie.\n";
-                break;
-            }
-            Date new_date(nday, nmonth, nyear);
-            loggedLibrarian.editUser(userDatabase[switch_case_user_ID], "o", -1, "o", new_date);
-            break;
-        }
-        }
-        librarianMenu();
-        break;
-    }
-    case 5: {
         system("pause");
         librarianMenu();
         break;
     }
-    case 6: {
+    case 5: {
         int tempInt;
         string title, tempString;
         vector<string> description, author;
@@ -502,7 +436,7 @@ void MainController::librarianMenu() {
         librarianMenu();
         break;
     }
-    case 7: {
+    case 6: {
         loggedLibrarian.setIsLogged(false);
         start();
         break;
@@ -612,6 +546,104 @@ void MainController::editBook() {
     case 'M': {
         librarianMenu();
         return;
+    }
+    }
+}
+
+void MainController::editUser() {
+    cout << "\nAby edytowac uzytkownika, wpisz E\nAby usunac uzytkownika, wpisz U\nAby wrocic do menu, wpisz M\nTwoj wybor: ";
+    char choice;
+    cin >> choice;
+    switch (choice) {
+    case 'E': {
+        int switch_case_user_ID = 0, editing_user = 0, editing_ID = 0;
+        string new_word = "o", new_password;
+        Date data(-1, -1, -1);
+        cout << "Wybierz uzytkownika,\nktorego dane chcesz zmienic.\n";
+        cin >> switch_case_user_ID;
+
+        switch_case_user_ID--;
+
+        cout << "Wybierz, ktore dane chcesz zmienic. 1 - imie, 2 - ID, 3 - haslo, 4 - data urodzenia.\n";
+        cin >> editing_user;
+        switch (editing_user) {
+        case 1: {
+            cout << "Podaj nowe imie.\n";
+            cin >> new_word;
+            if (new_word.size() < 3) {
+                cout << "Wybrane imie jest zbyt krotkie. Prosze sprobowac ponownie.\n";
+                break;
+            }
+            loggedLibrarian.editUser(userDatabase[switch_case_user_ID], new_word, -1, "o", data);
+            break;
+        }
+        case 2: {
+            cout << "Podaj nowe ID.\n";
+            cin >> editing_ID;
+            if (editing_ID < 0) {
+                cout << "Wybrane ID jest mniejsze od 0. Prosze sprobowac ponownie.\n";
+                break;
+            }
+            loggedLibrarian.editUser(userDatabase[switch_case_user_ID], "o", editing_ID, "o", data);
+            break;
+        }
+        case 3: {
+            cout << "Podaj nowe haslo.\n";
+            cin >> new_password;
+            if (new_password.size() < 8) {
+                cout << "Wybrane haslo jest krotsze niz 8 znakow. Prosze sprobowac ponownie.\n";
+                break;
+            }
+            loggedLibrarian.editUser(userDatabase[switch_case_user_ID], "o", -1, new_password, data);
+            break;
+        }
+        case 4: {
+            cout << "Wprowadz nowa date urodzenia w kolejnosci dzien (enter), miesiac (enter), rok (enter).\n";
+            int nday, nmonth, nyear;
+            cin >> nday;
+            if (nday < 0 || nday > 31) {
+                cout << "Dzien nie miesci sie w zakresie. Prosze sprobowac ponownie.\n";
+                break;
+            }
+            cin >> nmonth;
+            if (nmonth < 0 || nmonth > 12) {
+                cout << "Miesiac nie miesci sie w zakresie. Prosze sprobowac ponownie.\n";
+                break;
+            }
+            cin >> nyear;
+            if (nyear < 1900 || nyear > 2022) {
+                cout << "Rok nie miesci sie w zakresie. Prosze sprobowac ponownie.\n";
+                break;
+            }
+            Date new_date(nday, nmonth, nyear);
+            loggedLibrarian.editUser(userDatabase[switch_case_user_ID], "o", -1, "o", new_date);
+            break;
+        }
+        }
+        break;
+    }
+    case 'U': {
+        cout << "Podaj numer uzytkownika z listy do usuniecia: ";
+        int userNumber;
+        cin >> userNumber;
+        while (userNumber > userDatabase.size() || userNumber < 0) {
+            cout << "Wpisano niewlasciwy numer!\nPodan numer jeszcze raz: ";
+            cin >> userNumber;
+        }
+
+        userNumber--; //aby index tablicy zgadzal sie z numerami na liscie
+
+        userDatabase.erase(userDatabase.begin() + userNumber);
+        librarianMenu();
+        break;
+    }
+    case 'M': {
+        librarianMenu();
+        break;
+    }
+    default: {
+        librarianMenu();
+        break;
     }
     }
 }

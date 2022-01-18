@@ -31,6 +31,7 @@ public:
 	Librarian librarianLogin();
 	void librarianMenu();
 	void editBook();
+	void editUser();
 };
 
 #endif
