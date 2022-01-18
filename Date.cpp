@@ -122,7 +122,7 @@ void Date::getCurrentDate()
 	day = now.tm_mday;
 }
 
-int Date::countLeapYears() //do liczenia ró¿nicy miêdzy datami
+int Date::countLeapYears() //do liczenia ró¿nicy miêdzy datami - obliczanie lat przestêpnych
 {
 	int years = year;
 	if (month <= 2)
