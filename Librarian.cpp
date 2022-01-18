@@ -57,14 +57,7 @@ void Librarian::addBook(vector <Book> & books, Book book) {
 }
 
 void Librarian::removeBook(vector <Book> & books, int bookId) {
-	for (int i = 0; i < books.size(); ++i)
-	{
-		if (books[i].getId() == bookId)
-		{
-			books.erase(books.begin() + i);
-			break;
-		}
-	}
+	books.erase(books.begin() + bookId);
 }
 
 void Librarian::addItem(Item item) {
@@ -97,14 +90,7 @@ void Librarian::addUser(vector <User> & users, User user) {
 }
 
 void Librarian::removeUser(vector <User> & users, int userId) {
-	for (int i = 0; i < users.size(); ++i)
-	{
-		if (users[i].getId() == userId)
-		{
-			users.erase(users.begin() + i);
-			break;
-		}
-	}
+	users.erase(users.begin() + userId);
 }
 
 void Librarian::printBooks(vector <Book> & books) {

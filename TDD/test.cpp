@@ -172,7 +172,7 @@ TEST(LibrarianTest, DoesLibrarianBookRemoveWork)
 	}
 	int id = bd_test[1].getId();
 	int s_test = bd_test.size();
-	l_test.removeBook(bd_test, id);
+	l_test.removeBook(bd_test, 1);
 	bool found = false;
 	for (auto i : bd_test)
 	{
@@ -195,7 +195,7 @@ TEST(LibrarianTest, DoesLibrarianUserRemoveWork)
 	}
 	int id = ud_test[1].getId();
 	int s_test = ud_test.size();
-	l_test.removeUser(ud_test, id);
+	l_test.removeUser(ud_test, 1);
 	bool found = false;
 	for (auto i : ud_test)
 	{
