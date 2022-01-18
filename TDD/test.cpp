@@ -32,6 +32,7 @@ TEST(UserTest, DoesUserSetFineWork)
 	u_test.setFine(10.0);
 	EXPECT_EQ(u_test.getFine(), 10.0);
 }
+
 TEST(UserTest,IsNameOk)
 {
 	ASSERT_EQ("a", u_test.getName());
