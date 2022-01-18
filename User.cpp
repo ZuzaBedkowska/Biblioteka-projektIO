@@ -195,7 +195,7 @@ vector<Reservation> User::getUserReservations()
 	return userReservations;
 }
 
-vector<Borrowment> User::getUserBorrowments()
+vector<Borrowment> & User::getUserBorrowments()
 {
 	return userBorrowments;
 }

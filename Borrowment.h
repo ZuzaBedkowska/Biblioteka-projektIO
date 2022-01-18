@@ -24,7 +24,7 @@ public:
 
 	void setId(int newId);
 
-	void setDate(Date newDate);
+	void setDate(Date & newDate);
 
 	void setUserId(int newUSerId);
 

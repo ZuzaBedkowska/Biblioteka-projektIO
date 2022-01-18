@@ -18,6 +18,7 @@ Reservation::Reservation(Item item)
 {
 	Reservation::count++;
 	durationDays = 7; //tydzieñ na realizacje rezerwacji
+	dateOfReservation.getCurrentDate();
 	this->id = Reservation::count;
 	this->item = item;
 }

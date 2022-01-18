@@ -1,4 +1,5 @@
 #include "Borrowment.h"
+#include <iostream>
 
 int Borrowment::count = 0;
 
@@ -15,6 +16,7 @@ Borrowment::Borrowment(Item item)
 {
 	Borrowment::count++;
 	durationDays = 30; //30 na oddanie
+	dateOfBorrowment.getCurrentDate();
 	this->id = Borrowment::count;
 	this->item = item;
 }
@@ -24,9 +26,11 @@ void Borrowment::setId(int newId)
 	id = newId;
 }
 
-void Borrowment::setDate(Date newDate)
+void Borrowment::setDate(Date & newDate)
 {
-	dateOfBorrowment = newDate;
+	dateOfBorrowment.day = newDate.day;
+	dateOfBorrowment.month = newDate.month;
+	dateOfBorrowment.year = newDate.year;
 }
 
 void Borrowment::setDurationDays(int newDurationDays)
