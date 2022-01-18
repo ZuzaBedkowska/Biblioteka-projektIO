@@ -577,6 +577,8 @@ void MainController::editUser() {
                 break;
             }
             loggedLibrarian.editUser(userDatabase[switch_case_user_ID], new_word, -1, "o", data);
+            cout << "Pomyslnie edytowano uzytkownika\n";
+            system("pause");
             break;
         }
         case 2: {
@@ -635,7 +637,9 @@ void MainController::editUser() {
 
         userNumber--; //aby index tablicy zgadzal sie z numerami na liscie
 
-        userDatabase.erase(userDatabase.begin() + userNumber);
+        loggedLibrarian.removeUser(userDatabase, userNumber);
+        cout << "Pomyslnie usunieto uzytkownika\n";
+        system("pause");
         librarianMenu();
         break;
     }

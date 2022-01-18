@@ -90,14 +90,7 @@ void Librarian::addUser(vector <User> & users, User user) {
 }
 
 void Librarian::removeUser(vector <User> & users, int userId) {
-	for (int i = 0; i < users.size(); ++i)
-	{
-		if (users[i].getId() == userId)
-		{
-			users.erase(users.begin() + i);
-			break;
-		}
-	}
+	users.erase(users.begin() + userId);
 }
 
 void Librarian::printBooks(vector <Book> & books) {
