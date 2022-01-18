@@ -30,7 +30,7 @@ TEST(UserTest, DoesUserSetFineWork)
 {
 	EXPECT_EQ(u_test.getFine(), 0.0);
 	u_test.setFine(10.0);
-	EXPECT_EQ(u_test.getFine(), 10.0);
+	EXPECT_DOUBLE_EQ(u_test.getFine(), 10.0);
 }
 
 TEST(UserTest,IsNameOk)
@@ -292,4 +292,16 @@ TEST(LibrarianTest, DoesLibrarianAddUserkWork)
 	EXPECT_TRUE(found);
 	EXPECT_EQ(ud_test.size(), s_test + 1);
 	EXPECT_EQ(ud_test.back().getId(), id);
+}
+
+TEST(LibrarianTest, DoesLibrarianAddUserFineWork)
+{
+	u_test.addBorrowment(bd_test[0]);
+	Date date_test;
+	date_test.day = 16;
+	date_test.month = 12;
+	date_test.year = 2021;
+	u_test.getUserBorrowments().back().setDate(date_test);
+	l_test.addUserFine(u_test, 0); //za przetrzymanie funkcja wyliczy, za uszkodzenia podajemy sami
+	EXPECT_DOUBLE_EQ(u_test.getFine(), 0.5);
 }
