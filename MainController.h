@@ -30,6 +30,8 @@ public:
 	void userRegistration();
 	Librarian librarianLogin();
 	void librarianMenu();
+	void editBook();
+	void editUser();
 };
 
 #endif

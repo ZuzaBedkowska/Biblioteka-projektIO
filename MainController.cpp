@@ -118,8 +118,7 @@ void MainController::printBookDatabase() {
     }
     else if (loggedLibrarian.getIsLogged()) //jesli to librarian jest zalogowany a user nie
     {
-        system("pause");
-        librarianMenu();
+        editBook();
     }
     else if ((!loggedLibrarian.getIsLogged()) && (!loggedUser.getIsLogged())) //jesli nikt nie jest zalogowany
     {
@@ -379,11 +378,9 @@ void MainController::librarianMenu() {
     cout << "\t1. Przegladaj ksiazki\n";
     cout << "\t2. Wyszukaj ksiazke\n";
     cout << "\t3. Przegladaj uzytkownikow\n";
-    cout << "\t4. Edytuj uzytkownika\n";
-    cout << "\t5. Edytuj ksiazke\n";
-    cout << "\t6. Dodaj uzytkownika\n";
-    cout << "\t7. Dodaj ksiazke\n";
-    cout << "\t8. Wyloguj\n";
+    cout << "\t4. Dodaj uzytkownika\n";
+    cout << "\t5. Dodaj ksiazke\n";
+    cout << "\t6. Wyloguj\n";
     cout << "Twoj wybor: ";
     int choice;
     cin >> choice;
@@ -398,16 +395,175 @@ void MainController::librarianMenu() {
     }
     case 3: {
         loggedLibrarian.printUsers(userDatabase);
-        system("pause");
+        editUser();
         librarianMenu();
         break;
     }
     case 4: {
+        system("pause");
+        librarianMenu();
+        break;
+    }
+    case 5: {
+        int tempInt;
+        string title, tempString;
+        vector<string> description, author;
+
+        cout << "Podaj tytul:  ";
+        cin.ignore();
+        getline(cin, title);
+
+        cout << "Podaj ilosc autorow \n";
+        cin >> tempInt;
+        cin.ignore();
+        for (int i = 0; i < tempInt; i++) {
+            cout << "Podaj autora nr " << i + 1 << "\n";
+            getline(cin, tempString);
+            author.push_back(tempString);
+        }
+
+        cout << "Podaj ilosc opisow \n";
+        cin >> tempInt;
+        cin.ignore();
+        for (int i = 0; i < tempInt; i++) {
+            cout << "Podaj opis nr " << i + 1 << "\n";
+            getline(cin, tempString);
+            description.push_back(tempString);
+        }
+
+        loggedLibrarian.addBook(bookDatabase, Book(title, description, author));
+
+        librarianMenu();
+        break;
+    }
+    case 6: {
+        loggedLibrarian.setIsLogged(false);
+        start();
+        break;
+    }
+  default: {
+      cout << "Wybierz wlasciwa opcje!\n";
+      system("pause");
+      librarianMenu();
+      return;
+  }
+}
+}
+
+void MainController::editBook() {
+    cout << "\nAby edytowac ksiazke, wpisz E\nAby usunac ksiazke, wpisz U\nAby wrocic do menu, wpisz M\nTwoj wybor: ";
+    char choice;
+    cin >> choice;
+    switch (choice) {
+    default: {
+        librarianMenu();
+        break;
+    }
+    case 'E': {
+        cout << "Podaj numer ksiazki z listy: ";
+        int bookNumber;
+        cin >> bookNumber;
+        while (bookNumber > bookDatabase.size() || bookNumber < 0) {
+            cout << "Wpisano niewlasciwy numer!\nPodan numer jeszcze raz: ";
+            cin >> bookNumber;
+        }
+
+        bookNumber--; //aby index tablicy zgadzal sie z numerami na liscie
+
+        int editing_book = 0, new_int = 0;
+        string new_word = "";
+        vector < string > new_vector;
+        new_vector.clear();
+        cout << "Wybrana ksiazka to:\n";
+        bookDatabase[bookNumber].printBook();
+        cout << "Wybierz, ktore dane chcesz zmienic. 1 - tytul, 2 - ID, 3 - autorzy, 4 - opis.\n";
+        cin >> editing_book;
+        switch (editing_book) {
+        case 1: {
+            cout << "Podaj nowy tytul.\n";
+            cin.ignore();
+            getline(cin, new_word);
+            if (new_word.size() < 3) {
+                cout << "Wybrany tytul jest zbyt krotki. Prosze sprobowac ponownie.\n";
+                break;
+            }
+            loggedLibrarian.editBook(bookDatabase[bookNumber], new_word, bookDatabase[bookNumber].getId(), bookDatabase[bookNumber].getAuthors(), bookDatabase[bookNumber].getDescription());
+            break;
+        }
+        case 2: {
+            cout << "Podaj nowe ID.\n";
+            cin >> new_int;
+            if (new_int < 0) {
+                cout << "Wybrane ID jest mniejsze od 0. Prosze sprobowac ponownie.\n";
+                break;
+            }
+            loggedLibrarian.editBook(bookDatabase[bookNumber], bookDatabase[bookNumber].getTitle(), new_int, bookDatabase[bookNumber].getAuthors(), bookDatabase[bookNumber].getDescription());
+            break;
+        }
+        case 3: {
+            cout << "Podaj liczbe nowych autorow.\n";
+            cin >> new_int;
+            cin.ignore();
+            for (int i = 0; i < new_int; i++) {
+                cout << "Podaj autora nr " << i + 1 << "\n";
+                getline(cin, new_word);
+                new_vector.push_back(new_word);
+            }
+            loggedLibrarian.editBook(bookDatabase[bookNumber], bookDatabase[bookNumber].getTitle(), bookDatabase[bookNumber].getId(), new_vector, bookDatabase[bookNumber].getDescription());
+            break;
+        }
+        case 4: {
+            cout << "Podaj liczbe nowych opisow.\n";
+            cin >> new_int;
+            cin.ignore();
+            for (int i = 0; i < new_int; i++) {
+                cout << "Podaj opis nr " << i + 1 << "\n";
+                getline(cin, new_word);
+                new_vector.push_back(new_word);
+            }
+            loggedLibrarian.editBook(bookDatabase[bookNumber], bookDatabase[bookNumber].getTitle(), bookDatabase[bookNumber].getId(), bookDatabase[bookNumber].getAuthors(), new_vector);
+            break;
+        }
+        }
+        librarianMenu();
+        break;
+    }
+    case 'U': {
+        cout << "Podaj numer ksiazki z listy: ";
+        int bookNumber;
+        cin >> bookNumber;
+        while (bookNumber > bookDatabase.size() || bookNumber < 0) {
+            cout << "Wpisano niewlasciwy numer!\nPodan numer jeszcze raz: ";
+            cin >> bookNumber;
+        }
+
+        bookNumber--; //aby index tablicy zgadzal sie z numerami na liscie
+
+        bookDatabase.erase(bookDatabase.begin() + bookNumber);
+        librarianMenu();
+        break;
+    }
+    case 'M': {
+        librarianMenu();
+        return;
+    }
+    }
+}
+
+void MainController::editUser() {
+    cout << "\nAby edytowac uzytkownika, wpisz E\nAby usunac uzytkownika, wpisz U\nAby wrocic do menu, wpisz M\nTwoj wybor: ";
+    char choice;
+    cin >> choice;
+    switch (choice) {
+    case 'E': {
         int switch_case_user_ID = 0, editing_user = 0, editing_ID = 0;
         string new_word = "o", new_password;
         Date data(-1, -1, -1);
-        cout << "Wybrano opcje edycji uzytkownika. Podaj ID uzytkownika,\nktorego dane chcesz zmienic.\n";
+        cout << "Wybierz uzytkownika,\nktorego dane chcesz zmienic.\n";
         cin >> switch_case_user_ID;
+
+        switch_case_user_ID--;
+
         cout << "Wybierz, ktore dane chcesz zmienic. 1 - imie, 2 - ID, 3 - haslo, 4 - data urodzenia.\n";
         cin >> editing_user;
         switch (editing_user) {
@@ -464,130 +620,30 @@ void MainController::librarianMenu() {
             break;
         }
         }
+        break;
+    }
+    case 'U': {
+        cout << "Podaj numer uzytkownika z listy do usuniecia: ";
+        int userNumber;
+        cin >> userNumber;
+        while (userNumber > userDatabase.size() || userNumber < 0) {
+            cout << "Wpisano niewlasciwy numer!\nPodan numer jeszcze raz: ";
+            cin >> userNumber;
+        }
+
+        userNumber--; //aby index tablicy zgadzal sie z numerami na liscie
+
+        userDatabase.erase(userDatabase.begin() + userNumber);
         librarianMenu();
         break;
     }
-    case 5: {
-        int bookIndex = -1;
-        int switch_case_book_ID = 0, editing_book = 0, new_int = 0;
-        string new_word = "";
-        vector < string > new_vector;
-        new_vector.clear();
-        cout << "Wybrano opcje edycji ksiazki. Podaj ID ksiazki,\nktorej dane chcesz zmienic.\n";
-        cin >> switch_case_book_ID;
-        for (int i = 0; i < bookDatabase.size(); ++i)
-        {
-            if (bookDatabase[i].getId() == switch_case_book_ID)
-                bookIndex = i;
-        }
-        if (bookIndex == -1)
-        {
-            cout << "Podana ksiazka nie istnieje w bazie!\n";
-            system("pause");
-            librarianMenu();
-            break;
-        }
-        cout << "Wybrana ksiazka to:\n";
-        bookDatabase[bookIndex].printBook();
-        cout << "Wybierz, ktore dane chcesz zmienic. 1 - tytul, 2 - ID, 3 - autorzy, 4 - opis.\n";
-        cin >> editing_book;
-        switch (editing_book) {
-        case 1: {
-            cout << "Podaj nowy tytul.\n";
-            cin.ignore();
-            getline(cin, new_word);
-            if (new_word.size() < 3) {
-                cout << "Wybrany tytul jest zbyt krotki. Prosze sprobowac ponownie.\n";
-                break;
-            }
-            loggedLibrarian.editBook(bookDatabase[bookIndex], new_word, switch_case_book_ID, bookDatabase[bookIndex].getAuthors(), bookDatabase[bookIndex].getDescription());
-            break;
-        }
-        case 2: {
-            cout << "Podaj nowe ID.\n";
-            cin >> new_int;
-            if (new_int < 0) {
-                cout << "Wybrane ID jest mniejsze od 0. Prosze sprobowac ponownie.\n";
-                break;
-            }
-            loggedLibrarian.editBook(bookDatabase[bookIndex], bookDatabase[bookIndex].getTitle(), new_int, bookDatabase[bookIndex].getAuthors(), bookDatabase[bookIndex].getDescription());
-            break;
-        }
-        case 3: {
-            cout << "Podaj liczbe nowych autorow.\n";
-            cin >> new_int;
-            cin.ignore();
-            for (int i = 0; i < new_int; i++) {
-                cout << "Podaj autora nr " << i + 1 << "\n";
-                getline(cin, new_word);
-                new_vector.push_back(new_word);
-            }
-            loggedLibrarian.editBook(bookDatabase[bookIndex], bookDatabase[bookIndex].getTitle(), switch_case_book_ID, new_vector, bookDatabase[bookIndex].getDescription());
-            break;
-        }
-        case 4: {
-            cout << "Podaj liczbe nowych opisow.\n";
-            cin >> new_int;
-            cin.ignore();
-            for (int i = 0; i < new_int; i++) {
-                cout << "Podaj opis nr " << i + 1 << "\n";
-                getline(cin, new_word);
-                new_vector.push_back(new_word);
-            }
-            loggedLibrarian.editBook(bookDatabase[bookIndex], bookDatabase[bookIndex].getTitle(), switch_case_book_ID, bookDatabase[bookIndex].getAuthors(), new_vector);
-            break;
-        }
-        }
+    case 'M': {
         librarianMenu();
         break;
     }
-    case 6: {
-        system("pause");
+    default: {
         librarianMenu();
         break;
     }
-    case 7: {
-        int tempInt;
-        string title, tempString;
-        vector<string> description, author;
-
-        cout << "Podaj tytul:  ";
-        cin.ignore();
-        getline(cin, title);
-
-        cout << "Podaj ilosc autorow \n";
-        cin >> tempInt;
-        cin.ignore();
-        for (int i = 0; i < tempInt; i++) {
-            cout << "Podaj autora nr " << i + 1 << "\n";
-            getline(cin, tempString);
-            author.push_back(tempString);
-        }
-
-        cout << "Podaj ilosc opisow \n";
-        cin >> tempInt;
-        cin.ignore();
-        for (int i = 0; i < tempInt; i++) {
-            cout << "Podaj opis nr " << i + 1 << "\n";
-            getline(cin, tempString);
-            description.push_back(tempString);
-        }
-
-        loggedLibrarian.addBook(bookDatabase, Book(title, description, author));
-
-        librarianMenu();
-        break;
     }
-    case 8: {
-        loggedLibrarian.setIsLogged(false);
-        start();
-        break;
-    }
-  default: {
-      cout << "Wybierz wlasciwa opcje!\n";
-      system("pause");
-      librarianMenu();
-      return;
-  }
-}
 }
