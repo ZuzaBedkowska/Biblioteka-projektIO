@@ -15,6 +15,7 @@ Borrowment::Borrowment(Item item)
 {
 	Borrowment::count++;
 	durationDays = 30; //30 na oddanie
+	dateOfBorrowment.getCurrentDate();
 	this->id = Borrowment::count;
 	this->item = item;
 }
