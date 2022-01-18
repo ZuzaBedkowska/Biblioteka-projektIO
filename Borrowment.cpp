@@ -31,7 +31,6 @@ void Borrowment::setDate(Date & newDate)
 	dateOfBorrowment.day = newDate.day;
 	dateOfBorrowment.month = newDate.month;
 	dateOfBorrowment.year = newDate.year;
-	cout << "Done\n";
 }
 
 void Borrowment::setDurationDays(int newDurationDays)
