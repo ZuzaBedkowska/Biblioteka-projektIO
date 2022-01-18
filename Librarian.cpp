@@ -35,9 +35,21 @@ double Librarian::getUserFine(int userId) {
 	throw "Not yet implemented";
 }
 
-void Librarian::addUserFine(int userId, double fine) {
-	// TODO - implement Librarian::addUserFine
-	throw "Not yet implemented";
+void Librarian::addUserFine(User & user, double fine) {
+	Date now;
+	now.getCurrentDate();
+	for (auto i : user.getUserBorrowments())
+	{
+		int difference = now.countDifference(i.getDate());
+		now.printDate();
+		i.getDate().printDate();
+		cout << difference << "\n";
+		if (difference / 30 > 0)
+		{
+			fine += 0.5;
+		}
+	}
+	user.setFine(fine);
 }
 
 void Librarian::addBook(vector <Book> & books, Book book) {

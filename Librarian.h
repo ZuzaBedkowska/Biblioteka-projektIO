@@ -30,7 +30,7 @@ public:
 
 	double getUserFine(int userId);
 
-	void addUserFine(int userId, double fine);
+	void addUserFine(User& user, double fine);
 
 	void addBook(vector <Book>& books, Book book);
 

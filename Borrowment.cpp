@@ -1,4 +1,5 @@
 #include "Borrowment.h"
+#include <iostream>
 
 int Borrowment::count = 0;
 
@@ -25,9 +26,12 @@ void Borrowment::setId(int newId)
 	id = newId;
 }
 
-void Borrowment::setDate(Date newDate)
+void Borrowment::setDate(Date & newDate)
 {
-	dateOfBorrowment = newDate;
+	dateOfBorrowment.day = newDate.day;
+	dateOfBorrowment.month = newDate.month;
+	dateOfBorrowment.year = newDate.year;
+	cout << "Done\n";
 }
 
 void Borrowment::setDurationDays(int newDurationDays)
