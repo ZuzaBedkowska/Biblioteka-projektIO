@@ -304,6 +304,8 @@ TEST(LibrarianTest, DoesLibrarianAddUserFineWork)
 	u_test.getUserBorrowments()[0].setDate(date_test);
 	l_test.addUserFine(u_test, 0); //za przetrzymanie funkcja wyliczy, za uszkodzenia podajemy sami
 	EXPECT_DOUBLE_EQ(u_test.getFine(), 0.5);
+	l_test.addUserFine(u_test, 10); //za przetrzymanie funkcja wyliczy, za uszkodzenia podajemy sami
+	EXPECT_DOUBLE_EQ(u_test.getFine(), 10.5);
 }
 
 TEST(BorrowmentTest, DoesBorrowmentWork)
