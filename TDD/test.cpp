@@ -326,8 +326,9 @@ TEST(BorrowmentTest, DoesBorrowmentSetDateWork)
 	date_test.day = 16;
 	date_test.month = 12;
 	date_test.year = 2021;
-	u_test.getUserBorrowments()[2].setDate(date_test);
-	EXPECT_EQ(u_test.getUserBorrowments()[2].getDate().day, date_test.day);
-	EXPECT_EQ(u_test.getUserBorrowments()[2].getDate().month, date_test.month);
-	EXPECT_EQ(u_test.getUserBorrowments()[2].getDate().year, date_test.year);
+	u_test.getUserBorrowments()[0].setDate(date_test);
+	u_test.getUserBorrowments()[0].getDate().printDate();
+	EXPECT_EQ(u_test.getUserBorrowments()[0].getDate().day, date_test.day);
+	EXPECT_EQ(u_test.getUserBorrowments()[0].getDate().month, date_test.month);
+	EXPECT_EQ(u_test.getUserBorrowments()[0].getDate().year, date_test.year);
 }

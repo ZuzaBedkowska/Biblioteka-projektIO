@@ -77,7 +77,7 @@ public:
 
 	vector <Reservation> getUserReservations();
 
-	vector <Borrowment> getUserBorrowments();
+	vector <Borrowment> & getUserBorrowments();
 };
 
 #endif
