@@ -539,7 +539,9 @@ void MainController::editBook() {
 
         bookNumber--; //aby index tablicy zgadzal sie z numerami na liscie
 
-        bookDatabase.erase(bookDatabase.begin() + bookNumber);
+        loggedLibrarian.removeBook(bookDatabase, bookNumber);
+        cout << "Pomyslnie usunieto ksiazke\n";
+        system("pause");
         librarianMenu();
         break;
     }
