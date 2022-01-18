@@ -5,9 +5,9 @@
 
 struct Date
 {
-	int day;
-	int month;
-	int year;
+	int day = 1;
+	int month = 1;
+	int year = 1970;
 
 	Date();
 	Date(int dayn, int monthn, int yearn);
