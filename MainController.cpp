@@ -18,24 +18,25 @@ void MainController::start() {
     cout << "\t2. Zaloguj jako uzytkownik\n";
     cout << "\t3. Korzystaj bez zalogowania\n";
     cout << "\t4. Zarejestruj\nTwoj wybor: ";
-    int choice = 0;
+    char choice;
     cin >> choice;
+    cin.ignore();
     switch (choice) {
-    case 1: {
+    case '1': {
         loggedLibrarian = librarianLogin();
         loggedLibrarian.setIsLogged(true); //zalogowany librarian a nie user
         loggedUser.setIsLogged(false);
         librarianMenu();
         break;
     }
-    case 2: {
+    case '2': {
         loggedUser = userLogin();
         loggedUser.setIsLogged(true); //zalogowany user a nie librarian
         loggedLibrarian.setIsLogged(false);
         userMenu();
         break;
     }
-    case 3: {
+    case '3': {
         string name = "Niezalogowany";
         loggedUser.setIsLogged(false); //ani librarian ani user niezalogowani
         loggedLibrarian.setIsLogged(false);
@@ -43,7 +44,7 @@ void MainController::start() {
         userMenu();
         break;
     }
-    case 4: {
+    case '4': {
         userRegistration();
         start();
         break;
@@ -456,6 +457,7 @@ void MainController::editBook() {
     cout << "\nAby edytowac ksiazke, wpisz E\nAby usunac ksiazke, wpisz U\nAby wrocic do menu, wpisz M\nTwoj wybor: ";
     char choice;
     cin >> choice;
+    cin.sync();
     switch (toupper(choice)) {
     default: {
         librarianMenu();
@@ -590,6 +592,7 @@ void MainController::editUser() {
     cout << "\nAby edytowac uzytkownika, wpisz E\nAby usunac uzytkownika, wpisz U\nAby wrocic do menu, wpisz M\nTwoj wybor: ";
     char choice;
     cin >> choice;
+    cin.sync();
     switch (toupper(choice)) {
     case 'E': {
         int switch_case_user_ID = 0, editing_user = 0, editing_ID = 0;
