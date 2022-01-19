@@ -70,8 +70,6 @@ void MainController::bookReservation() {
             cout << "Wpisano niewlasciwy numer!\nPodan numer jeszcze raz: ";
             cin >> bookNumber;
         }
-
-        bookDatabase[bookNumber].createItem(); //robocze robienie wolnego itemu
         if ((bookDatabase[bookNumber].isAnyItemFree()) && (loggedUser.userTest())) {
             loggedUser.addReservation(bookDatabase[bookNumber]);
         }

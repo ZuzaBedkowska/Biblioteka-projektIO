@@ -30,6 +30,8 @@ public:
 
 	int countItems();
 
+	int countFreeItems();
+
 	void printBook();
 
 	void createItem();

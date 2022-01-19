@@ -40,6 +40,17 @@ int Book::countItems() {
 	return this->items.size();
 }
 
+int Book::countFreeItems()
+{
+	int free = 0;
+	for (auto i : items)
+	{
+		if (i.getIsBorrowable())
+			free++;
+	}
+	return free;
+}
+
 void Book::printBook() {
 	cout << "\"" << title << "\", ";
 	if (author.size() == 1)

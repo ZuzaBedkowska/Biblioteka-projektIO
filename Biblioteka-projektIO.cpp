@@ -29,22 +29,38 @@ int main()
 	autorzy.push_back("J.R.R. Tolkien");
 	name = "Wladca Perscieni, II Wieze";
 	bookDatabase.push_back(Book(name ,doKsiazki,autorzy));
+	for (int i = 0; i < 5; ++i)
+		bookDatabase[0].createItem();
 	name = "Wladca Perscieni, Druzyna Pierscienia";
 	bookDatabase.push_back(Book(name, doKsiazki, autorzy));
+	for (int i = 0; i < 8; ++i)
+		bookDatabase[1].createItem();
 	name = "Wladca Perscieni, Powrot Krola";
 	bookDatabase.push_back(Book(name, doKsiazki, autorzy));
+	for (int i = 0; i < 4; ++i)
+		bookDatabase[2].createItem();
 	autorzy.pop_back();
 	autorzy.push_back("Christopher Paolini");
 	name = "Eragon";
 	bookDatabase.push_back(Book(name, doKsiazki, autorzy));
+	for (int i = 0; i < 10; ++i)
+		bookDatabase[3].createItem();
 	name = "Najstarszy";
 	bookDatabase.push_back(Book(name, doKsiazki, autorzy));
+	for (int i = 0; i < 2; ++i)
+		bookDatabase[4].createItem();
 	name = "Brisingr";
 	bookDatabase.push_back(Book(name, doKsiazki, autorzy));
+	for (int i = 0; i < 4; ++i)
+		bookDatabase[5].createItem();
 	name = "Dziedzictwo I";
 	bookDatabase.push_back(Book(name, doKsiazki, autorzy));
+	for (int i = 0; i < 5; ++i)
+		bookDatabase[6].createItem();
 	name = "Dziedzictwo II";
 	bookDatabase.push_back(Book(name, doKsiazki, autorzy));
+	for (int i = 0; i < 4; ++i)
+		bookDatabase[7].createItem();
 	userDatabase.push_back(test);
 	MainController mainController = MainController(userDatabase, librarianDatabase, bookDatabase);
 	mainController.start();
