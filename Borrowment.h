@@ -37,7 +37,6 @@ public:
 	int getUserId();
 
 	int getDurationDays();
-
 };
 
 #endif

@@ -587,7 +587,7 @@ void MainController::editBook() {
 }
 
 void MainController::editUser() {
-    cout << "\nAby edytowac uzytkownika, wpisz E\nAby usunac uzytkownika, wpisz U\nAby wrocic do menu, wpisz M\nTwoj wybor: ";
+    cout << "\nAby edytowac uzytkownika, wpisz E\nAby usunac uzytkownika, wpisz U\nAby dokonac wypozyczenia ksiazki, wpisz B\nAny dokonac zwrotu ksiazki, wpisz R\nAby wrocic do menu, wpisz M\nTwoj wybor: ";
     char choice;
     cin >> choice;
     switch (choice) {
@@ -717,6 +717,12 @@ void MainController::editUser() {
         librarianMenu();
         break;
     }
+    case 'B': {
+        bookBorrowment();
+    }
+    case 'R': {
+        bookReturn();
+    }
     default: {
         librarianMenu();
         break;
@@ -792,4 +798,65 @@ void MainController::addUser(){
     system("pause");
     librarianMenu();
     return;
+}
+
+void MainController::bookBorrowment() {
+    int switch_case_user_ID = 0;
+    while (switch_case_user_ID < 1 || switch_case_user_ID > userDatabase.size()) {
+        cout << "Wybierz uzytkownika,\nktoremu wypozyczasz ksiazke.\n";
+        cin >> switch_case_user_ID;
+        if ((switch_case_user_ID < 1 || switch_case_user_ID > userDatabase.size()))
+            cout << "Brak uzytkownika o tym numerze na liœcie. Prosze sprobowac ponownie\n";
+    }
+    system("cls");
+    cout << "Baza Ksiazek:\n";
+    int number = 1;
+    for (auto i : bookDatabase) {
+        cout << number << ". ";
+        i.printBook();
+        number++;
+    }
+    cout << "Wybierz ID ksiazki, ktora chcesz wypozyczysz.\n";
+    int bookNumber;
+    cin >> bookNumber;
+    while (bookNumber > bookDatabase.size() || bookNumber < 0) {
+        cout << "Wpisano niewlasciwy numer!\nPodaj numer jeszcze raz: ";
+        cin >> bookNumber;
+    }
+    bookNumber--;
+    cout << "Wybrano ksiazke: " << bookDatabase[bookNumber].getTitle() << ".\n";
+    /*vector <Reservation> rez = userDatabase[switch_case_user_ID].getUserReservations();
+    for (int i = 0; i < rez.size(); i++)
+    {
+        if (rez[i].getItem==)
+    }*/
+    if (bookDatabase[bookNumber].isAnyItemFree())
+    {
+        cout << "Dostepnych jest: " << bookDatabase[bookNumber].countFreeItems() << " szt. tej ksiazki.\n";
+        userDatabase[switch_case_user_ID].addBorrowment(bookDatabase[bookNumber]);
+        cout << "Ksiazka o id " << bookNumber << " zostala wypozyczona\nuzytkownikowi o id " << switch_case_user_ID << ".\n";
+    }
+    else
+    {
+        cout << "Nie ma dostepnych egzemplarzy tej ksiazki.\n";
+    }
+}
+
+void MainController::bookReturn() {
+    int switch_case_user_ID = 0;
+    while (switch_case_user_ID < 1 || switch_case_user_ID > userDatabase.size()) {
+        cout << "Wybierz uzytkownika,\nktory zwraca ksiazke.\n";
+        cin >> switch_case_user_ID;
+        if ((switch_case_user_ID < 1 || switch_case_user_ID > userDatabase.size()))
+            cout << "Brak uzytkownika o tym numerze na liœcie. Prosze sprobowac ponownie\n";
+    }
+    for (int i = 0; i < userDatabase[switch_case_user_ID].getUserBorrowments().size(); i++)
+    {
+        cout << userDatabase[switch_case_user_ID].getUserBorrowments()[i].getId() << endl;
+    }
+    cout << "Wybierz numer wypozyczenia.\n";
+    int id_borrow;
+    cin >> id_borrow;
+    userDatabase[switch_case_user_ID].removeBorrowment(id_borrow);
+
 }

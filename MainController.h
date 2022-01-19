@@ -33,6 +33,8 @@ public:
 	void editBook();
 	void editUser();
 	void addUser();
+	void bookBorrowment();
+	void bookReturn();
 };
 
 #endif
