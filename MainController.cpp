@@ -456,7 +456,7 @@ void MainController::editBook() {
     cout << "\nAby edytowac ksiazke, wpisz E\nAby usunac ksiazke, wpisz U\nAby wrocic do menu, wpisz M\nTwoj wybor: ";
     char choice;
     cin >> choice;
-    switch (choice) {
+    switch (toupper(choice)) {
     default: {
         librarianMenu();
         break;
@@ -590,7 +590,7 @@ void MainController::editUser() {
     cout << "\nAby edytowac uzytkownika, wpisz E\nAby usunac uzytkownika, wpisz U\nAby wrocic do menu, wpisz M\nTwoj wybor: ";
     char choice;
     cin >> choice;
-    switch (choice) {
+    switch (toupper(choice)) {
     case 'E': {
         int switch_case_user_ID = 0, editing_user = 0, editing_ID = 0;
         string new_word = "o", new_password;
