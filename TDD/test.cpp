@@ -310,22 +310,40 @@ TEST(LibrarianTest, DoesLibrarianAddUserFineWork)
 
 TEST(BorrowmentTest, DoesBorrowmentWork)
 {
-	EXPECT_EQ(u_test.getUserBorrowments().size(), 1);
-	u_test.addBorrowment(b_test);
-	EXPECT_EQ(u_test.getUserBorrowments().size(), 2);
+	User testUser("name", "pass", {1,1,1970});
+	EXPECT_EQ(testUser.getUserBorrowments().size(), 0);
+	testUser.addBorrowment(b_test);
+	EXPECT_EQ(testUser.getUserBorrowments().size(), 1);
 }
 
 TEST(BorrowmentTest, DoesBorrowmentSetDateWork)
 {
-	EXPECT_EQ(u_test.getUserBorrowments().size(), 2);
-	u_test.addBorrowment(b_test);
-	EXPECT_EQ(u_test.getUserBorrowments().size(), 3);
+	User testUser("name", "pass", { 1,1,1970 });
+	EXPECT_EQ(testUser.getUserBorrowments().size(), 0);
+	testUser.addBorrowment(b_test);
+	EXPECT_EQ(testUser.getUserBorrowments().size(), 1);
+
 	Date date_test;
 	date_test.day = 16;
 	date_test.month = 12;
 	date_test.year = 2021;
-	u_test.getUserBorrowments()[0].setDate(date_test);
-	EXPECT_EQ(u_test.getUserBorrowments()[0].getDate().day, date_test.day);
-	EXPECT_EQ(u_test.getUserBorrowments()[0].getDate().month, date_test.month);
-	EXPECT_EQ(u_test.getUserBorrowments()[0].getDate().year, date_test.year);
+	testUser.getUserBorrowments()[0].setDate(date_test);
+	EXPECT_EQ(testUser.getUserBorrowments()[0].getDate().day, date_test.day);
+	EXPECT_EQ(testUser.getUserBorrowments()[0].getDate().month, date_test.month);
+	EXPECT_EQ(testUser.getUserBorrowments()[0].getDate().year, date_test.year);
+}
+
+TEST(BookTest, DoesCountFreeItemsWork)
+{
+	Book testBook;
+	testBook.createItem();
+	testBook.createItem();
+	testBook.createItem();
+	testBook.createItem();
+	int testFreeItems = testBook.countFreeItems();
+	EXPECT_EQ(testBook.countFreeItems(), testFreeItems);
+	u_test2.addReservation(testBook);
+	EXPECT_EQ(testBook.countFreeItems(), testFreeItems - 1);
+	u_test2.addBorrowment(testBook);
+	EXPECT_EQ(testBook.countFreeItems(), testFreeItems - 2);
 }
