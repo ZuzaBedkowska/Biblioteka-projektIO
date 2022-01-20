@@ -30,7 +30,7 @@ TEST(DateTest, DoesDateIsTrueWork) //test jednostkowy do Date is True
 }
 TEST(DateTest, DoesGetCurrentDateWork)
 {
-	testDate.day = 19;
+	testDate.day = 21;
 	testDate.month = 1;
 	testDate.year = 2022;
 	actualDate.getCurrentDate();

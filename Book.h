@@ -26,7 +26,7 @@ public:
 
 	bool isAnyItemFree();
 
-	Item getFreeItem();
+	Item & getFreeItem();
 
 	int countItems();
 
