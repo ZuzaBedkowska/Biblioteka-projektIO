@@ -191,8 +191,7 @@ void MainController::userMenu() {
     cout << "Witaj " << loggedUser.getName() << "!\nWybierz jedna z dostepnych opcji wpisujac jej numer:\n";
     cout << "\t1. Przegladaj ksiazki\n";
     cout << "\t2. Wyszukaj ksiazke\n";
-    cout << "\t3. Sprawdz stan konta\n";
-    cout << "\t4. Wroc do logowania\n";
+    cout << "\t3. Wroc do logowania\n";
     cout << "Twoj wybor: ";
     int choice;
     cin >> choice;
@@ -206,13 +205,6 @@ void MainController::userMenu() {
         break;
     }
     case 3: {
-        loggedUser.printUser();
-        loggedUser.printBooks();
-        system("pause");
-        userMenu();
-        break;
-    }
-    case 4: {
         start();
         break;
     }
