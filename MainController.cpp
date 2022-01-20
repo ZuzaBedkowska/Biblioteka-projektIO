@@ -842,7 +842,7 @@ void MainController::bookBorrowment() {
     {
         cout << "Nie ma dostepnych egzemplarzy tej ksiazki.\n";
     }
-    Sleep(4000);
+    system("pause");
 }
 
 void MainController::bookReturn() {
@@ -873,5 +873,5 @@ void MainController::bookReturn() {
         loggedLibrarian.addUserFine(userDatabase[switch_case_user_ID - 1], fine);
     }
     if (decision == 'N') loggedLibrarian.addUserFine(userDatabase[switch_case_user_ID - 1], 0);
-    Sleep(3000);
+    system("pause");
 }
