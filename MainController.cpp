@@ -825,11 +825,6 @@ void MainController::bookBorrowment() {
     }
     bookNumber--;
     cout << "Wybrano ksiazke: " << bookDatabase[bookNumber].getTitle() << ".\n";
-    /*vector <Reservation> rez = userDatabase[switch_case_user_ID].getUserReservations();
-    for (int i = 0; i < rez.size(); i++)
-    {
-        if (rez[i].getItem==)
-    }*/
     if (bookDatabase[bookNumber].isAnyItemFree())
     {
         cout << "Dostepnych jest: " << bookDatabase[bookNumber].countFreeItems() << " szt. tej ksiazki.\n";
@@ -850,13 +845,12 @@ void MainController::bookReturn() {
         if ((switch_case_user_ID < 1 || switch_case_user_ID > userDatabase.size()))
             cout << "Brak uzytkownika o tym numerze na liœcie. Prosze sprobowac ponownie\n";
     }
-    for (int i = 0; i < userDatabase[switch_case_user_ID].getUserBorrowments().size(); i++)
+    for (int i = 0; i < userDatabase[switch_case_user_ID-1].getUserBorrowments().size(); i++)
     {
-        cout << userDatabase[switch_case_user_ID].getUserBorrowments()[i].getId() << endl;
+        cout << userDatabase[switch_case_user_ID-1].getUserBorrowments()[i].getId() << endl;
     }
     cout << "Wybierz numer wypozyczenia.\n";
     int id_borrow;
     cin >> id_borrow;
-    userDatabase[switch_case_user_ID].removeBorrowment(id_borrow);
-
+    userDatabase[switch_case_user_ID-1].removeBorrowment(id_borrow);
 }
