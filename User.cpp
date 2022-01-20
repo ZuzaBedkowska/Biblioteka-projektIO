@@ -106,6 +106,7 @@ void User::removeBorrowment(int borrowmentId) {
 			break;
 		}
 	}
+	cout << "Udalo sie zwrocic ksiazke.\n";
 }
 
 void User::printBorrowments() {

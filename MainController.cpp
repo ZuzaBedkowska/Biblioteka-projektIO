@@ -1,6 +1,7 @@
 #include "MainController.h"
 
 #include <iostream>
+#include <Windows.h>
 
 using namespace std;
 
@@ -719,9 +720,11 @@ void MainController::editUser() {
     }
     case 'B': {
         bookBorrowment();
+        break;
     }
     case 'R': {
         bookReturn();
+        break;
     }
     default: {
         librarianMenu();
@@ -824,17 +827,19 @@ void MainController::bookBorrowment() {
         cin >> bookNumber;
     }
     bookNumber--;
+    //switch_case_user_ID--;
     cout << "Wybrano ksiazke: " << bookDatabase[bookNumber].getTitle() << ".\n";
     if (bookDatabase[bookNumber].isAnyItemFree())
     {
         cout << "Dostepnych jest: " << bookDatabase[bookNumber].countFreeItems() << " szt. tej ksiazki.\n";
-        userDatabase[switch_case_user_ID].addBorrowment(bookDatabase[bookNumber]);
+        userDatabase[switch_case_user_ID-1].addBorrowment(bookDatabase[bookNumber]);
         cout << "Ksiazka o id " << bookNumber << " zostala wypozyczona\nuzytkownikowi o id " << switch_case_user_ID << ".\n";
     }
     else
     {
         cout << "Nie ma dostepnych egzemplarzy tej ksiazki.\n";
     }
+    Sleep(4000);
 }
 
 void MainController::bookReturn() {
@@ -845,6 +850,7 @@ void MainController::bookReturn() {
         if ((switch_case_user_ID < 1 || switch_case_user_ID > userDatabase.size()))
             cout << "Brak uzytkownika o tym numerze na liœcie. Prosze sprobowac ponownie\n";
     }
+    cout << "Wypozyczenia wybranego uzytkownika:\n";
     for (int i = 0; i < userDatabase[switch_case_user_ID-1].getUserBorrowments().size(); i++)
     {
         cout << userDatabase[switch_case_user_ID-1].getUserBorrowments()[i].getId() << endl;
@@ -853,4 +859,5 @@ void MainController::bookReturn() {
     int id_borrow;
     cin >> id_borrow;
     userDatabase[switch_case_user_ID-1].removeBorrowment(id_borrow);
+    Sleep(3000);
 }
