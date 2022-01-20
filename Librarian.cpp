@@ -50,6 +50,7 @@ void Librarian::addUserFine(User & user, double fine) {
 		}
 	}
 	user.setFine(fine);
+	cout << "Zaktualizowano wysokosc kary nalozonej na uzytkownika.\n";
 }
 
 void Librarian::addBook(vector <Book> & books, Book book) {

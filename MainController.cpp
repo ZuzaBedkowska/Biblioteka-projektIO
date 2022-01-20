@@ -859,5 +859,16 @@ void MainController::bookReturn() {
     int id_borrow;
     cin >> id_borrow;
     userDatabase[switch_case_user_ID-1].removeBorrowment(id_borrow);
+    cout << "Czy nalezy nalozyc na uzytkownika kare za stan oddanej ksiazki?\nT/N\n";
+    char decision;
+    cin >> decision;
+    if (decision == 'T')
+    {
+        double fine;
+        cout << "Podaj wysokosc kary.\n";
+        cin >> fine;
+        loggedLibrarian.addUserFine(userDatabase[switch_case_user_ID - 1], fine);
+    }
+    if (decision == 'N') loggedLibrarian.addUserFine(userDatabase[switch_case_user_ID - 1], 0);
     Sleep(3000);
 }
