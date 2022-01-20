@@ -60,35 +60,6 @@ void User::removeReservation(int reservationId) {
 	}
 }
 
-void User::printBooks() {
-	cout << "Rezerwacje:\n";
-	if (userReservations.size() > 0)
-	{
-		for (auto i : userReservations)
-		{
-			cout << "\t-";
-			//i.getItem().printBook();
-			cout <<	"\n";
-		}
-	}
-	else
-	{
-		cout << "Brak\n";
-	}
-	cout << "Wypozyczenia:\n";
-	if (userBorrowments.size() > 0)
-	{
-		for (auto i : userBorrowments)
-		{
-			cout << "\t-\n"; //trzeba ogarn¹æ jak wypisywaæ zarezerwowane tytu³y ksi¹¿ek
-		}
-	}
-	else
-	{
-		cout << "Brak\n";
-	}
-}
-
 void User::addBorrowment(Book & book) {
 	Borrowment bor = Borrowment(book.getFreeItem());
 	bor.setId(bor.getId() + 4044000);

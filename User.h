@@ -37,8 +37,6 @@ public:
 
 	void removeReservation(int reservationId);
 
-	void printBooks();
-
 	void addBorrowment(Book& book);
 
 	void removeBorrowment(int borrowmentId);
