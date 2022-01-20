@@ -30,8 +30,8 @@ bool Book::isAnyItemFree() {
 	return false;
 }
 
-Item Book::getFreeItem() {
-	for (auto i : items) {
+Item & Book::getFreeItem() {
+	for (auto &i : items) {
 		if (i.getIsBorrowable()) return i;
 	}
 }
